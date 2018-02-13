@@ -1,0 +1,31 @@
+{
+  "name": "metube",
+  "version": "1.0.0",
+  "description": "Databases 4620 Group Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "buffet@buffet.cs.clemson.edu:acarrab/MeTube"
+  },
+  "author": "Lucas Durham, Daniel Pebbles, Angelo Carrabba",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react-router-dom": "^4.2.4",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "devDependencies": {
+    "@types/material-ui": "^0.20.6",
+    "@types/react": "^16.0.37",
+    "@types/react-dom": "^16.0.4"
+  }
+}

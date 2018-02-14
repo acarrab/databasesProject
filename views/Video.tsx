@@ -12,30 +12,53 @@ interface VideoSummaryRowProps {
 class VideoSummaryRow extends Component<VideoSummaryRowProps>{
   public render() {
     return (
-      <div className="container-fluid"
-	   style={{
-	     padding: "1em"
-	   }}>
+      <div className="container-fluid">
 	<div className="row">
-	  <div className="col-4">
-	    <img src={this.props.img}
-		 alt="image not found"
-		 width="200"
-		 height="200"
-	    />
+	  <img src={this.props.img}
+	       alt="image not found"
+	       width="192"
+	       height="108"
+	  />
+	</div>
+	<div className="row" style={{ paddingTop: "1em" }}>
+	  <div style={{}}>
+	    <div style={{
+	      fontSize: "1em",
+	      fontWeight: 400
+	    }}>
+	      {this.props.title}
+	    </div>
+	    <div style={{
+	      fontSize: "1em",
+	      fontWeight: 300,
+	      color: "#aaa"
+
+	    }}>
+	      {this.props.author}
+	    </div>
+	    <div style={{
+	      fontSize: ".6em",
+	      color: "#aaa",
+	      textDecoration: "italics"
+
+	    }}>
+	      {this.props.date}
+	    </div>
 	  </div>
-	  <div className="col-8">
-	    <h1>{this.props.title}</h1>
-	    <h4>{this.props.author} <i>{this.props.date}</i></h4>
-	    <p>
-	      {this.props.summary}
-	    </p>
-	  </div>
+
 	</div>
       </div>
     )
   }
 }
+/*
+   <div style={{
+   margin: "1em",
+   fontSize: ".6em"
+   }}>
+   {this.props.summary}
+   </div>
+*/
 
 
 const imgDir = '/public/resources/exampleImages/'
@@ -66,19 +89,23 @@ const exampleInfo: Array<VideoSummaryRowProps> = [
 export class VideoList extends Component {
   public render() {
     return (
-      <div className="contiainer">
-	{
-	  exampleInfo.map((row) => (
-	    <VideoSummaryRow
-	    key={row.title}
-	    img={row.img}
-	    title={row.title}
-	    summary={row.summary}
-	    author={row.author}
-	    date={row.date}
-	    />
-	  ))
-	}
+      <div className="container video-list">
+	<div className="row">
+	  {
+	    exampleInfo.map((row) => (
+	      <div className="col-3">
+		<VideoSummaryRow
+		  key={row.title}
+		  img={row.img}
+		  title={row.title}
+		  summary={row.summary}
+		  author={row.author}
+		  date={row.date}
+		/>
+	      </div>
+	    ))
+	  }
+	</div>
       </div>
     );
   }

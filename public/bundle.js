@@ -26729,7 +26729,7 @@ var VideoSummaryRow = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     VideoSummaryRow.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container-fluid" },
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container-fluid", style: { paddingBottom: "4em" } },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.img, alt: "image not found", width: "192", height: "108" })),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row", style: { paddingTop: "1em" } },
@@ -26758,10 +26758,64 @@ var VideoSummaryRow = /** @class */ (function (_super) {
    }}>
    {this.props.summary}
    </div>
-*/
+ */
 var imgDir = '/public/resources/exampleImages/';
 var exampleInfo = [
     {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018'
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018'
+    }, {
         img: imgDir + 'doggo1.jpg',
         title: 'First Doggo',
         summary: 'This is an example row with an example image',

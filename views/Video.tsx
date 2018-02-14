@@ -12,7 +12,7 @@ interface VideoSummaryRowProps {
 class VideoSummaryRow extends Component<VideoSummaryRowProps>{
   public render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{ paddingBottom: "4em"}}>
 	<div className="row">
 	  <img src={this.props.img}
 	       alt="image not found"
@@ -58,7 +58,7 @@ class VideoSummaryRow extends Component<VideoSummaryRowProps>{
    }}>
    {this.props.summary}
    </div>
-*/
+ */
 
 
 const imgDir = '/public/resources/exampleImages/'
@@ -81,7 +81,62 @@ const exampleInfo: Array<VideoSummaryRowProps> = [
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo1.jpg',
+    title: 'First Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Angelo Carrabba',
+    date: 'Monday, February 12th, 2018'
+  },{
+    img: imgDir+'doggo2.jpg',
+    title: 'Second Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Daniel Pebbles',
+    date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo3.jpg',
+    title: 'Third Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Lucas Durham',
+    date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo1.jpg',
+    title: 'First Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Angelo Carrabba',
+    date: 'Monday, February 12th, 2018'
+  },{
+    img: imgDir+'doggo2.jpg',
+    title: 'Second Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Daniel Pebbles',
+    date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo3.jpg',
+    title: 'Third Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Lucas Durham',
+    date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo1.jpg',
+    title: 'First Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Angelo Carrabba',
+    date: 'Monday, February 12th, 2018'
+  },{
+    img: imgDir+'doggo2.jpg',
+    title: 'Second Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Daniel Pebbles',
+    date: 'Monday, February 12th, 2018'
+  }, {
+    img: imgDir+'doggo3.jpg',
+    title: 'Third Doggo',
+    summary: 'This is an example row with an example image',
+    author: 'Lucas Durham',
+    date: 'Monday, February 12th, 2018'
   }
+
 ]
 
 

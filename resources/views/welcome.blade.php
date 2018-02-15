@@ -2,14 +2,16 @@
 <html>
 
   <head>
-    <meta charset="utf-8">
     <title>MeTube</title>
+
+    <meta charset="utf-8">
+
     <meta name="author" content="Lucas Durham, Daniel Pebbles, Angelo Carrabba">
     <meta name="description" content="MeTube"/>
     <meta name="keywords" content="Video, Multi-media, upload, share"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="public/resources/favicon.png">
+    <link rel="icon" href="resources/favicon.png">
     <!--link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet"-->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,12 +21,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/main.css" />
+    <link rel="stylesheet" href="resources/main.css" />
   </head>
 
   <body>
     <div id="app"></div>
-    <script src="public/bundle.js"></script>
+    <script src="resources/bundle.js"></script>
   </body>
 
 </html>

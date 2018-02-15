@@ -38,6 +38,8 @@
   "devDependencies": {
     "@types/material-ui": "^0.20.6",
     "@types/react": "^16.0.37",
-    "@types/react-dom": "^16.0.4"
+      "@types/react-dom": "^16.0.4",
+      "laravel-elixir": "^5.0.0",
+      "bootstrap-sass": "^3.0.0"
   }
 }

@@ -61,7 +61,7 @@ class VideoSummaryRow extends Component<VideoSummaryRowProps>{
  */
 
 
-const imgDir = '/resources/images/'
+const imgDir = 'resources/images/'
 const exampleInfo: Array<VideoSummaryRowProps> = [
   {
     img: imgDir+'doggo1.jpg',

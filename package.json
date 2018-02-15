@@ -4,8 +4,8 @@
   "description": "Databases 4620 Group Project",
   "main": "index.js",
   "scripts": {
-    "build-sass": "node-sass scss -o public",
-    "watch-sass": "npm run build; node-sass --watch scss -o public",
+    "build-sass": "node-sass scss -o resources",
+    "watch-sass": "npm run build; node-sass --watch scss -o resources",
     "watch-web": "webpack-dev-server --inline --hot",
     "build-web": "webpack",
     "build": "npm run build-sass; npm run build-web",

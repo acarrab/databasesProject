@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "public";
+/******/ 	__webpack_require__.p = "resources";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 102);
@@ -26759,7 +26759,7 @@ var VideoSummaryRow = /** @class */ (function (_super) {
    {this.props.summary}
    </div>
  */
-var imgDir = '/public/resources/exampleImages/';
+var imgDir = '/resources/images/';
 var exampleInfo = [
     {
         img: imgDir + 'doggo1.jpg',

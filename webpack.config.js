@@ -3,10 +3,10 @@ const projectRootPath = __dirname;
 
 module.exports = {
     context: projectRootPath,
-    entry: './views/App.tsx',
+    entry: './src/App.tsx',
     output: {
-        path: path.resolve('./public'),
-        publicPath: 'public',
+        path: path.resolve('./resources'),
+        publicPath: 'resources',
         filename: 'bundle.js'
     },
     devtool: '#source-map',

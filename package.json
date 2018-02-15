@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Databases 4620 Group Project",
   "main": "index.js",
-  "scripts": {
+    "scripts": {
+	"mod": "chmod o+r resources/*/**",
     "build-sass": "node-sass scss -o resources",
     "watch-sass": "npm run build; node-sass --watch scss -o resources",
-    "watch-web": "webpack-dev-server --inline --hot",
-    "build-web": "webpack",
+    "watch-web": "webpack-dev-server --inline --hot; npm run mod",
+    "build-web": "webpack; npm run mod",
     "build": "npm run build-sass; npm run build-web",
     "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-sass' 'npm run watch-web'"
   },

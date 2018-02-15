@@ -26759,7 +26759,7 @@ var VideoSummaryRow = /** @class */ (function (_super) {
    {this.props.summary}
    </div>
  */
-var imgDir = '/resources/images/';
+var imgDir = 'resources/images/';
 var exampleInfo = [
     {
         img: imgDir + 'doggo1.jpg',

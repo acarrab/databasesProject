@@ -6194,7 +6194,7 @@ body {
   .view-control .side-expanded {
     display: float;
     height: 100vh; }
-  .view-control .main-content-hider {
+  .view-control .content-hider {
     position: fixed;
     top: 0;
     left: 0;

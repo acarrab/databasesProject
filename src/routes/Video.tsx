@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import GlobalProps from 'Global'
 
 
 interface VideoSummaryProps {
@@ -13,12 +13,12 @@ class VideoSummary extends Component<VideoSummaryProps> {
   public render() {
     return (
       <div className="video-summary">
-	<div>
-	  <img src={this.props.img} alt="image not found" width="192" height="108" />
-	  <div className="title">{this.props.title}</div>
-	  <div className="author">{this.props.author}</div>
-	  <div className="date">{this.props.date}</div>
-	</div>
+        <div>
+          <img src={this.props.img} alt="image not found" width="192" height="108" />
+          <div className="title">{this.props.title}</div>
+          <div className="author">{this.props.author}</div>
+          <div className="date">{this.props.date}</div>
+        </div>
       </div>
     )
   }
@@ -26,321 +26,321 @@ class VideoSummary extends Component<VideoSummaryProps> {
 
 
 const imgDir = 'resources/images/'
-let key=0;
+let key = 0;
 interface VideoSummaryInfoAndKey extends VideoSummaryProps {
   key: any
 }
 let exampleInfo: Array<VideoSummaryInfoAndKey> = [
   {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo1.jpg',
+    img: imgDir + 'doggo1.jpg',
     title: 'First Doggo',
     summary: 'This is an example row with an example image',
     author: 'Angelo Carrabba',
     date: 'Monday, February 12th, 2018',
     key: key++
-  },{
-    img: imgDir+'doggo2.jpg',
+  }, {
+    img: imgDir + 'doggo2.jpg',
     title: 'Second Doggo',
     summary: 'This is an example row with an example image',
     author: 'Daniel Pebbles',
     date: 'Monday, February 12th, 2018',
     key: key++
   }, {
-    img: imgDir+'doggo3.jpg',
+    img: imgDir + 'doggo3.jpg',
     title: 'Third Doggo',
     summary: 'This is an example row with an example image',
     author: 'Lucas Durham',
@@ -351,24 +351,24 @@ let exampleInfo: Array<VideoSummaryInfoAndKey> = [
 
 
 
-export class VideoList extends Component {
+export class VideoList extends Component<GlobalProps> {
   public render() {
     return (
       <div className="container video-list">
-	<div className="row">
-	  {
-	    exampleInfo.map((row) => (
-	      <VideoSummary
-		key={row.key}
-		img={row.img}
-		title={row.title}
-		summary={row.summary}
-		author={row.author}
-		date={row.date}
-	      />
-	  ))
-	  }
-	</div>
+        <div className="row">
+          {
+            exampleInfo.map((row) => (
+              <VideoSummary
+                key={row.key}
+                img={row.img}
+                title={row.title}
+                summary={row.summary}
+                author={row.author}
+                date={row.date}
+              />
+            ))
+          }
+        </div>
       </div>
     );
   }

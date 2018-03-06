@@ -10,7 +10,13 @@ module.exports = {
         filename: 'bundle.js'
     },
     devtool: '#source-map',
-    resolve: { extensions: ['*', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx'] },
+    resolve: {
+	extensions: ['*', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx'],
+	modules: [
+	    path.resolve('./src'),
+	    path.resolve('./node_modules')
+	]
+    },
     module: {
         loaders: [{ test: /\.tsx?$/, loader: 'ts-loader' }]
     }

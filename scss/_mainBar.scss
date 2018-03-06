@@ -13,6 +13,7 @@
 	i {
 	    padding: 1em;
 	    border-radius: 2em;
+	    cursor: pointer;
 	}
 	i:hover, i:hover * {
 	    color: orange;
@@ -49,6 +50,7 @@
 	    vertical-align: middle;
 	    background-color: $dark4;
 	    color: $light3;
+	    cursor: pointer;
 	}
 	.bar-button:hover {
 	    color: orange;

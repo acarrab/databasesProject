@@ -27,7 +27,10 @@ class VideoSummary extends Component<VideoSummaryProps> {
 
 const imgDir = 'resources/images/'
 let key=0;
-let exampleInfo: Array<VideoSummaryRowProps> = [
+interface VideoSummaryInfoAndKey extends VideoSummaryProps {
+  key: any
+}
+let exampleInfo: Array<VideoSummaryInfoAndKey> = [
   {
     img: imgDir+'doggo1.jpg',
     title: 'First Doggo',
@@ -355,16 +358,15 @@ export class VideoList extends Component {
 	<div className="row">
 	  {
 	    exampleInfo.map((row) => (
-		<VideoSummary
-		  key={row.title}
-		  img={row.img}
-		  title={row.title}
-		  summary={row.summary}
-		  author={row.author}
-		  date={row.date}
-		  key={row.key}
-		/>
-	    ))
+	      <VideoSummary
+		key={row.key}
+		img={row.img}
+		title={row.title}
+		summary={row.summary}
+		author={row.author}
+		date={row.date}
+	      />
+	  ))
 	  }
 	</div>
       </div>

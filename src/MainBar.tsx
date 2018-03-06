@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 
 class SearchBar extends Component {
+  textInput: any;
   constructor(props) {
     super(props)
     this.buttonClicked = this.buttonClicked.bind(this)

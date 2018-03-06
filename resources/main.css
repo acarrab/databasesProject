@@ -6118,7 +6118,8 @@ button:hover {
     font-size: 1em; }
   .main-bar .left i {
     padding: 1em;
-    border-radius: 2em; }
+    border-radius: 2em;
+    cursor: pointer; }
   .main-bar .left i:hover, .main-bar .left i:hover * {
     color: orange;
     border: none;
@@ -6147,7 +6148,8 @@ button:hover {
       text-align: center;
       vertical-align: middle;
       background-color: #333;
-      color: #555; }
+      color: #555;
+      cursor: pointer; }
     .main-bar .search-bar .bar-button:hover {
       color: orange; }
     .main-bar .search-bar .bar-button:active {
@@ -6157,9 +6159,9 @@ button:hover {
   position: fixed !important;
   overflow: scroll;
   z-index: 100;
-  top: calc(4 * 16);
+  top: 0;
   left: 0;
-  padding-top: 1em;
+  padding-top: 3.5em;
   background-color: #191919; }
   .side-bar button {
     width: 100%;
@@ -6188,7 +6190,7 @@ body {
   min-height: 20em; }
 
 .view-control {
-  padding-top: 2em; }
+  padding-top: 4em; }
   .view-control .side-expanded {
     display: float;
     height: 100vh; }

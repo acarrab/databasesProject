@@ -27065,7 +27065,7 @@ var VideoList = /** @class */ (function (_super) {
     }
     VideoList.prototype.render = function () {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container video-list" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, exampleInfo.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VideoSummary, { key: row.title, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date, key: row.key })); }))));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, exampleInfo.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VideoSummary, { key: row.key, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date })); }))));
     };
     return VideoList;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));

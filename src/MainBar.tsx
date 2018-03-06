@@ -2,15 +2,32 @@ import React, { Component } from 'react'
 
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props)
+    this.buttonClicked = this.buttonClicked.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+  }
+  buttonClicked() {
+    // this gets the text
+    let searchText = this.textInput.value
+    console.log(searchText);
+    this.textInput.blur();
+  }
+
+  handleKeyPress(event) {
+    if (event.key == 'Enter') {
+      this.buttonClicked()
+    }
+  }
 
   render() {
     return (
       <div className="search-bar row align-items-center">
 	<span className="bar">
-	  <input type="text" placeholder="Search">
+	  <input ref={(input) => {this.textInput = input}} type="text" placeholder="Search" onKeyPress={this.handleKeyPress}>
 	  </input>
 	</span>
-	<span className="bar-button">
+	<span className="bar-button" onClick={this.buttonClicked}>
 	  <i className="fas fa-search"></i>
 	</span>
       </div>

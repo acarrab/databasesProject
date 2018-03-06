@@ -1,6 +1,12 @@
 
 .side-bar {
-    padding-top: .5em;
+    position: fixed !important;
+    overflow: scroll;
+    z-index: 100;
+    top: calc(4 * 16);
+    left: 0;
+
+    padding-top: 1em;
     background-color: $dark2;
     button {
 	width: 100%;

@@ -493,7 +493,7 @@ pre {
     padding-right: 0;
     padding-left: 0; }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .expanded, .view-control .side-expanded, .inverse-expanded, .view-control .main-content-side-expanded, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .inverse-collapsed, .view-control .main-content-side-collapsed, .video-summary, .col,
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .expanded, .view-control .side-expanded, .inverse-expanded, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .inverse-collapsed, .view-control .main-content, .video-summary, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
 .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
@@ -535,7 +535,7 @@ pre {
   flex: 0 0 41.66667%;
   max-width: 41.66667%; }
 
-.col-6, .expanded, .view-control .side-expanded, .inverse-expanded, .view-control .main-content-side-expanded {
+.col-6, .expanded, .view-control .side-expanded, .inverse-expanded {
   flex: 0 0 50%;
   max-width: 50%; }
 
@@ -559,7 +559,7 @@ pre {
   flex: 0 0 91.66667%;
   max-width: 91.66667%; }
 
-.col-12, .inverse-collapsed, .view-control .main-content-side-collapsed, .video-summary {
+.col-12, .inverse-collapsed, .view-control .main-content, .video-summary {
   flex: 0 0 100%;
   max-width: 100%; }
 
@@ -623,7 +623,7 @@ pre {
 .offset-5 {
   margin-left: 41.66667%; }
 
-.offset-6 {
+.offset-6, .inverse-expanded-offset {
   margin-left: 50%; }
 
 .offset-7 {
@@ -674,7 +674,7 @@ pre {
   .col-sm-8 {
     flex: 0 0 66.66667%;
     max-width: 66.66667%; }
-  .col-sm-9, .inverse-expanded, .view-control .main-content-side-expanded {
+  .col-sm-9, .inverse-expanded {
     flex: 0 0 75%;
     max-width: 75%; }
   .col-sm-10 {
@@ -722,7 +722,7 @@ pre {
     margin-left: 8.33333%; }
   .offset-sm-2 {
     margin-left: 16.66667%; }
-  .offset-sm-3 {
+  .offset-sm-3, .inverse-expanded-offset {
     margin-left: 25%; }
   .offset-sm-4 {
     margin-left: 33.33333%; }
@@ -774,7 +774,7 @@ pre {
   .col-md-8 {
     flex: 0 0 66.66667%;
     max-width: 66.66667%; }
-  .col-md-9, .inverse-expanded, .view-control .main-content-side-expanded {
+  .col-md-9, .inverse-expanded {
     flex: 0 0 75%;
     max-width: 75%; }
   .col-md-10 {
@@ -822,7 +822,7 @@ pre {
     margin-left: 8.33333%; }
   .offset-md-2 {
     margin-left: 16.66667%; }
-  .offset-md-3 {
+  .offset-md-3, .inverse-expanded-offset {
     margin-left: 25%; }
   .offset-md-4 {
     margin-left: 33.33333%; }
@@ -877,7 +877,7 @@ pre {
   .col-lg-9 {
     flex: 0 0 75%;
     max-width: 75%; }
-  .col-lg-10, .inverse-expanded, .view-control .main-content-side-expanded {
+  .col-lg-10, .inverse-expanded {
     flex: 0 0 83.33333%;
     max-width: 83.33333%; }
   .col-lg-11 {
@@ -920,7 +920,7 @@ pre {
     margin-left: 0; }
   .offset-lg-1 {
     margin-left: 8.33333%; }
-  .offset-lg-2 {
+  .offset-lg-2, .inverse-expanded-offset {
     margin-left: 16.66667%; }
   .offset-lg-3 {
     margin-left: 25%; }
@@ -6108,6 +6108,10 @@ button:hover {
   cursor: pointer; }
 
 .main-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
   background-color: #222;
   font-size: .9em; }
   .main-bar .title {
@@ -6150,7 +6154,12 @@ button:hover {
       color: red; }
 
 .side-bar {
-  padding-top: .5em;
+  position: fixed !important;
+  overflow: scroll;
+  z-index: 100;
+  top: calc(4 * 16);
+  left: 0;
+  padding-top: 1em;
   background-color: #191919; }
   .side-bar button {
     width: 100%;
@@ -6175,9 +6184,22 @@ button:hover {
   .side-bar button:active .fas {
     color: red; }
 
-.view-control .side-expanded {
-  display: float;
-  height: 100vh; }
+body {
+  min-height: 20em; }
+
+.view-control {
+  padding-top: 2em; }
+  .view-control .side-expanded {
+    display: float;
+    height: 100vh; }
+  .view-control .main-content-hider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99; }
 
 .video-summary {
   text-align: center;

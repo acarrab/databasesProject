@@ -23533,18 +23533,17 @@ var ViewControl = /** @class */ (function (_super) {
     };
     ViewControl.prototype.render = function () {
         var _this = this;
-        var navBarHeight = "3.1em";
         var expanded = (this.state.expanded ? "expanded" : "collapsed");
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { width: '100%' }, className: "view-control" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* HashRouter */], { ref: 'router', basename: this.props.baseUrl },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MainBar__["a" /* default */], { style: { display: "float", height: navBarHeight }, toggleExpand: function () { _this.toggleExpand(); } }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container-fluid" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MainBar__["a" /* default */], { toggleExpand: function () { _this.toggleExpand(); } }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SideBar__["a" /* default */], { className: "side-" + expanded + " side-bar" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: this.state.expanded ? "main-content-hider" : "" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "main-content" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SideBar__["a" /* default */], { className: "side-" + expanded }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "main-content-side-" + expanded, style: { paddingTop: navBarHeight } },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Switch */], null,
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_2__Video__["a" /* VideoList */] })))))))));
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Switch */], null,
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_2__Video__["a" /* VideoList */] }))))))));
     };
     return ViewControl;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component));
@@ -26732,7 +26731,7 @@ var VideoSummary = /** @class */ (function (_super) {
     VideoSummary.prototype.render = function () {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "video-summary" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.img, alt: "image not found", width: "192", heigth: "108", style: { width: "192px", height: "108px" } }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.img, alt: "image not found", width: "192", height: "108" }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "title" }, this.props.title),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "author" }, this.props.author),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "date" }, this.props.date))));
@@ -26747,6 +26746,237 @@ var exampleInfo = [
         title: 'First Doggo',
         summary: 'This is an example row with an example image',
         author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo1.jpg',
+        title: 'First Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Angelo Carrabba',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo2.jpg',
+        title: 'Second Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Daniel Pebbles',
+        date: 'Monday, February 12th, 2018',
+        key: key++
+    }, {
+        img: imgDir + 'doggo3.jpg',
+        title: 'Third Doggo',
+        summary: 'This is an example row with an example image',
+        author: 'Lucas Durham',
         date: 'Monday, February 12th, 2018',
         key: key++
     }, {
@@ -26862,14 +27092,29 @@ var __extends = (this && this.__extends) || (function () {
 
 var SearchBar = /** @class */ (function (_super) {
     __extends(SearchBar, _super);
-    function SearchBar() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function SearchBar(props) {
+        var _this = _super.call(this, props) || this;
+        _this.buttonClicked = _this.buttonClicked.bind(_this);
+        _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+        return _this;
     }
+    SearchBar.prototype.buttonClicked = function () {
+        // this gets the text
+        var searchText = this.textInput.value;
+        console.log(searchText);
+        this.textInput.blur();
+    };
+    SearchBar.prototype.handleKeyPress = function (event) {
+        if (event.key == 'Enter') {
+            this.buttonClicked();
+        }
+    };
     SearchBar.prototype.render = function () {
+        var _this = this;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "search-bar row align-items-center" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "bar" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", placeholder: "Search" })),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "bar-button" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { ref: function (input) { _this.textInput = input; }, type: "text", placeholder: "Search", onKeyPress: this.handleKeyPress })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "bar-button", onClick: this.buttonClicked },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-search" }))));
     };
     return SearchBar;
@@ -26912,6 +27157,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 
+// <button><i className="fas fa-filter"></i>Categories</button>
 var SideBar = /** @class */ (function (_super) {
     __extends(SideBar, _super);
     function SideBar() {
@@ -26925,9 +27171,6 @@ var SideBar = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-newspaper" }),
                 "New"),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-filter" }),
-                "Categories"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Library"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,

@@ -1,0 +1,35 @@
+.expanded {
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-3;
+    @extend .col-6;
+}
+.inverse-expanded {
+    @extend .col-lg-10;
+    @extend .col-md-9;
+    @extend .col-sm-9;
+    @extend .col-6;
+}
+.collapsed { @extend .d-none; }
+.inverse-collapsed { @extend .col-12; }
+
+.view-control {
+
+
+    .side-expanded {
+	@extend .expanded;
+	display: float;
+	height: 100vh;
+    }
+    .main-content-side-expanded {
+	@extend .inverse-expanded;
+    }
+
+
+    .side-collapsed {
+	@extend .collapsed;
+    }
+    .main-content-side-collapsed {
+	@extend .inverse-collapsed;
+    }
+}

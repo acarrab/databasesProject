@@ -23534,14 +23534,15 @@ var ViewControl = /** @class */ (function (_super) {
     ViewControl.prototype.render = function () {
         var _this = this;
         var navBarHeight = "3.1em";
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { width: '100%' } },
+        var expanded = (this.state.expanded ? "expanded" : "collapsed");
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { width: '100%' }, className: "view-control" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* HashRouter */], { ref: 'router', basename: this.props.baseUrl },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MainBar__["a" /* default */], { style: { display: "float", height: navBarHeight }, toggleExpand: function () { _this.toggleExpand(); } }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container-fluid" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SideBar__["a" /* default */], { className: this.state.expanded ? "col-2" : "d-none", style: { display: "float", height: "100vh" } }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: this.state.expanded ? "col-10" : "col-12", style: { paddingTop: navBarHeight } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__SideBar__["a" /* default */], { className: "side-" + expanded }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "main-content-side-" + expanded, style: { paddingTop: navBarHeight } },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Switch */], null,
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Route */], { exact: true, path: '/', component: __WEBPACK_IMPORTED_MODULE_2__Video__["a" /* VideoList */] })))))))));
     };
@@ -26723,116 +26724,108 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 
-var VideoSummaryRow = /** @class */ (function (_super) {
-    __extends(VideoSummaryRow, _super);
-    function VideoSummaryRow() {
+var VideoSummary = /** @class */ (function (_super) {
+    __extends(VideoSummary, _super);
+    function VideoSummary() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    VideoSummaryRow.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container-fluid", style: { paddingBottom: "4em" } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.img, alt: "image not found", width: "192", height: "108" })),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row", style: { paddingTop: "1em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: {} },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: {
-                            fontSize: "1em",
-                            fontWeight: 400
-                        } }, this.props.title),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: {
-                            fontSize: "1em",
-                            fontWeight: 300,
-                            color: "#aaa"
-                        } }, this.props.author),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: {
-                            fontSize: ".6em",
-                            color: "#aaa",
-                            textDecoration: "italics"
-                        } }, this.props.date)))));
+    VideoSummary.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "video-summary" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.img, alt: "image not found", width: "192", heigth: "108", style: { width: "192px", height: "108px" } }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "title" }, this.props.title),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "author" }, this.props.author),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "date" }, this.props.date))));
     };
-    return VideoSummaryRow;
+    return VideoSummary;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-/*
-   <div style={{
-   margin: "1em",
-   fontSize: ".6em"
-   }}>
-   {this.props.summary}
-   </div>
- */
 var imgDir = 'resources/images/';
+var key = 0;
 var exampleInfo = [
     {
         img: imgDir + 'doggo1.jpg',
         title: 'First Doggo',
         summary: 'This is an example row with an example image',
         author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo2.jpg',
         title: 'Second Doggo',
         summary: 'This is an example row with an example image',
         author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo3.jpg',
         title: 'Third Doggo',
         summary: 'This is an example row with an example image',
         author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo1.jpg',
         title: 'First Doggo',
         summary: 'This is an example row with an example image',
         author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo2.jpg',
         title: 'Second Doggo',
         summary: 'This is an example row with an example image',
         author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo3.jpg',
         title: 'Third Doggo',
         summary: 'This is an example row with an example image',
         author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo1.jpg',
         title: 'First Doggo',
         summary: 'This is an example row with an example image',
         author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo2.jpg',
         title: 'Second Doggo',
         summary: 'This is an example row with an example image',
         author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo3.jpg',
         title: 'Third Doggo',
         summary: 'This is an example row with an example image',
         author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo1.jpg',
         title: 'First Doggo',
         summary: 'This is an example row with an example image',
         author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo2.jpg',
         title: 'Second Doggo',
         summary: 'This is an example row with an example image',
         author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }, {
         img: imgDir + 'doggo3.jpg',
         title: 'Third Doggo',
         summary: 'This is an example row with an example image',
         author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018'
+        date: 'Monday, February 12th, 2018',
+        key: key++
     }
 ];
 var VideoList = /** @class */ (function (_super) {
@@ -26842,8 +26835,7 @@ var VideoList = /** @class */ (function (_super) {
     }
     VideoList.prototype.render = function () {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container video-list" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, exampleInfo.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-3" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VideoSummaryRow, { key: row.title, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date }))); }))));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, exampleInfo.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VideoSummary, { key: row.title, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date, key: row.key })); }))));
     };
     return VideoList;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -26891,10 +26883,10 @@ var MainBar = /** @class */ (function (_super) {
         var _this = this;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: this.props.className + " container-fluid main-bar", style: this.props.style },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row align-items-center", style: { height: "inherit" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-2 no-select left" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "expanded no-select left" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-bars", onClick: function () { console.log("calling func"); _this.props.toggleExpand(); } }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "title no-select", style: { paddingLeft: "1em" } }, "MeTube")),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-8" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "inverse-expanded" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(SearchBar, null)))));
     };
     return MainBar;
@@ -26929,29 +26921,29 @@ var SideBar = /** @class */ (function (_super) {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: this.props.className + " side-bar", style: this.props.style },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-home" }),
-                " Home"),
+                "Home"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-newspaper" }),
-                " New"),
+                "New"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-filter" }),
-                " Categories"),
+                "Categories"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Library"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-history" }),
-                " History"),
+                "History"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-upload" }),
-                " Uploads"),
+                "Uploads"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Customize"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cogs" }),
-                " Setting"),
+                "Setting"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-info-circle" }),
-                " Help"),
+                "Help"),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "\u00A9 MeTube, LLC")));
     };

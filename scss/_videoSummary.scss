@@ -1,0 +1,27 @@
+.video-summary {
+    @extend .container-fluid;
+    @extend .justify-content-center;
+
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-12;
+
+
+    text-align: center;
+    .title {
+	padding-top: 1em;
+	font-weight: 400;
+    }
+    .author {
+	font-size: 1em;
+	font-weight: 300;
+	color: #aaa;
+    }
+    .date {
+	font-size: .6em;
+	color: #aaa;
+	text-decoration: italics;
+    }
+    margin-bottom: 2em;
+}

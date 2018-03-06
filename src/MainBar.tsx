@@ -32,14 +32,14 @@ export default class MainBar extends Component<MainBarProps> {
       <div className={this.props.className+" container-fluid main-bar"} style={this.props.style}>
 	<div className="row align-items-center" style={{ height: "inherit" }}>
 
-	  <div className="col-2 no-select left">
+	  <div className="expanded no-select left">
 	    <i className="fas fa-bars" onClick={() => { console.log("calling func"); this.props.toggleExpand()}}></i>
 	    <span className="title no-select" style={{paddingLeft: "1em"}}>
 	      MeTube
 	    </span>
 	  </div>
 
-	  <div className="col-8">
+	  <div className="inverse-expanded">
 	    <SearchBar />
 	  </div>
 	</div>

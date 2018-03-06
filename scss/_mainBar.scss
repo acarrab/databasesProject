@@ -1,5 +1,9 @@
 .main-bar {
     background-color: $dark3;
+    font-size: .9em;
+    .title {
+	font-size: 1em;
+    }
     .left {
 	i {
 	    padding: 1em;
@@ -20,7 +24,7 @@
 	height: 2em;
 
 	.bar {
-	    width: 90%;
+	    width: calc(100% - 3em);
 	    input {
 		display: static;
 		color: $light1;
@@ -33,7 +37,7 @@
 	    padding-right: .1em;
 	}
 	.bar-button {
-	    width: 4em;
+	    width: 3em;
 	    height: 2em;
 	    padding-top: .3em;
 	    text-align: center;

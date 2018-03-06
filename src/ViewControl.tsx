@@ -24,15 +24,16 @@ export default class ViewControl extends React.Component<ViewControlProps> {
 
   public render() {
     let navBarHeight="3.1em"
+    let expanded=(this.state.expanded ? "expanded" : "collapsed")
     return (
-      <div style={{ width: '100%'}}>
+      <div style={{ width: '100%'}} className="view-control">
 	<Router ref='router' basename={this.props.baseUrl}>
-	  <div>
+	  <div >
 	    <MainBar style={{ display: "float", height: navBarHeight }} toggleExpand={() => {this.toggleExpand()}} />
 	    <div className="container-fluid">
 	      <div className="row" >
-		<SideBar className={this.state.expanded ? "col-2" : "d-none"} style={{ display: "float", height: "100vh" }} />
-		<div className={this.state.expanded ? "col-10" : "col-12"} style={{ paddingTop: navBarHeight }}>
+		<SideBar className={"side-"+expanded}/>
+		<div className={"main-content-side-"+expanded} style={{ paddingTop: navBarHeight }}>
 		  <Switch >
 		    <Route exact  path='/' component={VideoList}/>
 		  </Switch>

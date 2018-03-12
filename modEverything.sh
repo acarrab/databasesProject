@@ -1,1 +1,1 @@
-chmod o+r index.html public/*
+chmod o+r index.html public/**/*

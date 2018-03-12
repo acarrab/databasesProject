@@ -6071,6 +6071,13 @@ a.text-dark:hover, a.text-dark:focus {
   user-select: none;
   /* Non-prefixed version, currently */ }
 
+a {
+  text-decoration: none !important;
+  color: white; }
+
+a:hover {
+  color: white; }
+
 body {
   font-family: 'Roboto', sans-serif;
   padding: 0em;
@@ -6190,7 +6197,8 @@ body {
   min-height: 20em; }
 
 .view-control {
-  padding-top: 4em; }
+  padding-top: 4em;
+  text-align: center; }
   .view-control .side-expanded {
     display: float;
     height: 100vh; }

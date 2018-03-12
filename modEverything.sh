@@ -1,1 +1,1 @@
-chmod o+r index.html resources/*
+chmod o+r index.html public/*

@@ -5,7 +5,7 @@ module.exports = {
     context: projectRootPath,
     entry: './src/App.tsx',
     output: {
-        path: path.resolve('../resources'),
+        path: path.resolve('../public'),
         publicPath: 'resources',
         filename: 'bundle.js'
     },

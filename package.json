@@ -8,8 +8,8 @@
       "watch-scss": "node-sass --watch view/scss -o public",
       "watch-web": "cd view; webpack --watch;",
       "build-web": "cd view; webpack;",
-      "build": "npm run build-sass; npm run build-web",
-      "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-sass' 'npm run watch-web'"
+      "build": "npm run build-scss; npm run build-web",
+      "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-scss' 'npm run watch-web'"
   },
   "repository": {
     "type": "git",

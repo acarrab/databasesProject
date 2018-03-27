@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import Access, { AuthProps } from '../Auth'
+import AccessControl, { AuthProps } from '../Auth'
 
 
 export default class History extends Component<AuthProps> {
   public render() {
     return (
-      <Access auth={this.props.auth}>
+      <AccessControl auth={this.props.auth}>
         <div className="container">
-          <div className="col-12">
+          <div className="col-12" style={{ textAlign: "center", width: "100%" }}>
             <h1>History!</h1>
           </div>
         </div>
-      </Access>
-    );
+      </AccessControl>
+    )
   }
 }

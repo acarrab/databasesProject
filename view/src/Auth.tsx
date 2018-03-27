@@ -56,15 +56,24 @@ export interface AuthProps { auth: Authentication }
 interface AuthAccessProps extends RouteComponentProps<any> {
   auth: Authentication
 }
-class AuthenticationAccess extends Component<AuthAccessProps> {
+class AccessControl extends Component<AuthAccessProps> {
   componentDidMount() {
     if (!this.props.auth.islogged()) {
       // return the user to home if they do not have access
       this.props.history.push('/')
     }
   }
+  componentDidUpdate() {
+    if (!this.props.auth.islogged()) {
+      // return the user to home if they do not have access
+      this.props.history.push('/')
+    }
+  }
   render() {
-    return (<div>{this.props.children}</div>)
+    if (this.props.auth.islogged())
+      return (<div style={{ width: "100%" }}>{this.props.children}</div>)
+    else
+      return (<div></div>)
   }
 }
-export default withRouter<AuthAccessProps>(AuthenticationAccess)
+export default withRouter<AuthAccessProps>(AccessControl)

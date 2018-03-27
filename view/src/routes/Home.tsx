@@ -3,7 +3,7 @@ import { AuthProps } from '../Auth'
 import { VideoSummary, VideoSummaryProps } from './Video'
 
 
-const imgDir = 'resources/images/'
+const imgDir = 'public/images/'
 let key = 0;
 interface VideoSummaryInfoAndKey extends VideoSummaryProps {
   key: any

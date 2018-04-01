@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { AuthProps } from './Auth'
+import { AuthProps } from '../Auth'
 
-import Home from './routes/Home'
-import History from './routes/History'
-import Settings from './routes/Settings'
-import Uploads from './routes/Uploads'
+import Home from './Home'
+import History from './History'
+import Settings from './Settings'
+import Uploads from './Uploads'
+import Login from './Login'
 
 
 
@@ -36,6 +37,12 @@ var loggedOutLinks: Array<Category> = [
   {
     title: 'Library',
     data: [loggedInLinks[0].data[0]]
+  },
+  {
+    title: '',
+    data: [
+      { title: 'Login', to: '/login', icon: 'fas fa-sign-in-alt' }
+    ]
   }
 ]
 export function getLinks(isLoggedIn: boolean): Array<Category> {
@@ -45,7 +52,7 @@ export function getLinks(isLoggedIn: boolean): Array<Category> {
 
 
 
-export default class MyRoutes extends Component<AuthProps> {
+export default class Routes extends Component<AuthProps> {
   public render() {
     return (
       <div className="main-content">
@@ -55,6 +62,7 @@ export default class MyRoutes extends Component<AuthProps> {
             <Route path="/history" render={(routeProps) => (<History {...routeProps} {...this.props} />)} />
             <Route path="/settings" render={(routeProps) => (<Settings {...routeProps} {...this.props} />)} />
             <Route path="/uploads" render={(routeProps) => (<Uploads {...routeProps} {...this.props} />)} />
+            <Route path="/login" render={(routeProps) => (<Login {...routeProps} {...this.props} />)} />
           </Switch>
         </div>
       </div>

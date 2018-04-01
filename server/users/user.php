@@ -3,7 +3,7 @@ $server = dirname(__FILE__)."/..";
 require_once($server."/connect.php");
 require_once($server."/auth.php");
 
-$db = new Database();
+// $db = new Database();
 
 class User {
   public $uid;
@@ -20,7 +20,7 @@ class User {
     $this->f_name = "taco";
     $this->l_name = "bot";
 
-    $this->email = "tacobot@gmail.com"
+    $this->email = "tacobot@gmail.com";
   }
 }
 

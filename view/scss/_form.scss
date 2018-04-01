@@ -1,0 +1,33 @@
+.form-container {
+    @extend .container-fluid; @extend .row;
+    margin: 0em;
+
+    input {
+	width: 80%;
+	margin-left: 10%;
+	margin: 1em;
+	color: black !important;
+    }
+    button {
+	border-color: white;
+	margin: 1em;
+    }
+    button:hover {
+	border-color: orange;
+	color: orange;
+    }
+    button:active {
+	border-color: red;
+	color: red;
+    }
+    hr {
+	width: 100%;
+	border-color: $light3;
+	border-width: .05em;
+    }
+}
+.form {
+    @extend .col-8; @extend .offset-2;
+    border-radius: .5em;
+    padding-top: 2em; padding-bottom: 2em;
+}

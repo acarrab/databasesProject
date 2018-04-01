@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { AuthProps } from './Auth'
+import { AuthProps } from '../Auth'
 
 class SearchBar extends Component {
   textInput: any;
   constructor(props) {
     super(props)
-    this.buttonClicked = this.buttonClicked.bind(this)
+    this.enterClicked = this.enterClicked.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
-  buttonClicked() {
+  enterClicked() {
     // this gets the text
     let searchText = this.textInput.value
     console.log(searchText);
@@ -17,7 +17,7 @@ class SearchBar extends Component {
 
   handleKeyPress(event) {
     if (event.key == 'Enter') {
-      this.buttonClicked()
+      this.enterClicked()
     }
   }
 
@@ -28,7 +28,7 @@ class SearchBar extends Component {
           <input ref={(input) => { this.textInput = input }} type="text" placeholder="Search" onKeyPress={this.handleKeyPress}>
           </input>
         </span>
-        <span className="bar-button" onClick={this.buttonClicked}>
+        <span className="bar-button" onClick={this.enterClicked}>
           <i className="fas fa-search"></i>
         </span>
       </div>

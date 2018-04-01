@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import axios, { AxiosRequestConfig, AxiosPromise } from 'axios'
 
 export class UserInfo {
   username: string
@@ -38,9 +39,22 @@ export class Authentication {
   islogged() {
     return (this.userInfo !== null)
   }
-  login() {
+  login(username: string, password: string, itWorked: () => void, itFailed: () => void) {
+    console.log(username, password)
     this.userInfo = new UserInfo()
     this.update()
+
+    axios.post('public/api/auth/login.php', { username: username, password: password })
+      .then((res) => {
+        console.log("success")
+        console.log(res)
+        itWorked()
+      })
+      .catch((err) => {
+        console.log("failed")
+        console.log(err)
+        itFailed()
+      })
   }
   logout() {
     this.userInfo = null

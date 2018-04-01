@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import AccessControl, { AuthProps } from '../Auth'
+import AccessControl, { AuthProps, UserInfo } from '../Auth'
 
 
 export default class Settings extends Component<AuthProps> {
   public render() {
-    let info = this.props.auth.userInfo
+    let info: UserInfo = this.props.auth.userInfo
     return (
       <AccessControl auth={this.props.auth}>
         <div className="container">
@@ -12,7 +12,7 @@ export default class Settings extends Component<AuthProps> {
             {!info ? (<div></div>) : (
               <div className="col-12">
                 <p>Username: {info.username}</p>
-                <p>Name: <b>{info.firstname}</b> {info.lastname}</p>
+                <p>Name: <b>{info.f_name}</b> {info.l_name}</p>
               </div>
             )}
           </div>

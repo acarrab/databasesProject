@@ -1,12 +1,11 @@
 
 import React from 'react'
 
-import { Authentication } from './Auth'
-
+import { Authentication } from '../Auth'
 
 import MainBar from './MainBar'
 import SideBar from './SideBar'
-import MyRoutes from './MyRoutes'
+import MyRoutes from '../routes/Routes'
 
 
 export default class ViewControl extends React.Component {
@@ -28,8 +27,8 @@ export default class ViewControl extends React.Component {
     return (
       <div className="view-control">
         <MainBar toggleExpand={this.toggleExpand} auth={this.state.globals} />
-        <SideBar className={"side-" + expanded + " side-bar"} auth={this.state.globals} />
-        <div className={isExpanded ? "content-hider" : ""}></div>
+        <SideBar className={"side-" + expanded + " side-bar"} auth={this.state.globals} toggleExpand={this.toggleExpand} />
+        <div className={isExpanded ? "content-hider" : ""} onClick={this.toggleExpand}></div>
         <MyRoutes auth={this.state.globals} />
       </div>
     )

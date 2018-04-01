@@ -17,7 +17,7 @@ class Auth {
 
   // logs in
   public function login() {
-
+    $data = json_decode(file_get_contents("php://input"), true);
     if ( empty($data["username"]) || $data["username"] != "tacobot" ||
 	 empty($data["password"]) || $data["password"] != "bot" ) {
       $this->no_access();
@@ -30,7 +30,7 @@ class Auth {
   public function islogged() { return isset($_SESSION["user_object"]); }
 
   // returns true if logged or calls no_access if not
-  public function validate($type = "basic") { return islogged() || $this->no_access(); }
+  public function validate($type = "basic") { return $this->islogged() || $this->no_access(); }
   // gets the user object or throws unauthorized
   public function get_user() { $this->validate(); return $_SESSION["user_object"]; }
 }

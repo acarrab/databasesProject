@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-scss": "node-sass view/scss -o public",
-    "watch-scss": "node-sass --watch view/scss -o public",
-    "watch-web": "cd view; webpack --watch;",
+    "watch-scss": "npm run build-scss; while true; do node-sass --watch view/scss -o public; sleep 1; done",
     "build-web": "cd view; webpack;",
+    "watch-web": "cd view; webpack --watch;",
     "build": "npm run build-scss; npm run build-web",
     "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-scss' 'npm run watch-web'"
   },

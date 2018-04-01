@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { AuthProps } from '../Auth'
 import { VideoSummary, VideoSummaryProps } from './Video'
+import axios from 'axios'
 
 
 const imgDir = 'public/images/'
@@ -330,9 +331,25 @@ let exampleInfo: Array<VideoSummaryInfoAndKey> = [
 
 
 export default class Home extends Component<AuthProps> {
+  testStuff() {
+    axios.get("public/api/getSecret.php")
+      .then((res) => {
+        console.log("it worked")
+        console.log(res)
+      })
+      .catch((res) => {
+        console.log("error")
+        console.log(res)
+      })
+  }
+  constructor(props) {
+    super(props)
+    this.testStuff = this.testStuff.bind(this)
+  }
   public render() {
     return (
       <div className="container video-list">
+        <button onClick={this.testStuff}>testButton!!!</button>
         <div className="row">
           {
             exampleInfo.map((row) => (

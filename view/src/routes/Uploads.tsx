@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import AccessControl, { AuthProps } from '../Auth'
 
-
 export default class Home extends Component<AuthProps> {
+
   public render() {
     return (
       <AccessControl auth={this.props.auth}>

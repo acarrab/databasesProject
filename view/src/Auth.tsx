@@ -4,17 +4,18 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 export class UserInfo {
   username: string
 
-  name: string
-  firstname: string
-  lastname: string
+  uid: string
+
+  f_name: string
+  l_name: string
 
   id: string
 
   constructor() {
     this.username = 'tacobot'
-    this.name = 'taco bot'
-    this.firstname = 'taco'
-    this.lastname = 'bot'
+    this.uid = 'taco bot'
+    this.f_name = 'taco'
+    this.l_name = 'bot'
     this.id = 'randomid'
   }
 }

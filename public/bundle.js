@@ -5109,7 +5109,7 @@ var Authentication = /** @class */ (function () {
         console.log(username, password);
         this.userInfo = new UserInfo();
         this.update();
-        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('public/api/auth/login.php', { username: username, password: password })
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('api/auth/login.php', { username: username, password: password })
             .then(function (res) {
             console.log("success");
             console.log(res);
@@ -5124,6 +5124,9 @@ var Authentication = /** @class */ (function () {
     Authentication.prototype.logout = function () {
         this.userInfo = null;
         this.update();
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('api/auth/logout.php', {}).then(function (res) {
+            console.log(res);
+        });
     };
     return Authentication;
 }());
@@ -26470,346 +26473,30 @@ var __extends = (this && this.__extends) || (function () {
 
 var imgDir = 'public/images/';
 var key = 0;
-var exampleInfo = [
-    {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo1.jpg',
-        title: 'First Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Angelo Carrabba',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo2.jpg',
-        title: 'Second Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Daniel Pebbles',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }, {
-        img: imgDir + 'doggo3.jpg',
-        title: 'Third Doggo',
-        summary: 'This is an example row with an example image',
-        author: 'Lucas Durham',
-        date: 'Monday, February 12th, 2018',
-        key: key++
-    }
-];
 var Home = /** @class */ (function (_super) {
     __extends(Home, _super);
     function Home(props) {
         var _this = _super.call(this, props) || this;
-        _this.testStuff = _this.testStuff.bind(_this);
+        _this.updateVideoView = _this.updateVideoView.bind(_this);
+        _this.state = { videos: [] };
+        _this.updateVideoView();
         return _this;
     }
-    Home.prototype.testStuff = function () {
-        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("public/api/getSecret.php")
+    Home.prototype.updateVideoView = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get("api/videos/")
             .then(function (res) {
-            console.log("it worked");
             console.log(res);
+            _this.setState({ videos: res.data });
         })
-            .catch(function (res) {
-            console.log("error");
-            console.log(res);
+            .catch(function (err) {
+            console.log(err);
         });
     };
     Home.prototype.render = function () {
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container video-list" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", { onClick: this.testStuff }, "testButton!!!"),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, exampleInfo.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Video__["a" /* VideoSummary */], { key: row.key, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date })); }))));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", { onClick: this.updateVideoView }, "test load!!!"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" }, this.state.videos.map(function (row) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Video__["a" /* VideoSummary */], { key: row.key, img: row.img, title: row.title, summary: row.summary, author: row.author, date: row.date })); }))));
     };
     return Home;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -27025,6 +26712,8 @@ var ViewControl = /** @class */ (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -27036,18 +26725,26 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 
+
 var SearchBar = /** @class */ (function (_super) {
     __extends(SearchBar, _super);
     function SearchBar(props) {
         var _this = _super.call(this, props) || this;
         _this.enterClicked = _this.enterClicked.bind(_this);
         _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+        _this.setSearchText('');
         return _this;
     }
+    SearchBar.prototype.setSearchText = function (searchText) {
+        __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('api/videos/search', { searchText: searchText })
+            .then(function (res) { console.log(res); })
+            .catch(function (err) { console.log(err); });
+    };
     SearchBar.prototype.enterClicked = function () {
         // this gets the text
         var searchText = this.textInput.value;
         console.log(searchText);
+        this.setSearchText(searchText);
         this.textInput.blur();
     };
     SearchBar.prototype.handleKeyPress = function (event) {
@@ -27284,6 +26981,9 @@ var Login = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.login = _this.login.bind(_this);
         _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+        _this.state = {
+            loginFailed: false
+        };
         return _this;
     }
     Login.prototype.login = function () {
@@ -27295,6 +26995,7 @@ var Login = /** @class */ (function (_super) {
             _this.props.history.push('/');
         }, function () {
             console.log("it failed");
+            _this.setState({ loginFailed: true });
         });
     };
     Login.prototype.enterClicked = function () {
@@ -27310,11 +27011,13 @@ var Login = /** @class */ (function (_super) {
     };
     Login.prototype.render = function () {
         var _this = this;
+        var loginFailed = this.state.loginFailed;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "form-container" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "form row" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Log Into your Account")),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12" }, loginFailed ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", { style: { color: "red" } }, "Wrong Credentials...")) : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null))),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-8 offset-2" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { ref: function (input) { _this.username = input; }, placeholder: "username" })),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-8 offset-2" },

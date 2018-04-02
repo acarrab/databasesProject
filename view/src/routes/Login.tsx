@@ -7,6 +7,9 @@ interface LoginProps extends RouteComponentProps<any> {
 }
 
 class Login extends Component<LoginProps> {
+  state: { loginFailed: boolean }
+
+
   username: { value: string, blur: () => void }
   password: { value: string, blur: () => void }
   login() {
@@ -17,6 +20,7 @@ class Login extends Component<LoginProps> {
       this.props.history.push('/')
     }, () => {
       console.log("it failed")
+      this.setState({ loginFailed: true })
     })
   }
   enterClicked() {
@@ -34,8 +38,12 @@ class Login extends Component<LoginProps> {
     super(props)
     this.login = this.login.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.state = {
+      loginFailed: false
+    }
   }
   public render() {
+    let loginFailed = this.state.loginFailed;
     return (
       <div className="form-container">
         <div className="form row">
@@ -43,6 +51,9 @@ class Login extends Component<LoginProps> {
             <h1>Log Into your Account</h1>
           </div>
           <hr />
+          <div className="col-12">
+            {loginFailed ? (<p style={{ color: "red" }}>Wrong Credentials...</p>) : (<div></div>)}
+          </div>
           <div className="col-8 offset-2">
             <input ref={(input) => { this.username = input }} placeholder="username"></input>
           </div>
@@ -56,7 +67,7 @@ class Login extends Component<LoginProps> {
             </button>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }

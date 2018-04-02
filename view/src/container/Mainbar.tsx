@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import { AuthProps } from '../Auth'
+import axios from 'axios';
 
 class SearchBar extends Component {
   textInput: any;
+
+  setSearchText(searchText) {
+    axios.post('api/videos/search', { searchText: searchText })
+      .then((res) => { console.log(res) })
+      .catch((err) => { console.log(err) })
+  }
   constructor(props) {
     super(props)
     this.enterClicked = this.enterClicked.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.setSearchText('');
   }
   enterClicked() {
     // this gets the text
     let searchText = this.textInput.value
-    console.log(searchText);
+    console.log(searchText)
+    this.setSearchText(searchText)
     this.textInput.blur();
   }
 

@@ -44,7 +44,7 @@ export class Authentication {
     this.userInfo = new UserInfo()
     this.update()
 
-    axios.post('public/api/auth/login.php', { username: username, password: password })
+    axios.post('api/auth/login.php', { username: username, password: password })
       .then((res) => {
         console.log("success")
         console.log(res)
@@ -59,6 +59,9 @@ export class Authentication {
   logout() {
     this.userInfo = null
     this.update()
+    axios.post('api/auth/logout.php', {}).then((res) => {
+      console.log(res)
+    })
   }
 }
 

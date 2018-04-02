@@ -13,7 +13,7 @@ class Auth {
   // starts this users session
   public function __construct() { session_start(); }
   // ends the users session
-  public function logout() { session_destory(); }
+  public function logout() { session_destroy(); }
 
   // logs in
   public function login() {

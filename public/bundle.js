@@ -28210,9 +28210,13 @@ var SearchBar = /** @class */ (function (_super) {
         return _this;
     }
     SearchBar.prototype.setSearchText = function (searchText) {
+        var _this = this;
         __WEBPACK_IMPORTED_MODULE_1__tools_Api__["b" /* default */].Videos.search({
             searchText: searchText,
-            itWorked: function (res) { console.log(res); },
+            itWorked: function (res) {
+                console.log(res);
+                _this.props.updateVideoView();
+            },
             itFailed: function (err) { console.error(err); }
         });
     };
@@ -28221,7 +28225,6 @@ var SearchBar = /** @class */ (function (_super) {
         console.log(searchText);
         this.setSearchText(searchText);
         this.textInput.blur();
-        this.props.updateVideoView();
     };
     SearchBar.prototype.handleKeyPress = function (event) {
         if (event.key == 'Enter') {

@@ -11,7 +11,10 @@ export default class SearchBar extends Component<SearchBarProps> {
   setSearchText(searchText) {
     Api.Videos.search({
       searchText: searchText,
-      itWorked: (res) => { console.log(res); },
+      itWorked: (res) => {
+        console.log(res)
+        this.props.updateVideoView()
+      },
       itFailed: (err) => { console.error(err); }
     })
   }
@@ -28,7 +31,6 @@ export default class SearchBar extends Component<SearchBarProps> {
     console.log(searchText)
     this.setSearchText(searchText)
     this.textInput.blur()
-    this.props.updateVideoView()
   }
   handleKeyPress(event) {
     if (event.key == 'Enter') {

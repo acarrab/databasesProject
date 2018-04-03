@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AccessControl, { AuthProps } from '../Auth'
+import AccessControl, { AuthProps } from '../tools/Auth'
 
 export default class Home extends Component<AuthProps> {
 

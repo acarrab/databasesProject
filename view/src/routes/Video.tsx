@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
+import Api, { VideoInfo } from '../tools/Api'
 
-
-export interface VideoSummaryProps {
-  img: string
-  title: string
-  summary: string
-  author: string
-  date: string
-}
-export class VideoSummary extends Component<VideoSummaryProps> {
+export class VideoSummary extends Component<VideoInfo> {
   public render() {
     return (
       <div className="video-summary">

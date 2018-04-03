@@ -1,42 +1,32 @@
 import React, { Component } from 'react'
-import { AuthProps } from '../Auth'
-import { VideoSummary, VideoSummaryProps } from './Video'
-import axios from 'axios'
+import { AuthProps } from '../tools/Auth'
+import Api, { VideoInfo } from '../tools/Api'
+import { VideoSummary } from './Video'
 
 
 const imgDir = 'public/images/'
 let key = 0;
-interface VideoSummaryInfoAndKey extends VideoSummaryProps {
+interface VideoSummaryInfoAndKey extends VideoInfo {
   key: any
 }
+interface HomeProps extends AuthProps {
+  videos: Array<VideoInfo>
+  updateVideoView: () => void
+}
 
-export default class Home extends Component<AuthProps> {
-  state: { videos: Array<VideoSummaryInfoAndKey> }
-  updateVideoView() {
-    axios.get("api/videos/")
-      .then((res) => {
-        console.log(res)
-        this.setState({ videos: res.data });
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+export default class Home extends Component<HomeProps> {
   constructor(props) {
     super(props)
-    this.updateVideoView = this.updateVideoView.bind(this)
-    this.state = { videos: [] }
-    this.updateVideoView()
+    this.props.updateVideoView()
   }
   public render() {
     return (
       <div className="container video-list">
-        <button onClick={this.updateVideoView}>test load!!!</button>
         <div className="row">
           {
-            this.state.videos.map((row) => (
+            this.props.videos.map((row, index) => (
               <VideoSummary
-                key={row.key}
+                key={index}
                 img={row.img}
                 title={row.title}
                 summary={row.summary}

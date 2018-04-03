@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ScrollArea from 'react-scrollbar'
-import { AuthProps } from '../Auth'
+import { AuthProps } from '../tools/Auth'
 import { Link } from 'react-router-dom'
 import { getLinks, Category, MyLink } from '../routes/Routes'
 

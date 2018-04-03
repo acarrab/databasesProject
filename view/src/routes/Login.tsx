@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { Authentication, AuthProps, UserInfo } from '../Auth'
+import { Authentication, AuthProps } from '../tools/Auth'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+
+
+
 
 interface LoginProps extends RouteComponentProps<any> {
   auth: Authentication
@@ -13,14 +16,17 @@ class Login extends Component<LoginProps> {
   username: { value: string, blur: () => void }
   password: { value: string, blur: () => void }
   login() {
-    let username = this.username.value
-    let password = this.password.value
-    this.props.auth.login(username, password, () => {
-      console.log("it worked")
-      this.props.history.push('/')
-    }, () => {
-      console.log("it failed")
-      this.setState({ loginFailed: true })
+    let auth: Authentication = this.props.auth;
+    auth.login({
+      username: this.username.value,
+      password: this.password.value,
+      itWorked: (res) => {
+        this.props.history.push('/');
+      },
+      itFailed: (err) => {
+        console.log(err)
+        this.setState({ loginFailed: true });
+      }
     })
   }
   enterClicked() {

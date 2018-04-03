@@ -1,38 +1,49 @@
 <?php
 require_once(dirname(__FILE__)."/users/user.php");
+require_once(dirname(__FILE__)."/connect.php");
+require_once(dirname(__FILE__)."/requests.php");
+require_once(dirname(__FILE__)."/state.php");
 
 
+
+
+/*****************************************************************************/
+/*                    Handles authentication for the users                   */
+/*****************************************************************************/
 class Auth {
 
-  // automatically cancels everything and sends unauthorized header
-  private function no_access() {
-    header("HTTP/1.1 401 Unauthorized");
-    exit;
+  public static function logout() { $s = &State::get_instance(); $s->user = null; }
+
+  private static function hash($password) { return password_hash($password, PASSWORD_DEFAULT); }
+
+
+  public static function create_account($user, $password) {
+    $hashed_password = &self::hash($password);
+    $db = Database::get_instance();
+    $db->exec_query("INSERT INTO users (f_name, l_name, email, username, password) VALUES ".
+		    "('$user->f_name'".
+		    ",'$user->l_name'".
+		    ",'$user->email'".
+		    ",'$user->username'".
+		    ",'$hashed_password')"
+		    );
   }
 
-  // starts this users session
-  public function __construct() { session_start(); }
-  // ends the users session
-  public function logout() { session_destroy(); }
+  /***************************************************************************/
+  /*                                  login                                  */
+  /***************************************************************************/
+  public static function login($username, $password) {
+    if ( $username != "tacobot" || $password != "bot" ) {
+      Errors::unauthorized();
+    } else {
+      $s = &State::get_instance();
+      $s->user = new User("randomid", "Taco", "Bot", "TacoBot314", "tacobot@gmail.com");
 
-  // logs in
-  public function login() {
-    $data = json_decode(file_get_contents("php://input"), true);
-    if ( empty($data["username"]) || $data["username"] != "tacobot" ||
-	 empty($data["password"]) || $data["password"] != "bot" ) {
-      $this->no_access();
     }
-
-    $_SESSION["user_object"] = new User();
   }
-
   // checks if the user is logged in
-  public function islogged() { return isset($_SESSION["user_object"]); }
+  public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }
 
-  // returns true if logged or calls no_access if not
-  public function validate($type = "basic") { return $this->islogged() || $this->no_access(); }
-  // gets the user object or throws unauthorized
-  public function get_user() { $this->validate(); return $_SESSION["user_object"]; }
 }
 
 ?>

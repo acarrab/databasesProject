@@ -1,21 +1,40 @@
 
-import React from 'react'
+import React, { Component } from 'react'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import { Authentication } from '../Auth'
+import { Authentication } from '../tools/Auth'
+import Api, { VideoInfo } from '../tools/Api'
 
 import MainBar from './MainBar'
 import SideBar from './SideBar'
 import MyRoutes from '../routes/Routes'
 
 
-export default class ViewControl extends React.Component {
+interface ViewControlProps extends RouteComponentProps<any> { }
 
-  state: { expanded: boolean, globals: Authentication }
+class ViewControl extends Component<ViewControlProps> {
+
+  state: { expanded: boolean, globals: Authentication, videos: Array<VideoInfo> }
 
   constructor(props) {
     super(props)
-    this.state = { expanded: false, globals: new Authentication(this) }
+    this.state = { expanded: false, globals: new Authentication(this), videos: [] }
     this.toggleExpand = this.toggleExpand.bind(this)
+    this.updateVideoView = this.updateVideoView.bind(this)
+  }
+
+  updateVideoView() {
+    let myThis = this
+
+    Api.Videos.list({
+      itWorked: (videos) => { myThis.setState({ videos: videos }) },
+      itFailed: (err) => { console.log(err) }
+    })
+
+    let props: ViewControlProps = this.props
+    if (props.location.pathname !== '/') {
+      props.history.push('/')
+    }
   }
 
   toggleExpand() { this.setState({ expanded: !this.state.expanded }) }
@@ -26,11 +45,20 @@ export default class ViewControl extends React.Component {
 
     return (
       <div className="view-control">
-        <MainBar toggleExpand={this.toggleExpand} auth={this.state.globals} />
-        <SideBar className={"side-" + expanded + " side-bar"} auth={this.state.globals} toggleExpand={this.toggleExpand} />
+        <MainBar toggleExpand={this.toggleExpand}
+          auth={this.state.globals}
+          updateVideoView={this.updateVideoView} />
+
+        <SideBar className={"side-" + expanded + " side-bar"}
+          auth={this.state.globals}
+          toggleExpand={this.toggleExpand} />
         <div className={isExpanded ? "content-hider" : ""} onClick={this.toggleExpand}></div>
-        <MyRoutes auth={this.state.globals} />
+
+        <MyRoutes auth={this.state.globals} videos={this.state.videos} updateVideoView={this.updateVideoView} />
       </div>
     )
   }
 }
+
+
+export default withRouter<ViewControlProps>(ViewControl)

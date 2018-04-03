@@ -6125,6 +6125,11 @@ button:hover {
   border-color: white;
   cursor: pointer; }
 
+.input-error {
+  border-color: red;
+  border-radius: .2em;
+  border-style: solid; }
+
 .form-container {
   margin: 0em; }
   .form-container input {

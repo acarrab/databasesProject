@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { AuthProps } from '../Auth'
+import { AuthProps } from '../tools/Auth'
+import Api, { VideoInfo } from '../tools/Api'
 
 import Home from './Home'
 import History from './History'
@@ -50,9 +51,12 @@ export function getLinks(isLoggedIn: boolean): Array<Category> {
   else return loggedOutLinks
 }
 
+interface RoutesProps extends AuthProps {
+  videos: Array<VideoInfo>
+  updateVideoView: () => void
+}
 
-
-export default class Routes extends Component<AuthProps> {
+export default class Routes extends Component<RoutesProps> {
   public render() {
     return (
       <div className="main-content">

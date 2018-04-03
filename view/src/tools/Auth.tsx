@@ -1,37 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import axios, { AxiosRequestConfig, AxiosPromise } from 'axios'
+import Api, { UserInfo, LoginInput } from './Api'
 
-export class UserInfo {
-  username: string
-
-  uid: string
-
-  f_name: string
-  l_name: string
-
-  id: string
-
-  constructor() {
-    this.username = 'tacobot'
-    this.uid = 'taco bot'
-    this.f_name = 'taco'
-    this.l_name = 'bot'
-    this.id = 'randomid'
-  }
-}
 
 
 export class Authentication {
-  userInfo?: UserInfo
-
+  userInfo?: UserInfo = null
 
   setStateFunc: ({ auth: GlobalVariables }) => void;
   update() { this.setStateFunc({ auth: this }) }
 
-
   constructor(globalsContainer: React.Component) {
-    this.userInfo = null
     this.setStateFunc = globalsContainer.setState.bind(globalsContainer)
     this.update = this.update.bind(this)
   }
@@ -39,37 +18,26 @@ export class Authentication {
   islogged() {
     return (this.userInfo !== null)
   }
-  login(username: string, password: string, itWorked: () => void, itFailed: () => void) {
-    console.log(username, password)
-    this.userInfo = new UserInfo()
-    this.update()
+  login(vars: LoginInput) {
 
-    axios.post('api/auth/login.php', { username: username, password: password })
-      .then((res) => {
-        console.log("success")
-        console.log(res)
-        itWorked()
-      })
-      .catch((err) => {
-        console.log("failed")
-        console.log(err)
-        itFailed()
-      })
+    Api.Auth.login({
+      username: vars.username,
+      password: vars.password,
+      itWorked: (res) => {
+        this.userInfo = new UserInfo("Taco", "Bot", "TacoBot314", "tacobot@gmail.com");
+        vars.itWorked(res);
+      },
+      itFailed: (err) => { vars.itFailed(err) }
+    })
   }
   logout() {
     this.userInfo = null
     this.update()
-    axios.post('api/auth/logout.php', {}).then((res) => {
-      console.log(res)
-    })
+    Api.Auth.logout()
   }
 }
 
-
-
 export interface AuthProps { auth: Authentication }
-
-
 
 interface AuthAccessProps extends RouteComponentProps<any> {
   auth: Authentication

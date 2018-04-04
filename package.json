@@ -8,6 +8,7 @@
     "watch-scss": "npm run build-scss; while true; do node-sass --watch view/scss -o public; sleep 1; done",
     "build-web": "cd view; webpack;",
     "watch-web": "cd view; webpack --watch;",
+    "test-server": "php -S 'localhost:8000'",
     "build": "npm run build-scss; npm run build-web",
     "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-scss' 'npm run watch-web'"
   },
@@ -28,7 +29,9 @@
     "node-sass": "^4.7.2",
     "popper.js": "^1.12.9",
     "react": "^15.6.2",
+    "react-autosuggest": "^9.3.4",
     "react-dom": "^15.6.2",
+    "react-form": "^3.4.4",
     "react-router-dom": "^4.2.2",
     "react-scrollbar": "^0.5.4",
     "sass": "^1.0.0-beta.5.2",
@@ -38,9 +41,11 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/material-ui": "^0.20.6",
+    "@types/material-ui": "^0.20.7",
     "@types/react": "^16.0.37",
+    "@types/react-autosuggest": "^9.3.3",
     "@types/react-dom": "^16.0.4",
+    "@types/react-form": "^2.16.0",
     "bootstrap-sass": "^3.0.0"
   }
 }

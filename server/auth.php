@@ -33,6 +33,21 @@ class Auth {
   /*                                  login                                  */
   /***************************************************************************/
   public static function login($username, $password) {
+    $db = &Database::get_instance();
+    //$hashed_pw = &self::hash($password);
+    $login = $db->exec_query("SELECT username,password FROM users WHERE 
+              username='$username' and
+	      password='$password'");
+    //$query = mysqli_query($db,$login);
+    $row = $login->fetch_assoc();
+    
+    if(mysqli_num_rows($login) == 1){
+      $s = &State::get_instance();
+      $s->user = new User('id','user','fname','lname','email','blah');
+    } else {
+        Errors::unauthorized(); 
+    }
+/*    
     if ( $username != "tacobot" || $password != "bot" ) {
       Errors::unauthorized();
     } else {
@@ -40,6 +55,7 @@ class Auth {
       $s->user = new User("randomid", "Taco", "Bot", "TacoBot314", "tacobot@gmail.com");
 
     }
+*/
   }
   // checks if the user is logged in
   public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }

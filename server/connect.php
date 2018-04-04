@@ -3,7 +3,7 @@
 /*                             Database Singleton                            */
 /*****************************************************************************/
 class Database {
-  private $instance = null;
+  private static $instance = null;
   public static function get_instance() {
     if (self::$instance == null) { self::$instance = new Database(); }
     return self::$instance;
@@ -13,9 +13,9 @@ class Database {
   /* Connecting to the database **********************************************/
   private function __construct() {
     $server_name = "mysql1.cs.clemson.edu";
-    $user_name = "MeTubeDB_jbfy";
-    $password = "hereareabunchofrandomcharactersandstuff1";
-    $our_database = "MeTubeDB_dak6";
+    $user_name = "dpebble";
+    $password = "clemson4620";
+    $our_database = "MeTubeADL";
 
     $this->conn = new mysqli($server_name, $user_name, $password);
 

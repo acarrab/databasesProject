@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { AuthProps } from '../../tools/Auth'
 import Api, { VideoInfo } from '../../tools/Api'
-import { VideoSummary } from './Video'
+import { VideoSummary } from '../../tools/Video'
 
 
 const imgDir = 'public/images/'
@@ -9,12 +9,12 @@ let key = 0;
 interface VideoSummaryInfoAndKey extends VideoInfo {
   key: any
 }
-interface HomeProps extends AuthProps {
+interface FollowingProps extends AuthProps {
   videos: Array<VideoInfo>
   updateVideoView: () => void
 }
 
-export default class Home extends Component<HomeProps> {
+export default class Following extends Component<FollowingProps> {
   constructor(props) {
     super(props)
     this.props.updateVideoView()

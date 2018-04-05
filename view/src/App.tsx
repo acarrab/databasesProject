@@ -4,9 +4,9 @@ import { HashRouter as Router } from 'react-router-dom'
 
 import ViewControl from './container/Control'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 
 
 const App = () => (

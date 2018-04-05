@@ -20,7 +20,7 @@ export default class MainSearchBar extends Component<SearchBarProps> {
         Api.Videos.textlist({
           itWorked: (vars: Array<string>) => {
             this.setState({
-              textSuggestions: vars.map((text) => ({ text: text }))
+              textSuggestions: ["hi", "world"]//vars.map((text) => ({ text: text }))
             })
           },
           itFailed: (err) => { console.error(err) }

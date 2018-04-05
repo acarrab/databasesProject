@@ -12,6 +12,11 @@ import MyRoutes from '../routes/Routes'
 
 interface ViewControlProps extends RouteComponentProps<any> { }
 
+
+var changeRoute = null
+export function getChangeRoute() { return changeRoute }
+
+
 class ViewControl extends Component<ViewControlProps> {
 
   state: { expanded: boolean, globals: Authentication, videos: Array<VideoInfo> }
@@ -21,7 +26,18 @@ class ViewControl extends Component<ViewControlProps> {
     this.state = { expanded: false, globals: new Authentication(this), videos: [] }
     this.toggleExpand = this.toggleExpand.bind(this)
     this.updateVideoView = this.updateVideoView.bind(this)
+
+    this.changeRoute = this.changeRoute.bind(this)
+    changeRoute = this.changeRoute
   }
+
+  changeRoute(newRoute: string) {
+    let props: ViewControlProps = this.props
+    if (props.location.pathname !== newRoute) {
+      props.history.push(newRoute)
+    }
+  }
+
 
   updateVideoView() {
     let myThis = this
@@ -30,11 +46,7 @@ class ViewControl extends Component<ViewControlProps> {
       itWorked: (videos) => { myThis.setState({ videos: videos }) },
       itFailed: (err) => { console.log(err) }
     })
-
-    let props: ViewControlProps = this.props
-    if (props.location.pathname !== '/') {
-      props.history.push('/')
-    }
+    this.changeRoute('/')
   }
 
   toggleExpand() { this.setState({ expanded: !this.state.expanded }) }

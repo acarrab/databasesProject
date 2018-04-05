@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { AuthProps } from '../tools/Auth'
-import SearchBar from './SearchBar'
+import SearchBar from './MainSearchBar'
 
 
 

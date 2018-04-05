@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AccessControl, { AuthProps } from '../tools/Auth'
+import AccessControl, { AuthProps } from '../../tools/Auth'
 
 
 export default class History extends Component<AuthProps> {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Authentication, AuthProps } from '../tools/Auth'
+import { Authentication, AuthProps } from '../../tools/Auth'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 

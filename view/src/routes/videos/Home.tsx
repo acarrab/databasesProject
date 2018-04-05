@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { AuthProps } from '../tools/Auth'
-import Api, { VideoInfo } from '../tools/Api'
+import { AuthProps } from '../../tools/Auth'
+import Api, { VideoInfo } from '../../tools/Api'
 import { VideoSummary } from './Video'
 
 

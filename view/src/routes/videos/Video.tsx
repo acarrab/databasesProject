@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Api, { VideoInfo } from '../tools/Api'
+import Api, { VideoInfo } from '../../tools/Api'
 
 export class VideoSummary extends Component<VideoInfo> {
   public render() {

@@ -3,11 +3,11 @@ import { Route, Switch } from 'react-router-dom'
 import { AuthProps } from '../tools/Auth'
 import Api, { VideoInfo } from '../tools/Api'
 
-import Home from './Home'
-import History from './History'
-import Settings from './Settings'
-import Uploads from './Uploads'
-import Login from './Login'
+import Home from './videos/Home'
+import History from './videos/History'
+import Settings from './account/Settings'
+import Uploads from './account/Uploads'
+import Login from './account/Login'
 
 
 

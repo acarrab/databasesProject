@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AccessControl, { AuthProps } from '../tools/Auth'
-import Api, { UserInfo } from '../tools/Api'
+import AccessControl, { AuthProps } from '../../tools/Auth'
+import Api, { UserInfo } from '../../tools/Api'
 
 
 export default class Settings extends Component<AuthProps> {

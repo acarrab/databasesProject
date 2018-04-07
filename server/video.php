@@ -1,7 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__)."/fakedata.php");
-
+require_once(dirname(__FILE__)."/requests.php");
 
 class Video {
   // this should be done in sql code
@@ -30,6 +30,7 @@ class Video {
 
   public static function get_video($video_id) {
     // undefined
+    Errors::not_implemented();
   }
 
 }

@@ -87,18 +87,14 @@ export interface TextlistInput {
 }
 
 
-class Videos {
+class Search {
     prefix: string = 'api/videos'
     public search(vars: SearchInput) {
-        return axios.post(this.prefix + '/search.php', { searchText: vars.searchText })
+        return axios.post(this.prefix + '/text_list.php', { searchText: vars.searchText })
             .then((res) => { vars.itWorked(res) }).catch((err) => { vars.itFailed(err) })
     }
     public list(vars: ListInput) {
-        return axios.get(this.prefix + '/list.php')
-            .then((res) => { vars.itWorked(res.data) }).catch((err) => { vars.itFailed(err) })
-    }
-    public textlist(vars: TextlistInput) {
-        return axios.get(this.prefix + '/textlist.php')
+        return axios.get(this.prefix + '/video_list.php')
             .then((res) => { vars.itWorked(res.data) }).catch((err) => { vars.itFailed(err) })
     }
 }

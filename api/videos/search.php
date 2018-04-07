@@ -6,7 +6,9 @@ require_once($server."/state.php");
 if ( Request::is_post() ) {
 
   $s = &State::get_instance();
-  $data = &Request::get_data();
+  $data = &Request::validate_and_get_data("searchText");
+
+
   $s->search->set($data["searchText"]);
   $text = $s->search->get();
   exit( "Search is $text" );

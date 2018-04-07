@@ -101,10 +101,10 @@ class Search {
 
 class Api {
     Auth: Auth
-    Videos: Videos
+    Search: Search
     constructor() {
         this.Auth = new Auth()
-        this.Videos = new Videos()
+        this.Search = new Search()
     }
 }
 

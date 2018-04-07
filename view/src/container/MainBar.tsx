@@ -1,34 +1,33 @@
 import React, { Component } from 'react'
-import { AuthProps } from '../tools/Auth'
-import SearchBar from './MainSearchBar'
+import { GlobalProps, Globals } from '../Control'
 
 
 
-interface MainBarProps extends AuthProps {
-  className?: string
-  style?: object
-  toggleExpand: () => void
-  updateVideoView: () => void
+
+interface MainBarProps extends GlobalProps {
+    className?: string
+    style?: object
 }
 
 export default class MainBar extends Component<MainBarProps> {
-  public render() {
-    return (
-      <div className={this.props.className + " container-fluid main-bar"} style={this.props.style}>
-        <div className="row align-items-center" style={{ height: "inherit" }}>
+    public render() {
+        let globals: Globals = this.props.globals
+        return (
+            <div className={this.props.className + " container-fluid main-bar"} style={this.props.style}>
+                <div className="row align-items-center" style={{ height: "inherit" }}>
 
-          <div className="expanded no-select left">
-            <i className="fas fa-bars" onClick={() => { this.props.toggleExpand() }}></i>
-            <span className="title no-select" style={{ paddingLeft: "1em" }}>
-              MeTube
-	    </span>
-          </div>
+                    <div className="expanded no-select left">
+                        <i className="fas fa-bars" onClick={() => { globals.toggleExpand() }}></i>
+                        <span className="title no-select" style={{ paddingLeft: "1em" }}>
+                            MeTube
+			</span>
+                    </div>
 
-          <div className="inverse-expanded">
-            <SearchBar updateVideoView={this.props.updateVideoView} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+                    <div className="inverse-expanded">
+                        {this.props.children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }

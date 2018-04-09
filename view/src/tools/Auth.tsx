@@ -19,17 +19,8 @@ export class Authentication {
     islogged() {
         return (this.userInfo !== null)
     }
-    login(vars: LoginInput) {
-
-        Api.Auth.login({
-            username: vars.username,
-            password: vars.password,
-            itWorked: (res) => {
-                this.userInfo = new UserInfo("Taco", "Bot", "TacoBot314", "tacobot@gmail.com");
-                vars.itWorked(res);
-            },
-            itFailed: (err) => { vars.itFailed(err) }
-        })
+    login(info: UserInfo) {
+        this.userInfo = info;
     }
     logout() {
         this.userInfo = null

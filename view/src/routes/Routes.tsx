@@ -38,6 +38,7 @@ class MyLinks {
     Upload: MyLink = linkOf('Upload', 'upload')
     Settings: MyLink = linkOf('Settings', 'cogs')
     Login: MyLink = linkOf('Login', 'sign-in-alt')
+    Create: MyLink = linkOf('Create', 'sign-in-alt')
 }
 
 const ml = new MyLinks()
@@ -50,7 +51,7 @@ export const loggedInLinks: Array<Category> = [
 ]
 export const loggedOutLinks: Array<Category> = [
     { title: '', data: [ml.Home] },
-    { title: '', data: [ml.Login] }
+    { title: '', data: [ml.Login, ml.Create] }
 ]
 
 
@@ -69,6 +70,7 @@ export default class Routes extends Component<GlobalProps> {
                         <Route path={ml.Upload.path} render={(props) => (<Upload {...props} {...this.props} />)} />
                         <Route path={ml.Settings.path} render={(props) => (<Settings {...props} {...this.props} />)} />
                         <Route path={ml.Login.path} render={(props) => (<Login {...props} {...this.props} />)} />
+                        <Route path={ml.Create.path} render={(props) => (<Create {...props} {...this.props} />)} />
                     </Switch>
                 </div>
             </div>

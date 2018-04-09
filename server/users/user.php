@@ -22,4 +22,18 @@ class User {
   }
 }
 
+class PublicUser {
+  public $f_name = null;
+  public $l_name = null;
+  public $username = null;
+  public $email = null;
+
+
+  public function __construct($user) {
+    $this->f_name = $user->f_name;
+    $this->l_name = $user->l_name;
+    $this->username = $user->username;
+    $this->email = $user->email;
+  }
+}
 ?>

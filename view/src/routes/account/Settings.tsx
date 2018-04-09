@@ -6,7 +6,8 @@ import Api, { UserInfo } from '../../tools/Api'
 
 export default class Settings extends Component<GlobalProps> {
     public render() {
-        let info: UserInfo = this.props.globals.auth.userInfo
+        let globals: Globals = this.props.globals
+        let info: UserInfo = globals.auth.userInfo
         return (
             <AccessControl globals={this.props.globals}>
                 <div className="container">

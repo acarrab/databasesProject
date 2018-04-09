@@ -30,8 +30,11 @@ class Request {
       if (!isset($data[$field_name])) {
 	Errors::server_error("$field_name does not exist");
       }
+      if (strlen(trim($data[$field_name])) === 0) {
+	Errors::server_error("$field_name is of length 0 when trimmed");
+      }
     }
-    return $data;
+    return (object)$data;
   }
 
 

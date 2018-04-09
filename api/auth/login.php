@@ -9,8 +9,8 @@ $required_fields=array("username", "password");
 
 if ( Request::is_post() ) {
 
-  $data = Request::validate_and_get_data($required_fields);
-  Auth::login($data["username"], $data["password"]);
+  $user = Request::validate_and_get_data($required_fields);
+  Auth::login($user->username, $user->password);
 
 } else { Errors::not_found(); }
 

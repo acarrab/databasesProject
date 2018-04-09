@@ -14,19 +14,22 @@ class Auth {
 
   public static function logout() { $s = &State::get_instance(); $s->user = null; }
 
-  private static function hash($password) { return password_hash($password, PASSWORD_DEFAULT); }
+  private static function hash($password) { return password_hash(trim($password), PASSWORD_DEFAULT); }
 
 
-  public static function create_account($user, $password) {
-    $hashed_password = &self::hash($password);
+  public static function create_account($user) {
+    // We must add a check to see if it actually exists
+
+    $hashpass = &self::hash($user->password);
+    $sql = "INSERT INTO user (f_name, l_name, email, username, password) VALUES ".
+      "('$user->f_name'".
+      ",'$user->l_name'".
+      ",'$user->email'".
+      ",'$user->username'".
+      ",'$hashpass')";
     $db = Database::get_instance();
-    $db->exec_query("INSERT INTO users (f_name, l_name, email, username, password) VALUES ".
-		    "('$user->f_name'".
-		    ",'$user->l_name'".
-		    ",'$user->email'".
-		    ",'$user->username'".
-		    ",'$hashed_password')"
-		    );
+    $db->exec_query($sql);
+    self::login($user->username, $user->password);
   }
 
   /***************************************************************************/
@@ -34,28 +37,23 @@ class Auth {
   /***************************************************************************/
   public static function login($username, $password) {
     $db = &Database::get_instance();
-    //$hashed_pw = &self::hash($password);
-    $login = $db->exec_query("SELECT username,password FROM users WHERE 
-              username='$username' and
-	      password='$password'");
+    $sql="SELECT * FROM user WHERE user.username='$username'";
+    $login = &$db->exec_query($sql);
     //$query = mysqli_query($db,$login);
-    $row = $login->fetch_assoc();
-    
-    if(mysqli_num_rows($login) == 1){
-      $s = &State::get_instance();
-      $s->user = new User('id','user','fname','lname','email','blah');
-    } else {
-        Errors::unauthorized(); 
+    $user = $login->fetch_object();
+    if ( !$user ) {
+      exit("$username does not exist");
     }
-/*    
-    if ( $username != "tacobot" || $password != "bot" ) {
-      Errors::unauthorized();
-    } else {
-      $s = &State::get_instance();
-      $s->user = new User("randomid", "Taco", "Bot", "TacoBot314", "tacobot@gmail.com");
 
+    if(password_verify($password, $user->password)) {
+      $s = &State::get_instance();
+      $s->user = new User($user->uid, $user->f_name, $user->l_name, $user->username, $user->email);
+      $publicUser = new PublicUser($s->user);
+      Request::put_data($publicUser);
+    } else {
+        Errors::unauthorized();
     }
-*/
+
   }
   // checks if the user is logged in
   public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }

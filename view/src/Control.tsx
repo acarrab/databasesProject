@@ -23,6 +23,9 @@ export class Globals {
         this.changeRoute = changeRoute
         this.toggleExpand = toggleExpand
     }
+    goHome() {
+        this.changeRoute('/')
+    }
 }
 
 export interface GlobalProps { globals: Globals }

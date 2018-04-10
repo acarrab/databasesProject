@@ -1,2 +1,2 @@
-chmod o+r index.html public/*
-chmod u+r api/*
+chmod o+r index.html $(find ./public -type f)
+chmod u+r $(find ./api)

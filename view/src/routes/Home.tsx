@@ -4,6 +4,19 @@ import { Globals, GlobalProps } from '../Control'
 import Api from '../tools/Api'
 import MainBar from '../container/MainBar'
 
+class MainLink extends Component<any> {
+    render() {
+        return (
+            <div className="col-12 col-md-6 col-lg-3 content-block-container" >
+                <Link to={this.props.to}>
+                    <div className="content-block">
+                        {this.props.children}
+                    </div>
+                </Link>
+            </div>
+        )
+    }
+}
 
 
 export default class Home extends Component<GlobalProps> {
@@ -31,14 +44,28 @@ export default class Home extends Component<GlobalProps> {
                 <div className="container video-list">
                     <MainBar globals={globals}> </MainBar>
                     <div className="row">
-                        <div className="col-12">
+                        <div className="col-12" style={{ paddingBottom: "3em", paddingTop: "2em" }}>
                             <h1>Hello <span className="user-info">{globals.auth.userInfo.f_name}</span>... Welcome to Metube!</h1>
                         </div>
-                        <div className="col-6" >
-                            <h2><Link to="/videos">Videos</Link></h2>
-                        </div>
+
+                        <MainLink to="/videos">
+                            <h2>Videos</h2>
+                            <img src="public/images/video.png" />
+                        </MainLink>
+                        <MainLink to="/following">
+                            <h2>Following</h2>
+                            <img src="public/images/following.png" />
+                        </MainLink>
+                        <MainLink to="/users">
+                            <h2>Users</h2>
+                            <img src="public/images/users.png" />
+                        </MainLink>
+                        <MainLink to="/manage">
+                            <h2>Channel</h2>
+                            <img src="public/images/channel.png" />
+                        </MainLink>
                     </div>
-                </div>
+                </div >
             );
     }
 

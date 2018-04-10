@@ -1,0 +1,17 @@
+img {
+    width: 100%;
+    border-radius: 1em;
+
+}
+.content-block-container {
+    padding: 2em;
+}
+.content-block {
+    border-radius: 2em;
+    background-color: $dark4;
+    padding: 1em;
+    min-width: inherit;
+    a {
+	color: #8BD3F9 !important;
+    }
+}

@@ -1,3 +1,4 @@
+
 .parallax {
     background-attachment: fixed;
     background-position: center;
@@ -35,4 +36,13 @@ a {
 }
 a:hover {
     color: white;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;
+  background-color: $light3;
+  height: 1px;
 }

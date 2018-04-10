@@ -5,6 +5,7 @@ class Errors {
   public static function unauthorized() { header("HTTP/1.1 401 Unauthorized"); exit(); }
   public static function server_error($err) { header("HTTP/1.1 500 Internal Server Error"); exit($err); }
   public static function not_implemented() { header("HTTP/1.1 501 Not Implemented"); exit(); }
+  public static function bad_request() { header("HTTP/1.1 400 Bad Request"); exit(); }
 }
 
 class Request {

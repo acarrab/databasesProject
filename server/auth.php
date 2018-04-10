@@ -16,6 +16,37 @@ class Auth {
 
   private static function hash($password) { return password_hash(trim($password), PASSWORD_DEFAULT); }
 
+  private static function put_user(&$user) {
+    $pub_user = new PublicUser($user);
+    Request::put_data($pub_user);
+  }
+
+  private static function validate_pass($username, $password) {
+    $db = &Database::get_instance();
+
+    $sql="SELECT * FROM user WHERE username='$username'";
+    $login = &$db->exec_query($sql);
+
+    $user = $login->fetch_object();
+
+    if ($user && password_verify($password, $user->password)) {
+      return new User($user->uid, $user->f_name, $user->l_name, $user->username, $user->email);
+    }
+
+    Errors::unauthorized();
+  }
+
+  private static function get_user_object($uid) {
+    $db = &Database::get_instance();
+
+    $sql="SELECT * FROM user WHERE uid='$uid'";
+    $login = &$db->exec_query($sql);
+
+    $user = $login->fetch_object();
+
+    if ($user) { return $user; }
+    Errors::server_error("User not found");
+  }
 
   public static function create_account($user) {
     // We must add a check to see if it actually exists
@@ -27,33 +58,82 @@ class Auth {
       ",'$user->email'".
       ",'$user->username'".
       ",'$hashpass')";
-    $db = Database::get_instance();
+    $db = &Database::get_instance();
     $db->exec_query($sql);
     self::login($user->username, $user->password);
+  }
+
+  public static function update_password($passdata) {
+    $s = &state::get_instance();
+
+
+    $user = self::validate_pass($s->user->username, $passdata->old_password);
+
+
+    $hashpass = &self::hash($passdata->password);
+
+
+    $sql = "UPDATE user SET password='$hashpass' WHERE uid='$user->uid'";
+    $db = &Database::get_instance();
+    $db->exec_query($sql);
+
+
+    $s->user = self::get_user_object($user->uid);
+    self::put_user($s->user);
+  }
+
+  public static function update_account($user) {
+    $s = &state::get_instance();
+    $u = $s->user;
+    $sql = null;
+
+
+    // make sure there is no collision with username or email
+    if ($u->username !== $user->username && $u->email !== $user->email) {
+      $sql = "SELECT * FROM user WHERE username = '$user->username' OR email = '$user->email'";
+    } else if ($u->username !== $user->username) {
+      $sql = "SELECT * FROM user WHERE username = '$user->username'";
+    } else if ($u->email !== $user->email) {
+      $sql = "SELECT * FROM user WHERE email = '$user->email'";
+    }
+
+
+
+    $db = &Database::get_instance();
+    if ($sql !== null) {
+      if ($result = $db->exec_query($sql)) {
+
+	if ($row = $result->fetch_assoc()) {
+	  Errors::bad_request();
+	}
+	$result->free();
+      }
+    }
+
+    $sql="UPDATE user SET "
+      . "f_name='$user->f_name',"
+      . "l_name='$user->l_name',"
+      . "email='$user->email',"
+      . "username='$user->username' "
+      . "WHERE uid='$u->uid'";
+
+
+    $db->exec_query($sql);
+
+
+    $s->user = self::get_user_object($u->uid);
+    self::put_user($s->user);
   }
 
   /***************************************************************************/
   /*                                  login                                  */
   /***************************************************************************/
   public static function login($username, $password) {
-    $db = &Database::get_instance();
-    $sql="SELECT * FROM user WHERE user.username='$username'";
-    $login = &$db->exec_query($sql);
-    //$query = mysqli_query($db,$login);
-    $user = $login->fetch_object();
-    if ( !$user ) {
-      exit("$username does not exist");
-    }
+    $user = &self::validate_pass($username, $password);
 
-    if(password_verify($password, $user->password)) {
-      $s = &State::get_instance();
-      $s->user = new User($user->uid, $user->f_name, $user->l_name, $user->username, $user->email);
-      $publicUser = new PublicUser($s->user);
-      Request::put_data($publicUser);
-    } else {
-        Errors::unauthorized();
-    }
-
+    $s = &State::get_instance();
+    $s->user = $user;
+    self::put_user($s->user);
   }
   // checks if the user is logged in
   public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }

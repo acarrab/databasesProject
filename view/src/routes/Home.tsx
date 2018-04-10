@@ -32,7 +32,7 @@ export default class Home extends Component<GlobalProps> {
                     <MainBar globals={globals}> </MainBar>
                     <div className="row">
                         <div className="col-12">
-                            <h1>Welcome to Metube!</h1>
+                            <h1>Hello <span className="user-info">{globals.auth.userInfo.f_name}</span>... Welcome to Metube!</h1>
                         </div>
                         <div className="col-6" >
                             <h2><Link to="/videos">Videos</Link></h2>

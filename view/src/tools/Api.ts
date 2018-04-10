@@ -16,21 +16,32 @@ export class UserInfo {
         this.email = email
     }
 }
-export interface LoginInput {
-    username: string
-    password: string
+interface GetUserInfo {
     itWorked: (data: UserInfo) => void
     itFailed: (err: any) => void
 }
-export interface CreateInput {
+
+
+
+export interface LoginInput extends GetUserInfo {
+    username: string
+    password: string
+}
+export interface UpdateInput extends GetUserInfo {
     f_name: string
     l_name: string
-    username: string
-    password: string
     email: string
-    itWorked: (data: UserInfo) => void
-    itFailed: (err: any) => void
+    username: string
 }
+export interface CreateInput extends UpdateInput {
+    password: string
+}
+
+export interface UpdatePasswordInput extends GetUserInfo {
+    password: string
+    old_password: string
+}
+
 
 
 class Auth {
@@ -57,6 +68,25 @@ class Auth {
             .then((res) => { vars.itWorked(res.data) })
             .catch((err) => { vars.itFailed(err) })
     }
+    public update(vars: UpdateInput) {
+        return axios.post(this.prefix + '/update.php', {
+            f_name: vars.f_name,
+            l_name: vars.l_name,
+            username: vars.username,
+            email: vars.email
+        })
+            .then((res) => { vars.itWorked(res.data) })
+            .catch((err) => { vars.itFailed(err) })
+    }
+    public updatePassword(vars: UpdatePasswordInput) {
+        return axios.post(this.prefix + '/update_password.php', {
+            password: vars.password,
+            old_password: vars.old_password
+        })
+            .then((res) => { vars.itWorked(res.data) })
+            .catch((err) => { vars.itFailed(err) })
+    }
+
 }
 
 

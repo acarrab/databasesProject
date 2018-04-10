@@ -14,7 +14,7 @@ function validatePassword(password: string) {
     }
 }
 
-const validators = {
+export const valid = {
     required: (value) => { if (!value.toString().trim().length) { return <span className="error">Required</span> } },
     email: (value) => { if (!validator.isEmail(value)) { return <span className="error">{value} is not a valid email.</span> } },
     lt: (value, props) => {
@@ -40,6 +40,3 @@ const validators = {
         }
     }
 }
-
-
-export default validators

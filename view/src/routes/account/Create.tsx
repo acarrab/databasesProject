@@ -1,146 +1,88 @@
 import React, { Component } from 'react'
 import { Authentication } from '../../tools/Auth'
 import { Globals, GlobalProps } from '../../Control'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import Api, { UserInfo, CreateInput } from '../../tools/Api'
 
 import MainBar from '../../container/MainBar'
+//import valid from '../../tools/Validators'
 
-import valid from '../../tools/Validators'
-
-
-import Form from 'react-validation/build/form'
-import Input from 'react-validation/build/input'
-import Button from 'react-validation/build/button'
+import Form, { Input, Button, valid } from '../../forms/Form'
+import { Row, Col, Label, ColAuto, RowAuto, ColFull } from '../../BootstrapWrappers'
 
 
-export default class Create extends Component<GlobalProps> {
-    form: Form
-    state: { errorMessage: string }
-    constructor(props) {
-        super(props)
-        this.submit = this.submit.bind(this)
-        this.state = {
-            errorMessage: ""
-        }
-    }
-    handleKeyPress(event) {
-        if (event.key == 'Enter') { this.submit(event) }
-    }
+interface CreateFields extends UserInfo {
+    password: string
+    confirm: string
+}
 
-    submit(event) {
-        event.preventDefault()
-        //console.log(this.form)
 
-        let globals: Globals = this.props.globals;
-        let values: {
-            first: string,
-            last: string,
-            username: string,
-            email: string,
-            password: string
-        } = this.form.getValues()
-        console.log(values);
-
-        var createVars: CreateInput = {
-            f_name: values.first,
-            l_name: values.last,
-            username: values.username,
-            email: values.email,
-            password: values.password,
+export default class Create extends Form<CreateFields>{
+    formSubmit(fields: CreateFields) {
+        let globals: Globals = this.props.globals
+        Api.Auth.create({
+            f_name: fields.f_name,
+            l_name: fields.l_name,
+            username: fields.username,
+            email: fields.email,
+            password: fields.password,
             itWorked: (data: UserInfo) => {
-                if (!data.username) { // this should not happen
-                    this.setState({ errorMessage: "Username or Email is in use" })
-                    console.log(data)
+                if (!data.username) {
+                    this.setError("Username or Email is taken")
                 } else {
-                    // if that worked, then we are logged in...
                     globals.auth.login(data)
                     globals.goHome()
                 }
             },
             itFailed: (err: any) => {
-                this.setState({ errorMessage: "Username or Email is in use" })
-                console.log(err);
+                this.setError("Username or Email is taken")
             }
-        }
-        console.log(createVars)
-        Api.Auth.create(createVars)
-
+        })
     }
-
-    render() {
+    formRender() {
         let globals: Globals = this.props.globals
         return (
-            <Form ref={(form) => { this.form = form }} style={{ width: "100%" }} onSubmit={this.submit}>
+            <Row>
                 <MainBar globals={globals}></MainBar>
-                <div className="form-container">
-                    <div className="form row">
-                        <div className="col-12">
-                            <h1>Create your account</h1>
-                        </div>
-                        <hr />
-                        {!this.state.errorMessage.length ? <div></div> :
-                            <div className="col-12 error">{this.state.errorMessage}</div>
-                        }
+                <ColFull><h1>Create your account</h1></ColFull>
+                {this.getError()}
+                <hr />
+                <RowAuto style={{ marginBottom: "2em" }}>
+                    <Label>
+                        First Name
+			<Input type="text" name="f_name" validations={[valid.required]} />
+                    </Label>
+                    <Label>
+                        Last Name
+			<Input type="text" name="l_name" validations={[valid.required]} />
+                    </Label>
+                </RowAuto>
 
-                        <div className="col-12">
-                            <div className="row">
-                                <div className="col">
-                                    <label>
-                                        First Name
-					<Input type='text' name='first' validations={[valid.required]} />
-                                    </label>
-                                </div>
-                                <div className="col">
-                                    <label>
-                                        Last Name
-					<Input type='text' name='last' validations={[valid.required]} />
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="col-12">
-                            <div className="row">
-                                <div className="col">
-                                    <label>
-                                        Username
-					<Input type='text' name='username' validations={[valid.required]} />
-                                    </label>
-                                </div>
-                                <div className="col">
-                                    <label>
-                                        Email
-					<Input type='text' name='email' validations={[valid.required, valid.email]} />
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <hr />
-                        <div className="col-12">
-                            <div className="row">
-                                <div className="col">
-                                    <label>
-                                        Password
-					<Input type='password' name='password' validations={[valid.required, valid.password]} />
-                                    </label>
-                                </div>
-                                <div className="col">
-                                    <label>
-                                        Confirm
-					<Input type='password' name='confirm' validations={[valid.required]} />
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="col-12">
-                            <Button>Create</Button>
-                        </div>
-                    </div>
-                </div>
-            </Form>
+                <RowAuto style={{ marginBottom: "2em" }}>
+                    <Label>
+                        Username
+			<Input type="text" name="username" validations={[valid.required]} />
+                    </Label>
+                    <Label>
+                        Email
+			<Input type="text" name="email" validations={[valid.required, valid.email]} />
+                    </Label>
+                </RowAuto>
+                <RowAuto>
+                    <Label>
+                        Password
+			<Input type='password' name='password' validations={[valid.required, valid.password]} />
+                    </Label>
+                    <Label>
+                        Confirm
+			<Input type='password' name='confirm' validations={[valid.required]} />
+                    </Label>
+                </RowAuto>
+                <hr />
+                <ColFull>
+                    <Button>Create</Button>
+                </ColFull>
+            </Row >
         )
+
     }
 }

@@ -42,21 +42,39 @@ class UserInterface {
   public static function get_text($searchText) {
     $db = &Database::get_instance();
     $searchText = strtolower(trim($searchText));
-    $sql="SELECT username FROM user WHERE lower(username) LIKE '$searchText%' ORDER BY username LIMIT 20";
-    $possibleNames = array();
+    $sql="SELECT username, f_name, l_name FROM user WHERE ".
+      "lower(username) LIKE '$searchText%' ".
+      "OR lower(f_name) LIKE '$searchText%' ".
+      "OR lower(l_name) LIKE '$searchText%' ".
+      "ORDER BY username LIMIT 20";
+    $suggestions = array();
     if ($results = &$db->exec_query($sql)) {
       while ($row = $results->fetch_object()) {
-	$possibleNames[] = $row->username;
+
+	if (strpos($row->username, $searchText) !== false) {
+	  $suggestions[] = $row->username;
+	} else if (strpos($row->f_name, $searchText) !== false) {
+	  $suggestions[] = $row->f_name;
+	} else if (strpos($row->l_name, $searchText) !== false) {
+	  $suggestions[] = $row->l_name;
+	} else {
+	  $suggestions[] = $row->username; // default to username if % was sent
+	}
+
       }
       $results->close();
     }
-    return $possibleNames;
+    return $suggestions;
   }
 
   public static function get_objects($searchText) {
     $db = &Database::get_instance();
     $searchText = strtolower(trim($searchText));
-    $sql="SELECT * FROM user WHERE lower(username) LIKE '$searchText%' ORDER BY username LIMIT 20";
+    $sql="SELECT * FROM user WHERE ".
+      "lower(username) LIKE '$searchText%' ".
+      "OR lower(f_name) LIKE '$searchText%' ".
+      "OR lower(l_name) LIKE '$searchText%' ".
+      "ORDER BY username LIMIT 20";
     $possibleUsers = array();
     if ($results = &$db->exec_query($sql)) {
       while ($user = $results->fetch_object()) {

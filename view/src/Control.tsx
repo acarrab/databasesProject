@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-
-
 import { Authentication, AuthProps } from './tools/Auth'
-import Api, { VideoInfo } from './tools/Api'
 
 import SideBar from './container/SideBar'
+import MainBar from './container/MainBar'
 import MyRoutes from './routes/Routes'
 
 
@@ -65,6 +63,7 @@ class ViewControl extends Component<ViewControlProps> {
                 <SideBar className={"side-" + expanded + " side-bar"}
                     globals={this.state.globals}
                     toggleExpand={this.toggleExpand} />
+                <MainBar globals={this.state.globals}></MainBar>
 
                 <div className={isExpanded ? "content-hider" : ""} onClick={this.toggleExpand}></div>
 

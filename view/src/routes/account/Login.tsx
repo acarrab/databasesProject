@@ -4,7 +4,6 @@ import Api from '../../tools/Api'
 import { Globals, GlobalProps } from '../../Control'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import MainBar from '../../container/MainBar'
 import Form, { Input, Button, valid } from '../../forms/Form'
 
 import { Row, Col, ColAuto, ColFull } from '../../BootstrapWrappers'
@@ -48,7 +47,6 @@ export default class Login extends Form<LoginFields> {
         let globals: Globals = this.props.globals
         return (
             <Row>
-                <MainBar globals={globals}></MainBar>
                 <ColFull><h1>Log into your account</h1></ColFull>
                 {this.getError()}
                 <hr />

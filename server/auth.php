@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/users/user.php");
+require_once(dirname(__FILE__)."/user.php");
 require_once(dirname(__FILE__)."/connect.php");
 require_once(dirname(__FILE__)."/requests.php");
 require_once(dirname(__FILE__)."/state.php");

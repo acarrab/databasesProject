@@ -3,7 +3,6 @@ import { Authentication } from '../../tools/Auth'
 import { Globals, GlobalProps } from '../../Control'
 import Api, { UserInfo, CreateInput } from '../../tools/Api'
 
-import MainBar from '../../container/MainBar'
 //import valid from '../../tools/Validators'
 
 import Form, { Input, Button, valid } from '../../forms/Form'
@@ -42,7 +41,6 @@ export default class Create extends Form<CreateFields>{
         let globals: Globals = this.props.globals
         return (
             <Row>
-                <MainBar globals={globals}></MainBar>
                 <ColFull><h1>Create your account</h1></ColFull>
                 {this.getError()}
                 <hr />

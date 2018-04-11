@@ -45,20 +45,21 @@ export interface UpdatePasswordInput extends GetUserInfo {
 
 
 class Auth {
-    prefix: string = 'api/auth'
+    location: string
+    constructor(prefix: string) { this.location = prefix + '/auth' }
 
     public login(vars: LoginInput) {
-        return axios.post(this.prefix + '/login.php', { username: vars.username, password: vars.password })
+        return axios.post(this.location + '/login.php', { username: vars.username, password: vars.password })
             .then((res) => { vars.itWorked(res.data) })
             .catch((err) => { vars.itFailed(err) })
     }
     public logout() {
-        return axios.post(this.prefix + '/logout.php')
+        return axios.post(this.location + '/logout.php')
             .then((res) => { console.log("logout success") })
             .catch((err) => { console.error("logout failure") })
     }
     public create(vars: CreateInput) {
-        return axios.post(this.prefix + '/create.php', {
+        return axios.post(this.location + '/create.php', {
             f_name: vars.f_name,
             l_name: vars.l_name,
             username: vars.username,
@@ -69,7 +70,7 @@ class Auth {
             .catch((err) => { vars.itFailed(err) })
     }
     public update(vars: UpdateInput) {
-        return axios.post(this.prefix + '/update.php', {
+        return axios.post(this.location + '/update.php', {
             f_name: vars.f_name,
             l_name: vars.l_name,
             username: vars.username,
@@ -79,7 +80,7 @@ class Auth {
             .catch((err) => { vars.itFailed(err) })
     }
     public updatePassword(vars: UpdatePasswordInput) {
-        return axios.post(this.prefix + '/update_password.php', {
+        return axios.post(this.location + '/update_password.php', {
             password: vars.password,
             old_password: vars.old_password
         })
@@ -97,44 +98,50 @@ export interface SearchInput {
 }
 
 
-export interface VideoInfo {
-    img: string
-    title: string
-    summary: string
-    author: string
-    date: string
-}
+
+class User {
+    location: string
+    constructor(prefix: string) { this.location = prefix + '/user' }
+
+    public text_list(searchText: string,
+        itWorked: (userNames: Array<string>) => void,
+        itFailed: (res: any) => void) {
+        return axios.post(this.location + '/text.php', {
+            searchText: searchText
+        }).then((res) => { itWorked(res.data); })
+            .catch(itFailed)
+
+    }
+    public user_list(searchText: string,
+        itWorked: (userNames: Array<UserInfo>) => void,
+        itFailed: (res: any) => void) {
+        return axios.post(this.location + '/objects.php', {
+            searchText: searchText
+        }).then((res) => { itWorked(res.data); })
+            .catch(itFailed)
+    }
 
 
-
-export interface ListInput {
-    itWorked: (data: VideoInfo) => void
-    itFailed: (res: any) => void
-}
-export interface TextlistInput {
-    itWorked: (data: Array<string>) => void
-    itFailed: (res: any) => void
 }
 
 
 class Search {
-    prefix: string = 'api/videos'
-    public search(vars: SearchInput) {
-        return axios.post(this.prefix + '/text_list.php', { searchText: vars.searchText })
-            .then((res) => { vars.itWorked(res) }).catch((err) => { vars.itFailed(err) })
-    }
-    public list(vars: ListInput) {
-        return axios.get(this.prefix + '/video_list.php')
-            .then((res) => { vars.itWorked(res.data) }).catch((err) => { vars.itFailed(err) })
+    location: string
+    User: User
+    constructor(prefix: string) {
+        this.location = prefix + '/search'
+        this.User = new User(this.location)
     }
 }
 
 class Api {
+    location: string = '/api'
+
     Auth: Auth
     Search: Search
     constructor() {
-        this.Auth = new Auth()
-        this.Search = new Search()
+        this.Auth = new Auth(this.location)
+        this.Search = new Search(this.location)
     }
 }
 

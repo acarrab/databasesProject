@@ -9,6 +9,13 @@ img {
 .content-block {
     border-radius: 2em;
     background-color: $dark4;
+
+    -moz-box-shadow:    0em 0em 2em #fff;
+    -webkit-box-shadow: 0em 0em 2em #fff;
+    box-shadow:         0em 0em 2em #fff;
+
+
+
     padding: 1em;
     min-width: inherit;
     a {

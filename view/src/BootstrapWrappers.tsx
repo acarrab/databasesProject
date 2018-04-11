@@ -11,7 +11,7 @@ function className(type, props) {
 export class Row extends Component<any> {
     render() {
         return (
-            <div className={className("col-12 row", this.props)} {...this.props}>
+            <div {...this.props} className={className("col-12 row", this.props)}>
                 {this.props.children}
             </div>
         )
@@ -21,7 +21,7 @@ export class Row extends Component<any> {
 export class Col extends Component<any> {
     render() {
         return (
-            <div className={className("col", this.props)} {...this.props} >
+            <div {...this.props} className={className("col", this.props)} >
                 {this.props.children}
             </div>
         )
@@ -33,7 +33,7 @@ export class ColAuto extends Component<any> {
         return (
             <div className="col-12">
                 <div className="col-md-2 .d-none .d-md-block"></div>
-                <div className={className("col-md-8 offset-md-2 col-12", this.props)} {...this.props}>
+                <div {...this.props} className={className("col-md-8 offset-md-2 col-12", this.props)}>
                     {this.props.children}
                 </div>
                 <div className="col-md-2 .d-none .d-md-block"></div>
@@ -46,29 +46,26 @@ export class RowAuto extends Component<any> {
     render() {
         return (
             <ColAuto>
-                <div className={className("row", this.props)} {...this.props}>
+                <div {...this.props} className={className("row", this.props)} >
                     {this.props.children}
                 </div>
             </ColAuto>
         )
     }
 }
-
-
 export class ColFull extends Component<any> {
     render() {
         return (
-            <div className={className("col-12", this.props)} {...this.props}>
+            <div  {...this.props} className={className("col-12", this.props)}>
                 {this.props.children}
             </div>
         )
     }
 }
-
 export class RowFull extends Component<any> {
     render() {
         return (
-            <div className="row">
+            <div className="row" style={{ width: "100%", margin: "0em" }}>
                 <ColFull {...this.props}>
                     {this.props.children}
                 </ColFull>
@@ -76,6 +73,9 @@ export class RowFull extends Component<any> {
         )
     }
 }
+
+
+
 
 export class Label extends Component<any> {
     render() {

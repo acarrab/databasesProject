@@ -51,7 +51,7 @@ export default abstract class MyForm<T> extends Component<GlobalProps> {
         if (this.state.error) {
             return (
                 <div className="col-12">
-                    <h2 className="error">{this.state.error}</h2>
+                    <h4 className="error">{this.state.error}</h4>
                 </div>
             )
         } else {
@@ -63,7 +63,7 @@ export default abstract class MyForm<T> extends Component<GlobalProps> {
         if (this.state.message) {
             return (
                 <div className="col-12">
-                    <h2 className="success">{this.state.message}</h2>
+                    <h4 className="success">{this.state.message}</h4>
                 </div>
             )
         } else {

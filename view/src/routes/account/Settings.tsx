@@ -3,7 +3,6 @@ import { Authentication } from '../../tools/Auth'
 import { Globals, GlobalProps } from '../../Control'
 import Api, { UserInfo, CreateInput } from '../../tools/Api'
 
-import MainBar from '../../container/MainBar'
 //import valid from '../../tools/Validators'
 
 import Form, { Input, Button, valid } from '../../forms/Form'
@@ -30,6 +29,7 @@ class InfoSettings extends Form<UserInfo>{
                 }
             },
             itFailed: (err: any) => {
+                this.setMessage("")
                 this.setError("Username or Email is taken")
             }
         })
@@ -41,8 +41,7 @@ class InfoSettings extends Form<UserInfo>{
 
         return (
             <Row>
-                <MainBar globals={globals}></MainBar>
-                <ColFull><h2>Update user information</h2></ColFull>
+                <ColFull><h3>Update user information</h3></ColFull>
                 {this.getError()}
                 {this.getMessage()}
                 <hr />
@@ -93,6 +92,7 @@ class PasswordSettings extends Form<PasswordFields>{
             itWorked: (data: UserInfo) => {
                 console.log(data)
                 if (!data.username) {
+                    this.setMessage("");
                     this.setError("The password sent was empty...")
                 } else {
                     globals.auth.login(data)
@@ -102,8 +102,12 @@ class PasswordSettings extends Form<PasswordFields>{
                 }
             },
             itFailed: (err: any) => {
-                console.log(err)
-                this.setError("The password sent was empty")
+                this.setMessage("")
+                if (err.response.status === 401) {
+                    this.setError("The password sent was incorrect")
+                } else {
+                    this.setError("The password sent was empty")
+                }
             }
         })
     }
@@ -112,8 +116,7 @@ class PasswordSettings extends Form<PasswordFields>{
         let info: UserInfo = globals.auth.userInfo
         return (
             <Row>
-                <MainBar globals={globals}></MainBar>
-                <ColFull><h2>Update Password</h2></ColFull>
+                <ColFull><h3>Update Password</h3></ColFull>
                 {this.getError()}
                 {this.getMessage()}
                 <hr />
@@ -153,8 +156,7 @@ export default class Settings extends Component<GlobalProps> {
             return <div className="error">No Access</div>
         }
         return (
-            <div>
-                <MainBar globals={globals}></MainBar>
+            <div style={{ width: "100%" }}>
                 <RowFull><h1>Change your user settings</h1></RowFull>
                 <InfoSettings globals={globals} />
                 <PasswordSettings globals={globals} />

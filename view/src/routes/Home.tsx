@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Globals, GlobalProps } from '../Control'
 import Api from '../tools/Api'
-import MainBar from '../container/MainBar'
 
 class MainLink extends Component<any> {
     render() {
@@ -26,7 +25,6 @@ export default class Home extends Component<GlobalProps> {
         if (!globals.auth.islogged())
             return (
                 <div className="container video-list">
-                    <MainBar globals={globals}> </MainBar>
                     <div className="row">
                         <div className="col-12">
                             <h1>Welcome to Metube!</h1>
@@ -42,7 +40,6 @@ export default class Home extends Component<GlobalProps> {
         else
             return (
                 <div className="container video-list">
-                    <MainBar globals={globals}> </MainBar>
                     <div className="row">
                         <div className="col-12" style={{ paddingBottom: "3em", paddingTop: "2em" }}>
                             <h1>Hello <span className="user-info">{globals.auth.userInfo.f_name}</span>... Welcome to Metube!</h1>

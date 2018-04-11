@@ -50,3 +50,12 @@ body {
 	z-index: 99;
     }
 }
+    .search-suggestion {
+	width: 100%;
+	background-color: $dark2;
+	border: .1em solid $dark4;
+	padding: .5em;
+    }
+    li {
+	list-style-type: none;
+    }

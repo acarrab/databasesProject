@@ -135,7 +135,7 @@ class Search {
 }
 
 class Api {
-    location: string = '/api'
+    location: string = 'api'
 
     Auth: Auth
     Search: Search

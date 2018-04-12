@@ -4615,7 +4615,7 @@ var Search = /** @class */ (function () {
 }());
 var Api = /** @class */ (function () {
     function Api() {
-        this.location = '/api';
+        this.location = 'api';
         this.Auth = new Auth(this.location);
         this.Search = new Search(this.location);
     }

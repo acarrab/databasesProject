@@ -6,15 +6,13 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import Form, { Input, Button, valid } from '../../forms/Form'
 
-import { Row, Col, ColAuto, ColFull } from '../../BootstrapWrappers'
+import { Row, Col2, Block, Content, ContentBlock, Label, Center } from '../../Design'
 
 
 interface LoginFields {
     username: string
     password: string
 }
-
-
 
 interface LoginFormInterface extends Form<LoginFields> {
     globals: Globals
@@ -46,25 +44,25 @@ export default class Login extends Form<LoginFields> {
     formRender() {
         let globals: Globals = this.props.globals
         return (
-            <Row>
-                <ColFull><h1>Log into your account</h1></ColFull>
-                {this.getError()}
-                <hr />
-                <ColAuto>
-                    <label>Username
-			<Input type="text" name="username" validations={[valid.required]} />
-                    </label>
-                </ColAuto>
-                <ColAuto>
-                    <label>Password
-			<Input type="password" name="password" validations={[valid.required]} />
-                    </label>
-                </ColAuto>
-                <hr />
-                <ColFull>
-                    <Button>Login</Button>
-                </ColFull>
-            </Row>
+            <Block>
+                <Center><h1 style={{ width: "100%" }}>Log into your account</h1></Center>
+                <Content>
+                    {this.getError()}
+                    <ContentBlock>
+                        <Col2>
+                            <Label>Username
+			    <Input type="text" name="username" validations={[valid.required]} />
+                            </Label>
+                        </Col2>
+                        <Col2>
+                            <Label>Password
+			    <Input type="password" name="password" validations={[valid.required]} />
+                            </Label>
+                        </Col2>
+                    </ContentBlock>
+                </Content>
+                <Center><Button>Login</Button></Center>
+            </Block >
         )
     }
 }

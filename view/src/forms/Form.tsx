@@ -7,21 +7,21 @@ import { Globals, GlobalProps } from '../Control'
 
 import Input from 'react-validation/build/input'
 import Button from 'react-validation/build/button'
+import Textarea from 'react-validation/build/Textarea'
 import { valid } from './Validators'
 
 export { valid }
 export { Input }
+export { Textarea }
 export { Button }
 
 
 
-
-interface MyFormProps<T> {
-    message: string
-    submit: (values: T) => void
+interface MyFormProps<T> extends GlobalProps {
+    onSubmit?: (feilds: T) => void
 }
 
-export default abstract class MyForm<T> extends Component<GlobalProps> {
+export default abstract class MyForm<T> extends Component<MyFormProps<T>> {
     form: Form
     state: { message: string, error: string }
 
@@ -44,6 +44,9 @@ export default abstract class MyForm<T> extends Component<GlobalProps> {
         event.preventDefault()
         let values: T = this.form.getValues()
         this.formSubmit(values)
+        if (this.props.onSubmit) {
+            this.props.onSubmit(values)
+        }
     }
 
     setError(error: string) { this.setState({ error: error }) }

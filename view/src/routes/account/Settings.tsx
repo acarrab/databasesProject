@@ -6,8 +6,7 @@ import Api, { UserInfo, CreateInput } from '../../tools/Api'
 //import valid from '../../tools/Validators'
 
 import Form, { Input, Button, valid } from '../../forms/Form'
-import { Row, Col, Label, ColAuto, RowAuto, ColFull, RowFull } from '../../BootstrapWrappers'
-
+import { Row, Col2, Col2a, Block, Content, ContentBlock, Label, Center } from '../../Design'
 
 class InfoSettings extends Form<UserInfo>{
     formSubmit(fields: UserInfo) {
@@ -40,37 +39,39 @@ class InfoSettings extends Form<UserInfo>{
 
 
         return (
-            <Row>
-                <ColFull><h3>Update user information</h3></ColFull>
-                {this.getError()}
-                {this.getMessage()}
-                <hr />
-                <RowAuto style={{ marginBottom: "2em" }}>
-                    <Label>
-                        First Name
-			<Input type="text" name="f_name" validations={[valid.required]} value={info.f_name} />
-                    </Label>
-                    <Label>
-                        Last Name
-			<Input type="text" name="l_name" validations={[valid.required]} value={info.l_name} />
-                    </Label>
-                </RowAuto>
-
-                <RowAuto style={{ marginBottom: "2em" }}>
-                    <Label>
-                        Username
-			<Input type="text" name="username" validations={[valid.required]} value={info.username} />
-                    </Label>
-                    <Label>
-                        Email
-			<Input type="text" name="email" validations={[valid.required, valid.email]} value={info.email} />
-                    </Label>
-                </RowAuto>
-                <hr />
-                <ColFull>
+            <Block>
+                <Center><h3>Update your info</h3></Center>
+                <Content>
+                    {this.getError()}
+                    {this.getMessage()}
+                    <ContentBlock>
+                        <Col2>
+                            <Label>First Name
+				<Input type="text" name="f_name" validations={[valid.required]} value={info.f_name} />
+                            </Label>
+                        </Col2>
+                        <Col2>
+                            <Label>Last Name
+				<Input type="text" name="l_name" validations={[valid.required]} value={info.l_name} />
+                            </Label>
+                        </Col2>
+                        <hr />
+                        <Col2>
+                            <Label>Username
+				<Input type="text" name="username" validations={[valid.required]} value={info.username} />
+                            </Label>
+                        </Col2>
+                        <Col2>
+                            <Label>Email
+				<Input type="text" name="email" validations={[valid.required, valid.email]} value={info.email} />
+                            </Label>
+                        </Col2>
+                    </ContentBlock>
+                </Content>
+                <Center>
                     <Button>Update Info</Button>
-                </ColFull>
-            </Row >
+                </Center>
+            </Block>
         )
 
     }
@@ -115,34 +116,32 @@ class PasswordSettings extends Form<PasswordFields>{
         let globals: Globals = this.props.globals
         let info: UserInfo = globals.auth.userInfo
         return (
-            <Row>
-                <ColFull><h3>Update Password</h3></ColFull>
-                {this.getError()}
-                {this.getMessage()}
-                <hr />
-                <Row style={{ marginBottom: "2em" }}>
-                    <Col></Col>
-                    <Label>
-                        Old Password
-			<Input type='password' name='old_password' validations={[valid.required]} />
-                    </Label>
-                    <Col></Col>
-                </Row>
-                <RowAuto>
-                    <Label>
-                        Password
-			<Input type='password' name='password' validations={[valid.required, valid.password]} />
-                    </Label>
-                    <Label>
-                        Confirm
-			<Input type='password' name='confirm' validations={[valid.required]} />
-                    </Label>
-                </RowAuto>
-                <hr />
-                <ColFull>
-                    <Button>Update Password</Button>
-                </ColFull>
-            </Row >
+            <Block>
+                <Center><h3>Update your password</h3></Center>
+                <Content>
+                    {this.getError()}
+                    {this.getMessage()}
+                    <ContentBlock>
+                        <Col2a>
+                            <Label>Old Password
+			    <Input type='password' name='old_password' validations={[valid.required]} />
+                            </Label>
+                        </Col2a>
+                        <hr />
+                        <Col2>
+                            <Label>Password
+			    <Input type='password' name='password' validations={[valid.required, valid.password]} />
+                            </Label>
+                        </Col2>
+                        <Col2>
+                            <Label>Confirm
+			    <Input type='password' name='confirm' validations={[valid.required]} />
+                            </Label>
+                        </Col2>
+                        <Center><Button>Update Password</Button></Center>
+                    </ContentBlock>
+                </Content>
+            </Block>
         )
     }
 }
@@ -157,7 +156,7 @@ export default class Settings extends Component<GlobalProps> {
         }
         return (
             <div style={{ width: "100%" }}>
-                <RowFull><h1>Change your user settings</h1></RowFull>
+                <Center><h1>Change your user settings</h1></Center>
                 <InfoSettings globals={globals} />
                 <PasswordSettings globals={globals} />
             </div>

@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import { Globals, GlobalProps } from '../Control'
 import Api from '../tools/Api'
 
+import { Row, Col2, Block, Content, ContentBlock, Label, Center } from '../Design'
+
+
 class MainLink extends Component<any> {
     render() {
         return (
-            <div className="col-12 col-md-6 col-lg-3 content-block-container" >
+            <div className="col-12 col-md-6 col-lg-3 content-block-container" style={{ marginBottom: "2em" }} >
                 <Link to={this.props.to}>
                     <div className="content-block">
                         {this.props.children}
@@ -19,6 +22,7 @@ class MainLink extends Component<any> {
 
 
 export default class Home extends Component<GlobalProps> {
+
     public render() {
         let globals: Globals = this.props.globals
 
@@ -26,13 +30,15 @@ export default class Home extends Component<GlobalProps> {
             return (
                 <div className="container video-list">
                     <div className="row">
-                        <div className="col-12">
-                            <h1>Welcome to Metube!</h1>
+                        <div className="col-12" style={{ paddingBottom: "3em", paddingTop: "2em" }}>
+                            <h1>Welcome to MeTube!</h1>
                         </div>
+                        <MainLink to="/login">
+                            <h2>Login</h2>
+                            <img src="public/images/video.png" />
+                        </MainLink>
                         <div className="col-12" >
-                            <p>To access all features...</p>
-                            <p>Log in <Link to="/login"><a>here</a></Link></p>
-                            <p>Create account <Link to="/create"><a>here</a></Link></p>
+                            <Link to="/create">Create account</Link>
                         </div>
                     </div>
                 </div>
@@ -42,7 +48,7 @@ export default class Home extends Component<GlobalProps> {
                 <div className="container video-list">
                     <div className="row">
                         <div className="col-12" style={{ paddingBottom: "3em", paddingTop: "2em" }}>
-                            <h1>Hello <span className="user-info">{globals.auth.userInfo.f_name}</span>... Welcome to Metube!</h1>
+                            <h1>Hello <span className="user-info">{globals.auth.userInfo.f_name}</span>... Welcome to MeTube!</h1>
                         </div>
 
                         <MainLink to="/videos">

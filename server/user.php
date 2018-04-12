@@ -51,11 +51,12 @@ class UserInterface {
     if ($results = &$db->exec_query($sql)) {
       while ($row = $results->fetch_object()) {
 
-	if (strpos($row->username, $searchText) !== false) {
+	if (strpos(strtolower($row->username), $searchText) !== false) {
+
 	  $suggestions[] = $row->username;
-	} else if (strpos($row->f_name, $searchText) !== false) {
+	} else if (strpos(strtolower($row->f_name), $searchText) !== false) {
 	  $suggestions[] = $row->f_name;
-	} else if (strpos($row->l_name, $searchText) !== false) {
+	} else if (strpos(strtolower($row->l_name), $searchText) !== false) {
 	  $suggestions[] = $row->l_name;
 	} else {
 	  $suggestions[] = $row->username; // default to username if % was sent

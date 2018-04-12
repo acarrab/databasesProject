@@ -16,10 +16,12 @@ export class Globals {
     auth: Authentication
     changeRoute: (route: string) => void
     toggleExpand: () => void
+    previousMessage: string
     constructor(auth: Authentication, changeRoute: (route: string) => void, toggleExpand: () => void) {
         this.auth = auth
         this.changeRoute = changeRoute
         this.toggleExpand = toggleExpand
+        this.previousMessage = ""
     }
     goHome() {
         this.changeRoute('/')

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import { Globals, GlobalProps } from '../../Control'
-import { Row, Col, RowAuto, ColAuto, RowFull, ColFull } from '../../BootstrapWrappers'
+
+
+
 import SearchBar from '../../tools/SearchBar'
 import Api, { UserInfo } from '../../tools/Api'
+import { Row, Col2, Col2a, Block, Content, ContentBlock, Label, Center } from '../../Design'
 
 
 
@@ -51,12 +54,10 @@ class UsersSearch extends Component<GlobalProps> {
 
     renderUser(user: UserInfo) {
         return (
-            <Card style={{ textAlign: "left", marginBottom: "1em" }}>
-                <CardHeader
-                    title={user.f_name + " " + user.l_name}
-                    subtitle={user.username}
-                />
-            </Card>
+            <ContentBlock key={user.username}>
+                <Row><h4>{user.f_name + " " + user.l_name}</h4></Row>
+                <Row><p className="username">@{user.username}</p></Row>
+            </ContentBlock>
         )
     }
 
@@ -72,11 +73,14 @@ class UsersSearch extends Component<GlobalProps> {
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
                 ></SearchBar>
-                {!state.users.length ? (<h1>Search For Users</h1>) :
-                    <RowFull>
-                        <ColFull><h1>Results</h1></ColFull>
-                        {state.users.map(this.renderUser)}
-                    </RowFull>
+                <h1>Search For Users</h1>
+                {!state.users.length ? <div></div> :
+                    <Block>
+                        <Center><h1>Results</h1></Center>
+                        <Content>
+                            {state.users.map(this.renderUser)}
+                        </Content>
+                    </Block>
                 }
 
             </div>

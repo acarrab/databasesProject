@@ -970,23 +970,7 @@ exports.default = function (subClass, superClass) {
 };
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-  return target;
-};
-
-
-/***/ }),
+/* 15 */,
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1026,56 +1010,8 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _assign = __webpack_require__(362);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (obj, keys) {
-  var target = {};
-
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-
-  return target;
-};
-
-/***/ }),
+/* 17 */,
+/* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2800,46 +2736,7 @@ exports.f = __webpack_require__(36) ? Object.defineProperty : function definePro
 
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-
-  easeOutFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
-  easeInOutFunction: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
-
-  easeOut: function easeOut(duration, property, delay, easeFunction) {
-    easeFunction = easeFunction || this.easeOutFunction;
-
-    if (property && Object.prototype.toString.call(property) === '[object Array]') {
-      var transitions = '';
-      for (var i = 0; i < property.length; i++) {
-        if (transitions) transitions += ',';
-        transitions += this.create(duration, property[i], delay, easeFunction);
-      }
-
-      return transitions;
-    } else {
-      return this.create(duration, property, delay, easeFunction);
-    }
-  },
-  create: function create(duration, property, delay, easeFunction) {
-    duration = duration || '450ms';
-    property = property || 'all';
-    delay = delay || '0ms';
-    easeFunction = easeFunction || 'linear';
-
-    return property + ' ' + duration + ' ' + easeFunction + ' ' + delay;
-  }
-};
-
-/***/ }),
+/* 33 */,
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4774,130 +4671,7 @@ module.exports = {};
 
 
 /***/ }),
-/* 62 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Row; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Col; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ColAuto; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return RowAuto; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ColFull; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return RowFull; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Label; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-
-function className(type, props) {
-    if (props.className)
-        return type + " " + props.className;
-    else
-        return type;
-}
-var Row = /** @class */ (function (_super) {
-    __extends(Row, _super);
-    function Row() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Row.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-12 row", this.props) }), this.props.children));
-    };
-    return Row;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var Col = /** @class */ (function (_super) {
-    __extends(Col, _super);
-    function Col() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Col.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col", this.props) }), this.props.children));
-    };
-    return Col;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var ColAuto = /** @class */ (function (_super) {
-    __extends(ColAuto, _super);
-    function ColAuto() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ColAuto.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-2 .d-none .d-md-block" }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-md-8 offset-md-2 col-12", this.props) }), this.props.children),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-2 .d-none .d-md-block" })));
-    };
-    return ColAuto;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var RowAuto = /** @class */ (function (_super) {
-    __extends(RowAuto, _super);
-    function RowAuto() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RowAuto.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ColAuto, null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("row", this.props) }), this.props.children)));
-    };
-    return RowAuto;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var ColFull = /** @class */ (function (_super) {
-    __extends(ColFull, _super);
-    function ColFull() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ColFull.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-12", this.props) }), this.props.children));
-    };
-    return ColFull;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var RowFull = /** @class */ (function (_super) {
-    __extends(RowFull, _super);
-    function RowFull() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    RowFull.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row", style: { width: "100%", margin: "0em" } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ColFull, __assign({}, this.props), this.props.children)));
-    };
-    return RowFull;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-var Label = /** @class */ (function (_super) {
-    __extends(Label, _super);
-    function Label() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Label.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Col, null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", __assign({ style: { width: "90%" } }, this.props), this.props.children)));
-    };
-    return Label;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-
-
-
-/***/ }),
+/* 62 */,
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9276,39 +9050,8 @@ module.exports = function (name) {
 
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _shallowEqual = __webpack_require__(71);
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _shallowEqual2.default;
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  set: function set(style, key, value) {
-    style[key] = value;
-  }
-};
-
-/***/ }),
+/* 116 */,
+/* 117 */,
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9389,9 +9132,12 @@ function compareObjects(objA, objB) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_validation_build_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_validation_build_input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_validation_build_button__ = __webpack_require__(466);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_validation_build_button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_validation_build_button__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Validators__ = __webpack_require__(467);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_4__Validators__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_validation_build_Textarea__ = __webpack_require__(605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_validation_build_Textarea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_validation_build_Textarea__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Validators__ = __webpack_require__(467);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_5__Validators__["a"]; });
 /* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2_react_validation_build_input___default.a; });
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_4_react_validation_build_Textarea___default.a; });
 /* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3_react_validation_build_button___default.a; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -9403,6 +9149,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+
+
 
 
 
@@ -9429,6 +9177,9 @@ var MyForm = /** @class */ (function (_super) {
         event.preventDefault();
         var values = this.form.getValues();
         this.formSubmit(values);
+        if (this.props.onSubmit) {
+            this.props.onSubmit(values);
+        }
     };
     MyForm.prototype.setError = function (error) { this.setState({ error: error }); };
     MyForm.prototype.getError = function () {
@@ -9458,7 +9209,7 @@ var MyForm = /** @class */ (function (_super) {
     };
     return MyForm;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
-/* harmony default export */ __webpack_exports__["c"] = (MyForm);
+/* harmony default export */ __webpack_exports__["d"] = (MyForm);
 
 
 /***/ }),
@@ -14681,541 +14432,13 @@ exports.f = __webpack_require__(36) ? gOPD : function getOwnPropertyDescriptor(O
 
 
 /***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var horizontal = _propTypes2.default.oneOf(['left', 'middle', 'right']);
-var vertical = _propTypes2.default.oneOf(['top', 'center', 'bottom']);
-
-exports.default = {
-
-  corners: _propTypes2.default.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
-
-  horizontal: horizontal,
-
-  vertical: vertical,
-
-  origin: _propTypes2.default.shape({
-    horizontal: horizontal,
-    vertical: vertical
-  }),
-
-  cornersAndCenter: _propTypes2.default.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
-
-  stringOrNumber: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-
-  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5])
-
-};
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _keyboardArrowUp = __webpack_require__(403);
-
-var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
-
-var _keyboardArrowDown = __webpack_require__(408);
-
-var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
-
-var _IconButton = __webpack_require__(409);
-
-var _IconButton2 = _interopRequireDefault(_IconButton);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles() {
-  return {
-    root: {
-      top: 0,
-      bottom: 0,
-      right: 4,
-      margin: 'auto',
-      position: 'absolute'
-    }
-  };
-}
-
-var CardExpandable = function (_Component) {
-  (0, _inherits3.default)(CardExpandable, _Component);
-
-  function CardExpandable() {
-    (0, _classCallCheck3.default)(this, CardExpandable);
-    return (0, _possibleConstructorReturn3.default)(this, (CardExpandable.__proto__ || (0, _getPrototypeOf2.default)(CardExpandable)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardExpandable, [{
-    key: 'render',
-    value: function render() {
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement(
-        _IconButton2.default,
-        {
-          style: (0, _simpleAssign2.default)(styles.root, this.props.style),
-          onClick: this.props.onExpanding,
-          iconStyle: this.props.iconStyle
-        },
-        this.props.expanded ? this.props.openIcon : this.props.closeIcon
-      );
-    }
-  }]);
-  return CardExpandable;
-}(_react.Component);
-
-CardExpandable.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardExpandable.defaultProps = {
-  closeIcon: _react2.default.createElement(_keyboardArrowDown2.default, null),
-  openIcon: _react2.default.createElement(_keyboardArrowUp2.default, null)
-};
-CardExpandable.propTypes = process.env.NODE_ENV !== "production" ? {
-  closeIcon: _propTypes2.default.node,
-  expanded: _propTypes2.default.bool,
-  iconStyle: _propTypes2.default.object,
-  onExpanding: _propTypes2.default.func.isRequired,
-  openIcon: _propTypes2.default.node,
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardExpandable;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-exports.__esModule = true;
-
-var _shouldUpdate = __webpack_require__(404);
-
-var _shouldUpdate2 = _interopRequireDefault(_shouldUpdate);
-
-var _shallowEqual = __webpack_require__(116);
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-var _setDisplayName = __webpack_require__(187);
-
-var _setDisplayName2 = _interopRequireDefault(_setDisplayName);
-
-var _wrapDisplayName = __webpack_require__(188);
-
-var _wrapDisplayName2 = _interopRequireDefault(_wrapDisplayName);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var pure = function pure(BaseComponent) {
-  var hoc = (0, _shouldUpdate2.default)(function (props, nextProps) {
-    return !(0, _shallowEqual2.default)(props, nextProps);
-  });
-
-  if (process.env.NODE_ENV !== 'production') {
-    return (0, _setDisplayName2.default)((0, _wrapDisplayName2.default)(BaseComponent, 'pure'))(hoc(BaseComponent));
-  }
-
-  return hoc(BaseComponent);
-};
-
-exports.default = pure;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _setStatic = __webpack_require__(405);
-
-var _setStatic2 = _interopRequireDefault(_setStatic);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var setDisplayName = function setDisplayName(displayName) {
-  return (0, _setStatic2.default)('displayName', displayName);
-};
-
-exports.default = setDisplayName;
-
-/***/ }),
-/* 188 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _getDisplayName = __webpack_require__(406);
-
-var _getDisplayName2 = _interopRequireDefault(_getDisplayName);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var wrapDisplayName = function wrapDisplayName(BaseComponent, hocName) {
-  return hocName + '(' + (0, _getDisplayName2.default)(BaseComponent) + ')';
-};
-
-exports.default = wrapDisplayName;
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _SvgIcon = __webpack_require__(407);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _SvgIcon2.default;
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _chainFunction = __webpack_require__(416);
-
-var _chainFunction2 = _interopRequireDefault(_chainFunction);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _warning = __webpack_require__(10);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _ChildMapping = __webpack_require__(417);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var propTypes = {
-  component: _propTypes2.default.any,
-  childFactory: _propTypes2.default.func,
-  children: _propTypes2.default.node
-};
-
-var defaultProps = {
-  component: 'span',
-  childFactory: function childFactory(child) {
-    return child;
-  }
-};
-
-var TransitionGroup = function (_React$Component) {
-  _inherits(TransitionGroup, _React$Component);
-
-  function TransitionGroup(props, context) {
-    _classCallCheck(this, TransitionGroup);
-
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
-
-    _this.performAppear = function (key, component) {
-      _this.currentlyTransitioningKeys[key] = true;
-
-      if (component.componentWillAppear) {
-        component.componentWillAppear(_this._handleDoneAppearing.bind(_this, key, component));
-      } else {
-        _this._handleDoneAppearing(key, component);
-      }
-    };
-
-    _this._handleDoneAppearing = function (key, component) {
-      if (component.componentDidAppear) {
-        component.componentDidAppear();
-      }
-
-      delete _this.currentlyTransitioningKeys[key];
-
-      var currentChildMapping = (0, _ChildMapping.getChildMapping)(_this.props.children);
-
-      if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
-        // This was removed before it had fully appeared. Remove it.
-        _this.performLeave(key, component);
-      }
-    };
-
-    _this.performEnter = function (key, component) {
-      _this.currentlyTransitioningKeys[key] = true;
-
-      if (component.componentWillEnter) {
-        component.componentWillEnter(_this._handleDoneEntering.bind(_this, key, component));
-      } else {
-        _this._handleDoneEntering(key, component);
-      }
-    };
-
-    _this._handleDoneEntering = function (key, component) {
-      if (component.componentDidEnter) {
-        component.componentDidEnter();
-      }
-
-      delete _this.currentlyTransitioningKeys[key];
-
-      var currentChildMapping = (0, _ChildMapping.getChildMapping)(_this.props.children);
-
-      if (!currentChildMapping || !currentChildMapping.hasOwnProperty(key)) {
-        // This was removed before it had fully entered. Remove it.
-        _this.performLeave(key, component);
-      }
-    };
-
-    _this.performLeave = function (key, component) {
-      _this.currentlyTransitioningKeys[key] = true;
-
-      if (component.componentWillLeave) {
-        component.componentWillLeave(_this._handleDoneLeaving.bind(_this, key, component));
-      } else {
-        // Note that this is somewhat dangerous b/c it calls setState()
-        // again, effectively mutating the component before all the work
-        // is done.
-        _this._handleDoneLeaving(key, component);
-      }
-    };
-
-    _this._handleDoneLeaving = function (key, component) {
-      if (component.componentDidLeave) {
-        component.componentDidLeave();
-      }
-
-      delete _this.currentlyTransitioningKeys[key];
-
-      var currentChildMapping = (0, _ChildMapping.getChildMapping)(_this.props.children);
-
-      if (currentChildMapping && currentChildMapping.hasOwnProperty(key)) {
-        // This entered again before it fully left. Add it again.
-        _this.keysToEnter.push(key);
-      } else {
-        _this.setState(function (state) {
-          var newChildren = _extends({}, state.children);
-          delete newChildren[key];
-          return { children: newChildren };
-        });
-      }
-    };
-
-    _this.childRefs = Object.create(null);
-
-    _this.state = {
-      children: (0, _ChildMapping.getChildMapping)(props.children)
-    };
-    return _this;
-  }
-
-  TransitionGroup.prototype.componentWillMount = function componentWillMount() {
-    this.currentlyTransitioningKeys = {};
-    this.keysToEnter = [];
-    this.keysToLeave = [];
-  };
-
-  TransitionGroup.prototype.componentDidMount = function componentDidMount() {
-    var initialChildMapping = this.state.children;
-    for (var key in initialChildMapping) {
-      if (initialChildMapping[key]) {
-        this.performAppear(key, this.childRefs[key]);
-      }
-    }
-  };
-
-  TransitionGroup.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    var nextChildMapping = (0, _ChildMapping.getChildMapping)(nextProps.children);
-    var prevChildMapping = this.state.children;
-
-    this.setState({
-      children: (0, _ChildMapping.mergeChildMappings)(prevChildMapping, nextChildMapping)
-    });
-
-    for (var key in nextChildMapping) {
-      var hasPrev = prevChildMapping && prevChildMapping.hasOwnProperty(key);
-      if (nextChildMapping[key] && !hasPrev && !this.currentlyTransitioningKeys[key]) {
-        this.keysToEnter.push(key);
-      }
-    }
-
-    for (var _key in prevChildMapping) {
-      var hasNext = nextChildMapping && nextChildMapping.hasOwnProperty(_key);
-      if (prevChildMapping[_key] && !hasNext && !this.currentlyTransitioningKeys[_key]) {
-        this.keysToLeave.push(_key);
-      }
-    }
-
-    // If we want to someday check for reordering, we could do it here.
-  };
-
-  TransitionGroup.prototype.componentDidUpdate = function componentDidUpdate() {
-    var _this2 = this;
-
-    var keysToEnter = this.keysToEnter;
-    this.keysToEnter = [];
-    keysToEnter.forEach(function (key) {
-      return _this2.performEnter(key, _this2.childRefs[key]);
-    });
-
-    var keysToLeave = this.keysToLeave;
-    this.keysToLeave = [];
-    keysToLeave.forEach(function (key) {
-      return _this2.performLeave(key, _this2.childRefs[key]);
-    });
-  };
-
-  TransitionGroup.prototype.render = function render() {
-    var _this3 = this;
-
-    // TODO: we could get rid of the need for the wrapper node
-    // by cloning a single child
-    var childrenToRender = [];
-
-    var _loop = function _loop(key) {
-      var child = _this3.state.children[key];
-      if (child) {
-        var isCallbackRef = typeof child.ref !== 'string';
-        var factoryChild = _this3.props.childFactory(child);
-        var ref = function ref(r) {
-          _this3.childRefs[key] = r;
-        };
-
-        process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(isCallbackRef, 'string refs are not supported on children of TransitionGroup and will be ignored. ' + 'Please use a callback ref instead: https://facebook.github.io/react/docs/refs-and-the-dom.html#the-ref-callback-attribute') : void 0;
-
-        // Always chaining the refs leads to problems when the childFactory
-        // wraps the child. The child ref callback gets called twice with the
-        // wrapper and the child. So we only need to chain the ref if the
-        // factoryChild is not different from child.
-        if (factoryChild === child && isCallbackRef) {
-          ref = (0, _chainFunction2.default)(child.ref, ref);
-        }
-
-        // You may need to apply reactive updates to a child as it is leaving.
-        // The normal React way to do it won't work since the child will have
-        // already been removed. In case you need this behavior you can provide
-        // a childFactory function to wrap every child, even the ones that are
-        // leaving.
-        childrenToRender.push(_react2.default.cloneElement(factoryChild, {
-          key: key,
-          ref: ref
-        }));
-      }
-    };
-
-    for (var key in this.state.children) {
-      _loop(key);
-    }
-
-    // Do not forward TransitionGroup props to primitive DOM nodes
-    var props = _extends({}, this.props);
-    delete props.transitionLeave;
-    delete props.transitionName;
-    delete props.transitionAppear;
-    delete props.transitionEnter;
-    delete props.childFactory;
-    delete props.transitionLeaveTimeout;
-    delete props.transitionEnterTimeout;
-    delete props.transitionAppearTimeout;
-    delete props.component;
-
-    return _react2.default.createElement(this.props.component, props, childrenToRender);
-  };
-
-  return TransitionGroup;
-}(_react2.default.Component);
-
-TransitionGroup.displayName = 'TransitionGroup';
-
-
-TransitionGroup.propTypes = process.env.NODE_ENV !== "production" ? propTypes : {};
-TransitionGroup.defaultProps = defaultProps;
-
-exports.default = TransitionGroup;
-module.exports = exports['default'];
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
 /* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30941,6 +30164,7 @@ var Globals = /** @class */ (function () {
         this.auth = auth;
         this.changeRoute = changeRoute;
         this.toggleExpand = toggleExpand;
+        this.previousMessage = "";
     }
     Globals.prototype.goHome = function () {
         this.changeRoute('/');
@@ -31957,7 +31181,7 @@ var MainLink = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MainLink.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-6 col-lg-3 content-block-container" },
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-6 col-lg-3 content-block-container", style: { marginBottom: "2em" } },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { to: this.props.to },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "content-block" }, this.props.children))));
     };
@@ -31973,18 +31197,13 @@ var Home = /** @class */ (function (_super) {
         if (!globals.auth.islogged())
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container video-list" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12", style: { paddingBottom: "3em", paddingTop: "2em" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Welcome to MeTube!")),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(MainLink, { to: "/login" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "Login"),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "public/images/video.png" })),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12" },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Welcome to Metube!")),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12" },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "To access all features..."),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null,
-                            "Log in ",
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { to: "/login" },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, "here"))),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null,
-                            "Create account ",
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { to: "/create" },
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("a", null, "here")))))));
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { to: "/create" }, "Create account")))));
         else
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container video-list" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "row" },
@@ -31992,7 +31211,7 @@ var Home = /** @class */ (function (_super) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null,
                             "Hello ",
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "user-info" }, globals.auth.userInfo.f_name),
-                            "... Welcome to Metube!")),
+                            "... Welcome to MeTube!")),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(MainLink, { to: "/videos" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "Videos"),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: "public/images/video.png" })),
@@ -32054,11 +31273,9 @@ var History = /** @class */ (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Card__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_Card__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tools_SearchBar__ = __webpack_require__(442);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tools_Api__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_SearchBar__ = __webpack_require__(442);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_Api__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Design__ = __webpack_require__(604);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -32069,7 +31286,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-
 
 
 
@@ -32092,7 +31308,7 @@ var UsersSearch = /** @class */ (function (_super) {
         console.log(text);
         this.setState({ value: text });
         if (text.trim().length) {
-            __WEBPACK_IMPORTED_MODULE_4__tools_Api__["a" /* default */].Search.User.text_list(text, function (usernames) { _this.setState({ suggestions: usernames.map(function (name) { return ({ text: name }); }) }); }, function (err) { console.error(err); });
+            __WEBPACK_IMPORTED_MODULE_2__tools_Api__["a" /* default */].Search.User.text_list(text, function (usernames) { _this.setState({ suggestions: usernames.map(function (name) { return ({ text: name }); }) }); }, function (err) { console.error(err); });
         }
         else {
             this.setState({ value: text, suggestions: [] });
@@ -32104,22 +31320,28 @@ var UsersSearch = /** @class */ (function (_super) {
         if (!text.trim().length) {
             text = "%";
         }
-        __WEBPACK_IMPORTED_MODULE_4__tools_Api__["a" /* default */].Search.User.user_list(text, function (users) { _this.setState({ users: users }); }, function (err) { console.error(err); });
+        __WEBPACK_IMPORTED_MODULE_2__tools_Api__["a" /* default */].Search.User.user_list(text, function (users) { _this.setState({ users: users }); }, function (err) { console.error(err); });
     };
     UsersSearch.prototype.renderUser = function (user) {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["Card"], { style: { textAlign: "left", marginBottom: "1em" } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Card__["CardHeader"], { title: user.f_name + " " + user.l_name, subtitle: user.username })));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], { key: user.username },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["h" /* Row */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", null, user.f_name + " " + user.l_name)),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["h" /* Row */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", { className: "username" },
+                    "@",
+                    user.username))));
     };
     UsersSearch.prototype.render = function () {
         var globals = this.props.globals;
         var state = this.state;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { width: "100%" } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__tools_SearchBar__["a" /* default */], { suggestions: state.suggestions, value: state.value, placeholderText: "Search for Users", onChange: this.onChange, onSubmit: this.onSubmit }),
-            !state.users.length ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Search For Users")) :
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["g" /* RowFull */], null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["c" /* ColFull */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__tools_SearchBar__["a" /* default */], { suggestions: state.suggestions, value: state.value, placeholderText: "Search for Users", onChange: this.onChange, onSubmit: this.onSubmit }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Search For Users"),
+            !state.users.length ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null) :
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Results")),
-                    state.users.map(this.renderUser))));
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null, state.users.map(this.renderUser)))));
     };
     return UsersSearch;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -32142,307 +31364,11 @@ var Users = /** @class */ (function (_super) {
 
 
 /***/ }),
-/* 360 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.CardExpandable = exports.CardActions = exports.CardText = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = undefined;
-
-var _Card2 = __webpack_require__(361);
-
-var _Card3 = _interopRequireDefault(_Card2);
-
-var _CardHeader2 = __webpack_require__(435);
-
-var _CardHeader3 = _interopRequireDefault(_CardHeader2);
-
-var _CardTitle2 = __webpack_require__(438);
-
-var _CardTitle3 = _interopRequireDefault(_CardTitle2);
-
-var _CardMedia2 = __webpack_require__(439);
-
-var _CardMedia3 = _interopRequireDefault(_CardMedia2);
-
-var _CardText2 = __webpack_require__(440);
-
-var _CardText3 = _interopRequireDefault(_CardText2);
-
-var _CardActions2 = __webpack_require__(441);
-
-var _CardActions3 = _interopRequireDefault(_CardActions2);
-
-var _CardExpandable2 = __webpack_require__(185);
-
-var _CardExpandable3 = _interopRequireDefault(_CardExpandable2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Card = _Card3.default;
-exports.CardHeader = _CardHeader3.default;
-exports.CardTitle = _CardTitle3.default;
-exports.CardMedia = _CardMedia3.default;
-exports.CardText = _CardText3.default;
-exports.CardActions = _CardActions3.default;
-exports.CardExpandable = _CardExpandable3.default;
-exports.default = _Card3.default;
-
-/***/ }),
-/* 361 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Paper = __webpack_require__(401);
-
-var _Paper2 = _interopRequireDefault(_Paper);
-
-var _CardExpandable = __webpack_require__(185);
-
-var _CardExpandable2 = _interopRequireDefault(_CardExpandable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Card = function (_Component) {
-  (0, _inherits3.default)(Card, _Component);
-
-  function Card() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, Card);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Card.__proto__ || (0, _getPrototypeOf2.default)(Card)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      expanded: null
-    }, _this.handleExpanding = function (event) {
-      event.preventDefault();
-      var newExpandedState = !_this.state.expanded;
-      // no automatic state update when the component is controlled
-      if (_this.props.expanded === null) {
-        _this.setState({ expanded: newExpandedState });
-      }
-      if (_this.props.onExpandChange) {
-        _this.props.onExpandChange(newExpandedState);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(Card, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.setState({
-        expanded: this.props.expanded === null ? this.props.initiallyExpanded === true : this.props.expanded
-      });
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      // update the state when the component is controlled.
-      if (nextProps.expanded !== null) this.setState({ expanded: nextProps.expanded });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          style = _props.style,
-          containerStyle = _props.containerStyle,
-          children = _props.children,
-          expandable = _props.expandable,
-          expandedProp = _props.expanded,
-          initiallyExpanded = _props.initiallyExpanded,
-          onExpandChange = _props.onExpandChange,
-          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'containerStyle', 'children', 'expandable', 'expanded', 'initiallyExpanded', 'onExpandChange']);
-
-
-      var lastElement = void 0;
-      var expanded = this.state.expanded;
-      var newChildren = _react2.default.Children.map(children, function (currentChild) {
-        var doClone = false;
-        var newChild = undefined;
-        var newProps = {};
-        var element = currentChild;
-        if (!currentChild || !currentChild.props) {
-          return null;
-        }
-        if (expanded === false && currentChild.props.expandable === true) return;
-        if (currentChild.props.actAsExpander === true) {
-          doClone = true;
-          newProps.onClick = _this2.handleExpanding;
-          newProps.style = (0, _simpleAssign2.default)({ cursor: 'pointer' }, currentChild.props.style);
-        }
-        if (currentChild.props.showExpandableButton === true) {
-          doClone = true;
-          newChild = _react2.default.createElement(_CardExpandable2.default, {
-            closeIcon: currentChild.props.closeIcon,
-            expanded: expanded,
-            onExpanding: _this2.handleExpanding,
-            openIcon: currentChild.props.openIcon,
-            iconStyle: currentChild.props.iconStyle
-          });
-        }
-        if (doClone) {
-          element = _react2.default.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
-        }
-        lastElement = element;
-        return element;
-      }, this);
-
-      // If the last element is text or a title we should add
-      // 8px padding to the bottom of the card
-      var addBottomPadding = lastElement && (lastElement.type.muiName === 'CardText' || lastElement.type.muiName === 'CardTitle');
-
-      var mergedStyles = (0, _simpleAssign2.default)({
-        zIndex: 1
-      }, style);
-      var containerMergedStyles = (0, _simpleAssign2.default)({
-        paddingBottom: addBottomPadding ? 8 : 0
-      }, containerStyle);
-
-      return _react2.default.createElement(
-        _Paper2.default,
-        (0, _extends3.default)({}, other, { style: mergedStyles }),
-        _react2.default.createElement(
-          'div',
-          { style: containerMergedStyles },
-          newChildren
-        )
-      );
-    }
-  }]);
-  return Card;
-}(_react.Component);
-
-Card.defaultProps = {
-  expandable: false,
-  expanded: null,
-  initiallyExpanded: false
-};
-Card.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Can be used to render elements inside the Card.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Override the inline-styles of the container element.
-   */
-  containerStyle: _propTypes2.default.object,
-  /**
-   * If true, this card component is expandable. Can be set on any child of the `Card` component.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Whether this card is expanded.
-   * If `true` or `false` the component is controlled.
-   * if `null` the component is uncontrolled.
-   */
-  expanded: _propTypes2.default.bool,
-  /**
-   * Whether this card is initially expanded.
-   */
-  initiallyExpanded: _propTypes2.default.bool,
-  /**
-   * Callback function fired when the `expandable` state of the card has changed.
-   *
-   * @param {boolean} newExpandedState Represents the new `expanded` state of the card.
-   */
-  onExpandChange: _propTypes2.default.func,
-  /**
-   * If true, this card component will include a button to expand the card. `CardTitle`,
-   * `CardHeader` and `CardActions` implement `showExpandableButton`. Any child component
-   * of `Card` can implements `showExpandableButton` or forwards the property to a child
-   * component supporting it.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = Card;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 362 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(363), __esModule: true };
-
-/***/ }),
-/* 363 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(364);
-module.exports = __webpack_require__(23).Object.assign;
-
-
-/***/ }),
-/* 364 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(30);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(366) });
-
-
-/***/ }),
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
 /* 365 */
 /***/ (function(module, exports) {
 
@@ -32453,47 +31379,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 366 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(59);
-var gOPS = __webpack_require__(110);
-var pIE = __webpack_require__(75);
-var toObject = __webpack_require__(60);
-var IObject = __webpack_require__(174);
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(45)(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
-
-
-/***/ }),
+/* 366 */,
 /* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33226,2534 +32112,25 @@ $export($export.S, 'Object', { create: __webpack_require__(112) });
 
 
 /***/ }),
-/* 401 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _Paper = __webpack_require__(402);
-
-var _Paper2 = _interopRequireDefault(_Paper);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Paper2.default;
-
-/***/ }),
-/* 402 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _propTypes3 = __webpack_require__(184);
-
-var _propTypes4 = _interopRequireDefault(_propTypes3);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var rounded = props.rounded,
-      circle = props.circle,
-      transitionEnabled = props.transitionEnabled,
-      zDepth = props.zDepth;
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      paper = _context$muiTheme.paper,
-      borderRadius = _context$muiTheme.borderRadius;
-
-
-  return {
-    root: {
-      color: paper.color,
-      backgroundColor: paper.backgroundColor,
-      transition: transitionEnabled && _transitions2.default.easeOut(),
-      boxSizing: 'border-box',
-      fontFamily: baseTheme.fontFamily,
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      boxShadow: paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
-      borderRadius: circle ? '50%' : rounded ? borderRadius : '0px'
-    }
-  };
-}
-
-var Paper = function (_Component) {
-  (0, _inherits3.default)(Paper, _Component);
-
-  function Paper() {
-    (0, _classCallCheck3.default)(this, Paper);
-    return (0, _possibleConstructorReturn3.default)(this, (Paper.__proto__ || (0, _getPrototypeOf2.default)(Paper)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(Paper, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          circle = _props.circle,
-          rounded = _props.rounded,
-          style = _props.style,
-          transitionEnabled = _props.transitionEnabled,
-          zDepth = _props.zDepth,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'circle', 'rounded', 'style', 'transitionEnabled', 'zDepth']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
-        children
-      );
-    }
-  }]);
-  return Paper;
-}(_react.Component);
-
-Paper.defaultProps = {
-  circle: false,
-  rounded: true,
-  transitionEnabled: true,
-  zDepth: 1
-};
-Paper.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-Paper.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Children passed into the paper element.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Set to true to generate a circular paper container.
-   */
-  circle: _propTypes2.default.bool,
-  /**
-   * By default, the paper container will have a border radius.
-   * Set this to false to generate a container with sharp corners.
-   */
-  rounded: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Set to false to disable CSS transitions for the paper element.
-   */
-  transitionEnabled: _propTypes2.default.bool,
-  /**
-   * This number represents the zDepth of the paper shadow.
-   */
-  zDepth: _propTypes4.default.zDepth
-} : {};
-exports.default = Paper;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 403 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(186);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(189);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var HardwareKeyboardArrowUp = function HardwareKeyboardArrowUp(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z' })
-  );
-};
-HardwareKeyboardArrowUp = (0, _pure2.default)(HardwareKeyboardArrowUp);
-HardwareKeyboardArrowUp.displayName = 'HardwareKeyboardArrowUp';
-HardwareKeyboardArrowUp.muiName = 'SvgIcon';
-
-exports.default = HardwareKeyboardArrowUp;
-
-/***/ }),
-/* 404 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-exports.__esModule = true;
-
-var _react = __webpack_require__(1);
-
-var _setDisplayName = __webpack_require__(187);
-
-var _setDisplayName2 = _interopRequireDefault(_setDisplayName);
-
-var _wrapDisplayName = __webpack_require__(188);
-
-var _wrapDisplayName2 = _interopRequireDefault(_wrapDisplayName);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var shouldUpdate = function shouldUpdate(test) {
-  return function (BaseComponent) {
-    var factory = (0, _react.createFactory)(BaseComponent);
-
-    var ShouldUpdate = function (_Component) {
-      _inherits(ShouldUpdate, _Component);
-
-      function ShouldUpdate() {
-        _classCallCheck(this, ShouldUpdate);
-
-        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-      }
-
-      ShouldUpdate.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
-        return test(this.props, nextProps);
-      };
-
-      ShouldUpdate.prototype.render = function render() {
-        return factory(this.props);
-      };
-
-      return ShouldUpdate;
-    }(_react.Component);
-
-    if (process.env.NODE_ENV !== 'production') {
-      return (0, _setDisplayName2.default)((0, _wrapDisplayName2.default)(BaseComponent, 'shouldUpdate'))(ShouldUpdate);
-    }
-    return ShouldUpdate;
-  };
-};
-
-exports.default = shouldUpdate;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 405 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var setStatic = function setStatic(key, value) {
-  return function (BaseComponent) {
-    /* eslint-disable no-param-reassign */
-    BaseComponent[key] = value;
-    /* eslint-enable no-param-reassign */
-    return BaseComponent;
-  };
-};
-
-exports.default = setStatic;
-
-/***/ }),
-/* 406 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var getDisplayName = function getDisplayName(Component) {
-  if (typeof Component === 'string') {
-    return Component;
-  }
-
-  if (!Component) {
-    return undefined;
-  }
-
-  return Component.displayName || Component.name || 'Component';
-};
-
-exports.default = getDisplayName;
-
-/***/ }),
-/* 407 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SvgIcon = function (_Component) {
-  (0, _inherits3.default)(SvgIcon, _Component);
-
-  function SvgIcon() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, SvgIcon);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = SvgIcon.__proto__ || (0, _getPrototypeOf2.default)(SvgIcon)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      hovered: false
-    }, _this.handleMouseLeave = function (event) {
-      _this.setState({ hovered: false });
-      _this.props.onMouseLeave(event);
-    }, _this.handleMouseEnter = function (event) {
-      _this.setState({ hovered: true });
-      _this.props.onMouseEnter(event);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(SvgIcon, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          color = _props.color,
-          hoverColor = _props.hoverColor,
-          onMouseEnter = _props.onMouseEnter,
-          onMouseLeave = _props.onMouseLeave,
-          style = _props.style,
-          viewBox = _props.viewBox,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'color', 'hoverColor', 'onMouseEnter', 'onMouseLeave', 'style', 'viewBox']);
-      var _context$muiTheme = this.context.muiTheme,
-          svgIcon = _context$muiTheme.svgIcon,
-          prepareStyles = _context$muiTheme.prepareStyles;
-
-
-      var offColor = color ? color : 'currentColor';
-      var onColor = hoverColor ? hoverColor : offColor;
-
-      var mergedStyles = (0, _simpleAssign2.default)({
-        display: 'inline-block',
-        color: svgIcon.color,
-        fill: this.state.hovered ? onColor : offColor,
-        height: 24,
-        width: 24,
-        userSelect: 'none',
-        transition: _transitions2.default.easeOut()
-      }, style);
-
-      return _react2.default.createElement(
-        'svg',
-        (0, _extends3.default)({}, other, {
-          onMouseEnter: this.handleMouseEnter,
-          onMouseLeave: this.handleMouseLeave,
-          style: prepareStyles(mergedStyles),
-          viewBox: viewBox
-        }),
-        children
-      );
-    }
-  }]);
-  return SvgIcon;
-}(_react.Component);
-
-SvgIcon.muiName = 'SvgIcon';
-SvgIcon.defaultProps = {
-  onMouseEnter: function onMouseEnter() {},
-  onMouseLeave: function onMouseLeave() {},
-  viewBox: '0 0 24 24'
-};
-SvgIcon.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-SvgIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Elements passed into the SVG Icon.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * This is the fill color of the svg icon.
-   * If not specified, this component will default
-   * to muiTheme.palette.textColor.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * This is the icon color when the mouse hovers over the icon.
-   */
-  hoverColor: _propTypes2.default.string,
-  /** @ignore */
-  onMouseEnter: _propTypes2.default.func,
-  /** @ignore */
-  onMouseLeave: _propTypes2.default.func,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Allows you to redefine what the coordinates
-   * without units mean inside an svg element. For example,
-   * if the SVG element is 500 (width) by 200 (height), and you
-   * pass viewBox="0 0 50 20", this means that the coordinates inside
-   * the svg will go from the top left corner (0,0) to bottom right (50,20)
-   * and each unit will be worth 10px.
-   */
-  viewBox: _propTypes2.default.string
-} : {};
-exports.default = SvgIcon;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 408 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(186);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(189);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var HardwareKeyboardArrowDown = function HardwareKeyboardArrowDown(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z' })
-  );
-};
-HardwareKeyboardArrowDown = (0, _pure2.default)(HardwareKeyboardArrowDown);
-HardwareKeyboardArrowDown.displayName = 'HardwareKeyboardArrowDown';
-HardwareKeyboardArrowDown.muiName = 'SvgIcon';
-
-exports.default = HardwareKeyboardArrowDown;
-
-/***/ }),
-/* 409 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _IconButton = __webpack_require__(410);
-
-var _IconButton2 = _interopRequireDefault(_IconButton);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _IconButton2.default;
-
-/***/ }),
-/* 410 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-var _propTypes3 = __webpack_require__(184);
-
-var _propTypes4 = _interopRequireDefault(_propTypes3);
-
-var _EnhancedButton = __webpack_require__(411);
-
-var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
-
-var _FontIcon = __webpack_require__(431);
-
-var _FontIcon2 = _interopRequireDefault(_FontIcon);
-
-var _Tooltip = __webpack_require__(433);
-
-var _Tooltip2 = _interopRequireDefault(_Tooltip);
-
-var _childUtils = __webpack_require__(434);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var baseTheme = context.muiTheme.baseTheme;
-
-
-  return {
-    root: {
-      boxSizing: 'border-box',
-      overflow: 'visible',
-      transition: _transitions2.default.easeOut(),
-      padding: baseTheme.spacing.iconSize / 2,
-      width: baseTheme.spacing.iconSize * 2,
-      height: baseTheme.spacing.iconSize * 2,
-      fontSize: 0
-    },
-    tooltip: {
-      boxSizing: 'border-box'
-    },
-    disabled: {
-      color: baseTheme.palette.disabledColor,
-      fill: baseTheme.palette.disabledColor,
-      cursor: 'default'
-    }
-  };
-}
-
-var IconButton = function (_Component) {
-  (0, _inherits3.default)(IconButton, _Component);
-
-  function IconButton() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, IconButton);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = IconButton.__proto__ || (0, _getPrototypeOf2.default)(IconButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      hovered: false,
-      isKeyboardFocused: false,
-      // Not to be confonded with the touch property.
-      // This state is to determined if it's a mobile device.
-      touch: false,
-      tooltipShown: false
-    }, _this.handleBlur = function (event) {
-      _this.hideTooltip();
-      if (_this.props.onBlur) {
-        _this.props.onBlur(event);
-      }
-    }, _this.handleFocus = function (event) {
-      _this.showTooltip();
-      if (_this.props.onFocus) {
-        _this.props.onFocus(event);
-      }
-    }, _this.handleMouseLeave = function (event) {
-      if (!_this.button.isKeyboardFocused()) {
-        _this.hideTooltip();
-      }
-      _this.setState({ hovered: false });
-      if (_this.props.onMouseLeave) {
-        _this.props.onMouseLeave(event);
-      }
-    }, _this.handleMouseOut = function (event) {
-      if (_this.props.disabled) _this.hideTooltip();
-      if (_this.props.onMouseOut) _this.props.onMouseOut(event);
-    }, _this.handleMouseEnter = function (event) {
-      _this.showTooltip();
-
-      // Cancel hover styles for touch devices
-      if (!_this.state.touch) {
-        _this.setState({ hovered: true });
-      }
-      if (_this.props.onMouseEnter) {
-        _this.props.onMouseEnter(event);
-      }
-    }, _this.handleTouchStart = function (event) {
-      _this.setState({ touch: true });
-
-      if (_this.props.onTouchStart) {
-        _this.props.onTouchStart(event);
-      }
-    }, _this.handleKeyboardFocus = function (event, isKeyboardFocused) {
-      var _this$props = _this.props,
-          disabled = _this$props.disabled,
-          onFocus = _this$props.onFocus,
-          onBlur = _this$props.onBlur,
-          onKeyboardFocus = _this$props.onKeyboardFocus;
-
-      if (isKeyboardFocused && !disabled) {
-        _this.showTooltip();
-        if (onFocus) {
-          onFocus(event);
-        }
-      } else {
-        _this.hideTooltip();
-        if (onBlur) {
-          onBlur(event);
-        }
-      }
-
-      _this.setState({ isKeyboardFocused: isKeyboardFocused });
-      if (onKeyboardFocus) {
-        onKeyboardFocus(event, isKeyboardFocused);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(IconButton, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.disabled) {
-        this.setState({ hovered: false });
-      }
-    }
-  }, {
-    key: 'setKeyboardFocus',
-    value: function setKeyboardFocus() {
-      this.button.setKeyboardFocus();
-    }
-  }, {
-    key: 'showTooltip',
-    value: function showTooltip() {
-      if (this.props.tooltip) {
-        this.setState({ tooltipShown: true });
-      }
-    }
-  }, {
-    key: 'hideTooltip',
-    value: function hideTooltip() {
-      if (this.props.tooltip) this.setState({ tooltipShown: false });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          disabled = _props.disabled,
-          hoveredStyle = _props.hoveredStyle,
-          disableTouchRipple = _props.disableTouchRipple,
-          children = _props.children,
-          iconClassName = _props.iconClassName,
-          style = _props.style,
-          tooltip = _props.tooltip,
-          tooltipPositionProp = _props.tooltipPosition,
-          tooltipStyles = _props.tooltipStyles,
-          touch = _props.touch,
-          iconStyle = _props.iconStyle,
-          other = (0, _objectWithoutProperties3.default)(_props, ['disabled', 'hoveredStyle', 'disableTouchRipple', 'children', 'iconClassName', 'style', 'tooltip', 'tooltipPosition', 'tooltipStyles', 'touch', 'iconStyle']);
-
-      var fonticon = void 0;
-
-      var styles = getStyles(this.props, this.context);
-      var tooltipPosition = tooltipPositionProp.split('-');
-
-      var hovered = (this.state.hovered || this.state.isKeyboardFocused) && !disabled;
-
-      var mergedRootStyles = (0, _simpleAssign2.default)(styles.root, style, hovered ? hoveredStyle : {});
-
-      var tooltipElement = tooltip ? _react2.default.createElement(_Tooltip2.default, {
-        label: tooltip,
-        show: this.state.tooltipShown,
-        touch: touch,
-        style: (0, _simpleAssign2.default)(styles.tooltip, tooltipStyles),
-        verticalPosition: tooltipPosition[0],
-        horizontalPosition: tooltipPosition[1]
-      }) : null;
-
-      if (iconClassName) {
-        var iconHoverColor = iconStyle.iconHoverColor,
-            iconStyleFontIcon = (0, _objectWithoutProperties3.default)(iconStyle, ['iconHoverColor']);
-
-
-        fonticon = _react2.default.createElement(
-          _FontIcon2.default,
-          {
-            className: iconClassName,
-            hoverColor: disabled ? null : iconHoverColor,
-            style: (0, _simpleAssign2.default)({}, disabled && styles.disabled, iconStyleFontIcon),
-            color: this.context.muiTheme.baseTheme.palette.textColor
-          },
-          children
-        );
-      }
-
-      var childrenStyle = disabled ? (0, _simpleAssign2.default)({}, iconStyle, styles.disabled) : iconStyle;
-
-      return _react2.default.createElement(
-        _EnhancedButton2.default,
-        (0, _extends3.default)({
-          ref: function ref(_ref2) {
-            return _this2.button = _ref2;
-          }
-        }, other, {
-          centerRipple: true,
-          disabled: disabled,
-          onTouchStart: this.handleTouchStart,
-          style: mergedRootStyles,
-          disableTouchRipple: disableTouchRipple,
-          onBlur: this.handleBlur,
-          onFocus: this.handleFocus,
-          onMouseLeave: this.handleMouseLeave,
-          onMouseEnter: this.handleMouseEnter,
-          onMouseOut: this.handleMouseOut,
-          onKeyboardFocus: this.handleKeyboardFocus
-        }),
-        tooltipElement,
-        fonticon,
-        (0, _childUtils.extendChildren)(children, {
-          style: childrenStyle
-        })
-      );
-    }
-  }]);
-  return IconButton;
-}(_react.Component);
-
-IconButton.muiName = 'IconButton';
-IconButton.defaultProps = {
-  disabled: false,
-  disableTouchRipple: false,
-  iconStyle: {},
-  tooltipPosition: 'bottom-center',
-  touch: false
-};
-IconButton.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-IconButton.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Can be used to pass a `FontIcon` element as the icon for the button.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * If true, the element's ripple effect will be disabled.
-   */
-  disableTouchRipple: _propTypes2.default.bool,
-  /**
-   * If true, the element will be disabled.
-   */
-  disabled: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element when the component is hovered.
-   */
-  hoveredStyle: _propTypes2.default.object,
-  /**
-   * The URL to link to when the button is clicked.
-   */
-  href: _propTypes2.default.string,
-  /**
-   * The CSS class name of the icon. Used for setting the icon with a stylesheet.
-   */
-  iconClassName: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the icon element.
-   * Note: you can specify iconHoverColor as a String inside this object.
-   */
-  iconStyle: _propTypes2.default.object,
-  /** @ignore */
-  onBlur: _propTypes2.default.func,
-  /**
-   * Callback function fired when the button is clicked.
-   *
-   * @param {object} event Click event targeting the button.
-   */
-  onClick: _propTypes2.default.func,
-  /** @ignore */
-  onFocus: _propTypes2.default.func,
-  /**
-   * Callback function fired when the element is focused or blurred by the keyboard.
-   *
-   * @param {object} event `focus` or `blur` event targeting the element.
-   * @param {boolean} keyboardFocused Indicates whether the element is focused.
-   */
-  onKeyboardFocus: _propTypes2.default.func,
-  /** @ignore */
-  onMouseEnter: _propTypes2.default.func,
-  /** @ignore */
-  onMouseLeave: _propTypes2.default.func,
-  /** @ignore */
-  onMouseOut: _propTypes2.default.func,
-  /** @ignore */
-  onTouchStart: _propTypes2.default.func,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * The text to supply to the element's tooltip.
-   */
-  tooltip: _propTypes2.default.node,
-  /**
-   * The vertical and horizontal positions, respectively, of the element's tooltip.
-   * Possible values are: "bottom-center", "top-center", "bottom-right", "top-right",
-   * "bottom-left", and "top-left".
-   */
-  tooltipPosition: _propTypes4.default.cornersAndCenter,
-  /**
-   * Override the inline-styles of the tooltip element.
-   */
-  tooltipStyles: _propTypes2.default.object,
-  /**
-   * If true, increase the tooltip element's size. Useful for increasing tooltip
-   * readability on mobile devices.
-   */
-  touch: _propTypes2.default.bool
-} : {};
-exports.default = IconButton;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 411 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _events = __webpack_require__(412);
-
-var _events2 = _interopRequireDefault(_events);
-
-var _keycode = __webpack_require__(413);
-
-var _keycode2 = _interopRequireDefault(_keycode);
-
-var _FocusRipple = __webpack_require__(414);
-
-var _FocusRipple2 = _interopRequireDefault(_FocusRipple);
-
-var _TouchRipple = __webpack_require__(419);
-
-var _TouchRipple2 = _interopRequireDefault(_TouchRipple);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var styleInjected = false;
-var listening = false;
-var tabPressed = false;
-
-function injectStyle() {
-  if (!styleInjected) {
-    // Remove inner padding and border in Firefox 4+.
-    var style = document.createElement('style');
-    style.innerHTML = '\n      button::-moz-focus-inner,\n      input::-moz-focus-inner {\n        border: 0;\n        padding: 0;\n      }\n    ';
-
-    document.body.appendChild(style);
-    styleInjected = true;
-  }
-}
-
-function listenForTabPresses() {
-  if (!listening) {
-    _events2.default.on(window, 'keydown', function (event) {
-      tabPressed = (0, _keycode2.default)(event) === 'tab';
-    });
-    listening = true;
-  }
-}
-
-var EnhancedButton = function (_Component) {
-  (0, _inherits3.default)(EnhancedButton, _Component);
-
-  function EnhancedButton() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, EnhancedButton);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = EnhancedButton.__proto__ || (0, _getPrototypeOf2.default)(EnhancedButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      isKeyboardFocused: false
-    }, _this.handleKeyDown = function (event) {
-      if (!_this.props.disabled && !_this.props.disableKeyboardFocus) {
-        if ((0, _keycode2.default)(event) === 'enter' && _this.state.isKeyboardFocused) {
-          _this.handleClick(event);
-        }
-        if ((0, _keycode2.default)(event) === 'esc' && _this.state.isKeyboardFocused) {
-          _this.removeKeyboardFocus(event);
-        }
-      }
-      _this.props.onKeyDown(event);
-    }, _this.handleKeyUp = function (event) {
-      if (!_this.props.disabled && !_this.props.disableKeyboardFocus) {
-        if ((0, _keycode2.default)(event) === 'space' && _this.state.isKeyboardFocused) {
-          _this.handleClick(event);
-        }
-      }
-      _this.props.onKeyUp(event);
-    }, _this.handleBlur = function (event) {
-      _this.cancelFocusTimeout();
-      _this.removeKeyboardFocus(event);
-      _this.props.onBlur(event);
-    }, _this.handleFocus = function (event) {
-      if (event) event.persist();
-      if (!_this.props.disabled && !_this.props.disableKeyboardFocus) {
-        // setTimeout is needed because the focus event fires first
-        // Wait so that we can capture if this was a keyboard focus
-        // or touch focus
-        _this.focusTimeout = setTimeout(function () {
-          if (tabPressed) {
-            _this.setKeyboardFocus(event);
-            tabPressed = false;
-          }
-        }, 150);
-
-        _this.props.onFocus(event);
-      }
-    }, _this.handleClick = function (event) {
-      _this.cancelFocusTimeout();
-      if (!_this.props.disabled) {
-        tabPressed = false;
-        _this.removeKeyboardFocus(event);
-        _this.props.onClick(event);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(EnhancedButton, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var _props = this.props,
-          disabled = _props.disabled,
-          disableKeyboardFocus = _props.disableKeyboardFocus,
-          keyboardFocused = _props.keyboardFocused;
-
-      if (!disabled && keyboardFocused && !disableKeyboardFocus) {
-        this.setState({ isKeyboardFocused: true });
-      }
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      injectStyle();
-      listenForTabPresses();
-      if (this.state.isKeyboardFocused) {
-        this.button.focus();
-        this.props.onKeyboardFocus(null, true);
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if ((nextProps.disabled || nextProps.disableKeyboardFocus) && this.state.isKeyboardFocused) {
-        this.setState({ isKeyboardFocused: false });
-        if (nextProps.onKeyboardFocus) {
-          nextProps.onKeyboardFocus(null, false);
-        }
-      }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      if (this.focusTimeout) {
-        clearTimeout(this.focusTimeout);
-      }
-    }
-  }, {
-    key: 'isKeyboardFocused',
-    value: function isKeyboardFocused() {
-      return this.state.isKeyboardFocused;
-    }
-  }, {
-    key: 'removeKeyboardFocus',
-    value: function removeKeyboardFocus(event) {
-      if (this.state.isKeyboardFocused) {
-        this.setState({ isKeyboardFocused: false });
-        this.props.onKeyboardFocus(event, false);
-      }
-    }
-  }, {
-    key: 'setKeyboardFocus',
-    value: function setKeyboardFocus(event) {
-      if (!this.state.isKeyboardFocused) {
-        this.setState({ isKeyboardFocused: true });
-        this.props.onKeyboardFocus(event, true);
-      }
-    }
-  }, {
-    key: 'cancelFocusTimeout',
-    value: function cancelFocusTimeout() {
-      if (this.focusTimeout) {
-        clearTimeout(this.focusTimeout);
-        this.focusTimeout = null;
-      }
-    }
-  }, {
-    key: 'createButtonChildren',
-    value: function createButtonChildren() {
-      var _props2 = this.props,
-          centerRipple = _props2.centerRipple,
-          children = _props2.children,
-          disabled = _props2.disabled,
-          disableFocusRipple = _props2.disableFocusRipple,
-          disableKeyboardFocus = _props2.disableKeyboardFocus,
-          disableTouchRipple = _props2.disableTouchRipple,
-          focusRippleColor = _props2.focusRippleColor,
-          focusRippleOpacity = _props2.focusRippleOpacity,
-          touchRippleColor = _props2.touchRippleColor,
-          touchRippleOpacity = _props2.touchRippleOpacity;
-      var isKeyboardFocused = this.state.isKeyboardFocused;
-
-      // Focus Ripple
-
-      var focusRipple = isKeyboardFocused && !disabled && !disableFocusRipple && !disableKeyboardFocus ? _react2.default.createElement(_FocusRipple2.default, {
-        color: focusRippleColor,
-        opacity: focusRippleOpacity,
-        show: isKeyboardFocused,
-        style: {
-          overflow: 'hidden'
-        },
-        key: 'focusRipple'
-      }) : undefined;
-
-      // Touch Ripple
-      var touchRipple = !disabled && !disableTouchRipple ? _react2.default.createElement(
-        _TouchRipple2.default,
-        {
-          centerRipple: centerRipple,
-          color: touchRippleColor,
-          opacity: touchRippleOpacity,
-          key: 'touchRipple'
-        },
-        children
-      ) : undefined;
-
-      return [focusRipple, touchRipple, touchRipple ? undefined : children];
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props3 = this.props,
-          centerRipple = _props3.centerRipple,
-          children = _props3.children,
-          containerElement = _props3.containerElement,
-          disabled = _props3.disabled,
-          disableFocusRipple = _props3.disableFocusRipple,
-          disableKeyboardFocus = _props3.disableKeyboardFocus,
-          disableTouchRipple = _props3.disableTouchRipple,
-          focusRippleColor = _props3.focusRippleColor,
-          focusRippleOpacity = _props3.focusRippleOpacity,
-          href = _props3.href,
-          keyboardFocused = _props3.keyboardFocused,
-          touchRippleColor = _props3.touchRippleColor,
-          touchRippleOpacity = _props3.touchRippleOpacity,
-          onBlur = _props3.onBlur,
-          onClick = _props3.onClick,
-          onFocus = _props3.onFocus,
-          onKeyUp = _props3.onKeyUp,
-          onKeyDown = _props3.onKeyDown,
-          onKeyboardFocus = _props3.onKeyboardFocus,
-          style = _props3.style,
-          tabIndex = _props3.tabIndex,
-          type = _props3.type,
-          other = (0, _objectWithoutProperties3.default)(_props3, ['centerRipple', 'children', 'containerElement', 'disabled', 'disableFocusRipple', 'disableKeyboardFocus', 'disableTouchRipple', 'focusRippleColor', 'focusRippleOpacity', 'href', 'keyboardFocused', 'touchRippleColor', 'touchRippleOpacity', 'onBlur', 'onClick', 'onFocus', 'onKeyUp', 'onKeyDown', 'onKeyboardFocus', 'style', 'tabIndex', 'type']);
-      var _context$muiTheme = this.context.muiTheme,
-          prepareStyles = _context$muiTheme.prepareStyles,
-          enhancedButton = _context$muiTheme.enhancedButton;
-
-
-      var mergedStyles = (0, _simpleAssign2.default)({
-        border: 10,
-        boxSizing: 'border-box',
-        display: 'inline-block',
-        fontFamily: this.context.muiTheme.baseTheme.fontFamily,
-        WebkitTapHighlightColor: enhancedButton.tapHighlightColor, // Remove mobile color flashing (deprecated)
-        cursor: disabled ? 'default' : 'pointer',
-        textDecoration: 'none',
-        margin: 0,
-        padding: 0,
-        outline: 'none',
-        fontSize: 'inherit',
-        fontWeight: 'inherit',
-        position: 'relative', // This is needed so that ripples do not bleed past border radius.
-        verticalAlign: href ? 'middle' : null
-      }, style);
-
-      // Passing both background:none & backgroundColor can break due to object iteration order
-      if (!mergedStyles.backgroundColor && !mergedStyles.background) {
-        mergedStyles.background = 'none';
-      }
-
-      if (disabled && href) {
-        return _react2.default.createElement(
-          'span',
-          (0, _extends3.default)({}, other, {
-            style: mergedStyles
-          }),
-          children
-        );
-      }
-
-      var buttonProps = (0, _extends3.default)({}, other, {
-        style: prepareStyles(mergedStyles),
-        ref: function ref(node) {
-          return _this2.button = node;
-        },
-        disabled: disabled,
-        onBlur: this.handleBlur,
-        onFocus: this.handleFocus,
-        onKeyUp: this.handleKeyUp,
-        onKeyDown: this.handleKeyDown,
-        onClick: this.handleClick,
-        tabIndex: disabled || disableKeyboardFocus ? -1 : tabIndex
-      });
-
-      if (href) buttonProps.href = href;
-
-      var buttonChildren = this.createButtonChildren();
-
-      if (_react2.default.isValidElement(containerElement)) {
-        return _react2.default.cloneElement(containerElement, buttonProps, buttonChildren);
-      }
-
-      if (!href && containerElement === 'button') {
-        buttonProps.type = type;
-      }
-
-      return _react2.default.createElement(href ? 'a' : containerElement, buttonProps, buttonChildren);
-    }
-  }]);
-  return EnhancedButton;
-}(_react.Component);
-
-EnhancedButton.defaultProps = {
-  containerElement: 'button',
-  onBlur: function onBlur() {},
-  onClick: function onClick() {},
-  onFocus: function onFocus() {},
-  onKeyDown: function onKeyDown() {},
-  onKeyUp: function onKeyUp() {},
-  onKeyboardFocus: function onKeyboardFocus() {},
-  tabIndex: 0,
-  type: 'button'
-};
-EnhancedButton.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-EnhancedButton.propTypes = process.env.NODE_ENV !== "production" ? {
-  centerRipple: _propTypes2.default.bool,
-  children: _propTypes2.default.node,
-  containerElement: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]),
-  disableFocusRipple: _propTypes2.default.bool,
-  disableKeyboardFocus: _propTypes2.default.bool,
-  disableTouchRipple: _propTypes2.default.bool,
-  disabled: _propTypes2.default.bool,
-  focusRippleColor: _propTypes2.default.string,
-  focusRippleOpacity: _propTypes2.default.number,
-  href: _propTypes2.default.string,
-  keyboardFocused: _propTypes2.default.bool,
-  onBlur: _propTypes2.default.func,
-  onClick: _propTypes2.default.func,
-  onFocus: _propTypes2.default.func,
-  onKeyDown: _propTypes2.default.func,
-  onKeyUp: _propTypes2.default.func,
-  onKeyboardFocus: _propTypes2.default.func,
-  style: _propTypes2.default.object,
-  tabIndex: _propTypes2.default.number,
-  touchRippleColor: _propTypes2.default.string,
-  touchRippleOpacity: _propTypes2.default.number,
-  type: _propTypes2.default.string
-} : {};
-exports.default = EnhancedButton;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 412 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  once: function once(el, type, callback) {
-    var typeArray = type ? type.split(' ') : [];
-    var recursiveFunction = function recursiveFunction(event) {
-      event.target.removeEventListener(event.type, recursiveFunction);
-      return callback(event);
-    };
-
-    for (var i = typeArray.length - 1; i >= 0; i--) {
-      this.on(el, typeArray[i], recursiveFunction);
-    }
-  },
-  on: function on(el, type, callback) {
-    if (el.addEventListener) {
-      el.addEventListener(type, callback);
-    } else {
-      // IE8+ Support
-      el.attachEvent('on' + type, function () {
-        callback.call(el);
-      });
-    }
-  },
-  off: function off(el, type, callback) {
-    if (el.removeEventListener) {
-      el.removeEventListener(type, callback);
-    } else {
-      // IE8+ Support
-      el.detachEvent('on' + type, callback);
-    }
-  },
-  isKeyboard: function isKeyboard(event) {
-    return ['keydown', 'keypress', 'keyup'].indexOf(event.type) !== -1;
-  }
-};
-
-/***/ }),
-/* 413 */
-/***/ (function(module, exports) {
-
-// Source: http://jsfiddle.net/vWx8V/
-// http://stackoverflow.com/questions/5603195/full-list-of-javascript-keycodes
-
-/**
- * Conenience method returns corresponding value for given keyName or keyCode.
- *
- * @param {Mixed} keyCode {Number} or keyName {String}
- * @return {Mixed}
- * @api public
- */
-
-function keyCode(searchInput) {
-  // Keyboard Events
-  if (searchInput && 'object' === typeof searchInput) {
-    var hasKeyCode = searchInput.which || searchInput.keyCode || searchInput.charCode
-    if (hasKeyCode) searchInput = hasKeyCode
-  }
-
-  // Numbers
-  if ('number' === typeof searchInput) return names[searchInput]
-
-  // Everything else (cast to string)
-  var search = String(searchInput)
-
-  // check codes
-  var foundNamedKey = codes[search.toLowerCase()]
-  if (foundNamedKey) return foundNamedKey
-
-  // check aliases
-  var foundNamedKey = aliases[search.toLowerCase()]
-  if (foundNamedKey) return foundNamedKey
-
-  // weird character?
-  if (search.length === 1) return search.charCodeAt(0)
-
-  return undefined
-}
-
-/**
- * Compares a keyboard event with a given keyCode or keyName.
- *
- * @param {Event} event Keyboard event that should be tested
- * @param {Mixed} keyCode {Number} or keyName {String}
- * @return {Boolean}
- * @api public
- */
-keyCode.isEventKey = function isEventKey(event, nameOrCode) {
-  if (event && 'object' === typeof event) {
-    var keyCode = event.which || event.keyCode || event.charCode
-    if (keyCode === null || keyCode === undefined) { return false; }
-    if (typeof nameOrCode === 'string') {
-      // check codes
-      var foundNamedKey = codes[nameOrCode.toLowerCase()]
-      if (foundNamedKey) { return foundNamedKey === keyCode; }
-    
-      // check aliases
-      var foundNamedKey = aliases[nameOrCode.toLowerCase()]
-      if (foundNamedKey) { return foundNamedKey === keyCode; }
-    } else if (typeof nameOrCode === 'number') {
-      return nameOrCode === keyCode;
-    }
-    return false;
-  }
-}
-
-exports = module.exports = keyCode;
-
-/**
- * Get by name
- *
- *   exports.code['enter'] // => 13
- */
-
-var codes = exports.code = exports.codes = {
-  'backspace': 8,
-  'tab': 9,
-  'enter': 13,
-  'shift': 16,
-  'ctrl': 17,
-  'alt': 18,
-  'pause/break': 19,
-  'caps lock': 20,
-  'esc': 27,
-  'space': 32,
-  'page up': 33,
-  'page down': 34,
-  'end': 35,
-  'home': 36,
-  'left': 37,
-  'up': 38,
-  'right': 39,
-  'down': 40,
-  'insert': 45,
-  'delete': 46,
-  'command': 91,
-  'left command': 91,
-  'right command': 93,
-  'numpad *': 106,
-  'numpad +': 107,
-  'numpad -': 109,
-  'numpad .': 110,
-  'numpad /': 111,
-  'num lock': 144,
-  'scroll lock': 145,
-  'my computer': 182,
-  'my calculator': 183,
-  ';': 186,
-  '=': 187,
-  ',': 188,
-  '-': 189,
-  '.': 190,
-  '/': 191,
-  '`': 192,
-  '[': 219,
-  '\\': 220,
-  ']': 221,
-  "'": 222
-}
-
-// Helper aliases
-
-var aliases = exports.aliases = {
-  'windows': 91,
-  '⇧': 16,
-  '⌥': 18,
-  '⌃': 17,
-  '⌘': 91,
-  'ctl': 17,
-  'control': 17,
-  'option': 18,
-  'pause': 19,
-  'break': 19,
-  'caps': 20,
-  'return': 13,
-  'escape': 27,
-  'spc': 32,
-  'spacebar': 32,
-  'pgup': 33,
-  'pgdn': 34,
-  'ins': 45,
-  'del': 46,
-  'cmd': 91
-}
-
-/*!
- * Programatically add the following
- */
-
-// lower case chars
-for (i = 97; i < 123; i++) codes[String.fromCharCode(i)] = i - 32
-
-// numbers
-for (var i = 48; i < 58; i++) codes[i - 48] = i
-
-// function keys
-for (i = 1; i < 13; i++) codes['f'+i] = i + 111
-
-// numpad keys
-for (i = 0; i < 10; i++) codes['numpad '+i] = i + 96
-
-/**
- * Get by code
- *
- *   exports.name[13] // => 'Enter'
- */
-
-var names = exports.names = exports.title = {} // title for backward compat
-
-// Create reverse mapping
-for (i in codes) names[codes[i]] = i
-
-// Add aliases
-for (var alias in aliases) {
-  codes[alias] = aliases[alias]
-}
-
-
-/***/ }),
-/* 414 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactDom = __webpack_require__(49);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _shallowEqual = __webpack_require__(116);
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-var _autoPrefix = __webpack_require__(117);
-
-var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-var _ScaleIn = __webpack_require__(415);
-
-var _ScaleIn2 = _interopRequireDefault(_ScaleIn);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var pulsateDuration = 750;
-
-var FocusRipple = function (_Component) {
-  (0, _inherits3.default)(FocusRipple, _Component);
-
-  function FocusRipple() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, FocusRipple);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FocusRipple.__proto__ || (0, _getPrototypeOf2.default)(FocusRipple)).call.apply(_ref, [this].concat(args))), _this), _this.pulsate = function () {
-      var innerCircle = _reactDom2.default.findDOMNode(_this.refs.innerCircle);
-      if (!innerCircle) return;
-
-      var startScale = 'scale(1)';
-      var endScale = 'scale(0.85)';
-      var currentScale = innerCircle.style.transform || startScale;
-      var nextScale = currentScale === startScale ? endScale : startScale;
-
-      _autoPrefix2.default.set(innerCircle.style, 'transform', nextScale);
-      _this.timeout = setTimeout(_this.pulsate, pulsateDuration);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(FocusRipple, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.show) {
-        this.setRippleSize();
-        this.pulsate();
-      }
-    }
-  }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      return !(0, _shallowEqual2.default)(this.props, nextProps) || !(0, _shallowEqual2.default)(this.state, nextState);
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      if (this.props.show) {
-        this.setRippleSize();
-        this.pulsate();
-      } else {
-        if (this.timeout) clearTimeout(this.timeout);
-      }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearTimeout(this.timeout);
-    }
-  }, {
-    key: 'getRippleElement',
-    value: function getRippleElement(props) {
-      var color = props.color,
-          innerStyle = props.innerStyle,
-          opacity = props.opacity;
-      var _context$muiTheme = this.context.muiTheme,
-          prepareStyles = _context$muiTheme.prepareStyles,
-          ripple = _context$muiTheme.ripple;
-
-
-      var innerStyles = (0, _simpleAssign2.default)({
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        borderRadius: '50%',
-        opacity: opacity ? opacity : 0.16,
-        backgroundColor: color || ripple.color,
-        transition: _transitions2.default.easeOut(pulsateDuration + 'ms', 'transform', null, _transitions2.default.easeInOutFunction)
-      }, innerStyle);
-
-      return _react2.default.createElement('div', { ref: 'innerCircle', style: prepareStyles((0, _simpleAssign2.default)({}, innerStyles)) });
-    }
-  }, {
-    key: 'setRippleSize',
-    value: function setRippleSize() {
-      var el = _reactDom2.default.findDOMNode(this.refs.innerCircle);
-      var height = el.offsetHeight;
-      var width = el.offsetWidth;
-      var size = Math.max(height, width);
-
-      var oldTop = 0;
-      // For browsers that don't support endsWith()
-      if (el.style.top.indexOf('px', el.style.top.length - 2) !== -1) {
-        oldTop = parseInt(el.style.top);
-      }
-      el.style.height = size + 'px';
-      el.style.top = height / 2 - size / 2 + oldTop + 'px';
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          show = _props.show,
-          style = _props.style;
-
-
-      var mergedRootStyles = (0, _simpleAssign2.default)({
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
-        top: 0,
-        left: 0
-      }, style);
-
-      var ripple = show ? this.getRippleElement(this.props) : null;
-
-      return _react2.default.createElement(
-        _ScaleIn2.default,
-        {
-          maxScale: 0.85,
-          style: mergedRootStyles
-        },
-        ripple
-      );
-    }
-  }]);
-  return FocusRipple;
-}(_react.Component);
-
-FocusRipple.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-FocusRipple.propTypes = process.env.NODE_ENV !== "production" ? {
-  color: _propTypes2.default.string,
-  innerStyle: _propTypes2.default.object,
-  opacity: _propTypes2.default.number,
-  show: _propTypes2.default.bool,
-  style: _propTypes2.default.object
-} : {};
-exports.default = FocusRipple;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 415 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _TransitionGroup = __webpack_require__(190);
-
-var _TransitionGroup2 = _interopRequireDefault(_TransitionGroup);
-
-var _ScaleInChild = __webpack_require__(418);
-
-var _ScaleInChild2 = _interopRequireDefault(_ScaleInChild);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ScaleIn = function (_Component) {
-  (0, _inherits3.default)(ScaleIn, _Component);
-
-  function ScaleIn() {
-    (0, _classCallCheck3.default)(this, ScaleIn);
-    return (0, _possibleConstructorReturn3.default)(this, (ScaleIn.__proto__ || (0, _getPrototypeOf2.default)(ScaleIn)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ScaleIn, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          childStyle = _props.childStyle,
-          enterDelay = _props.enterDelay,
-          maxScale = _props.maxScale,
-          minScale = _props.minScale,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'childStyle', 'enterDelay', 'maxScale', 'minScale', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-
-      var mergedRootStyles = (0, _simpleAssign2.default)({}, {
-        position: 'relative',
-        height: '100%'
-      }, style);
-
-      var newChildren = _react2.default.Children.map(children, function (child) {
-        return _react2.default.createElement(
-          _ScaleInChild2.default,
-          {
-            key: child.key,
-            enterDelay: enterDelay,
-            maxScale: maxScale,
-            minScale: minScale,
-            style: childStyle
-          },
-          child
-        );
-      });
-
-      return _react2.default.createElement(
-        _TransitionGroup2.default,
-        (0, _extends3.default)({}, other, {
-          style: prepareStyles(mergedRootStyles),
-          component: 'div'
-        }),
-        newChildren
-      );
-    }
-  }]);
-  return ScaleIn;
-}(_react.Component);
-
-ScaleIn.defaultProps = {
-  enterDelay: 0
-};
-ScaleIn.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-ScaleIn.propTypes = process.env.NODE_ENV !== "production" ? {
-  childStyle: _propTypes2.default.object,
-  children: _propTypes2.default.node,
-  enterDelay: _propTypes2.default.number,
-  maxScale: _propTypes2.default.number,
-  minScale: _propTypes2.default.number,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = ScaleIn;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 416 */
-/***/ (function(module, exports) {
-
-
-module.exports = function chain(){
-  var len = arguments.length
-  var args = [];
-
-  for (var i = 0; i < len; i++)
-    args[i] = arguments[i]
-
-  args = args.filter(function(fn){ return fn != null })
-
-  if (args.length === 0) return undefined
-  if (args.length === 1) return args[0]
-
-  return args.reduce(function(current, next){
-    return function chainedFunction() {
-      current.apply(this, arguments);
-      next.apply(this, arguments);
-    };
-  })
-}
-
-
-/***/ }),
-/* 417 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.getChildMapping = getChildMapping;
-exports.mergeChildMappings = mergeChildMappings;
-
-var _react = __webpack_require__(1);
-
-/**
- * Given `this.props.children`, return an object mapping key to child.
- *
- * @param {*} children `this.props.children`
- * @return {object} Mapping of key to child
- */
-function getChildMapping(children) {
-  if (!children) {
-    return children;
-  }
-  var result = {};
-  _react.Children.map(children, function (child) {
-    return child;
-  }).forEach(function (child) {
-    result[child.key] = child;
-  });
-  return result;
-}
-
-/**
- * When you're adding or removing children some may be added or removed in the
- * same render pass. We want to show *both* since we want to simultaneously
- * animate elements in and out. This function takes a previous set of keys
- * and a new set of keys and merges them with its best guess of the correct
- * ordering. In the future we may expose some of the utilities in
- * ReactMultiChild to make this easy, but for now React itself does not
- * directly have this concept of the union of prevChildren and nextChildren
- * so we implement it here.
- *
- * @param {object} prev prev children as returned from
- * `ReactTransitionChildMapping.getChildMapping()`.
- * @param {object} next next children as returned from
- * `ReactTransitionChildMapping.getChildMapping()`.
- * @return {object} a key set that contains all keys in `prev` and all keys
- * in `next` in a reasonable order.
- */
-function mergeChildMappings(prev, next) {
-  prev = prev || {};
-  next = next || {};
-
-  function getValueForKey(key) {
-    if (next.hasOwnProperty(key)) {
-      return next[key];
-    }
-
-    return prev[key];
-  }
-
-  // For each key of `next`, the list of keys to insert before that key in
-  // the combined list
-  var nextKeysPending = {};
-
-  var pendingKeys = [];
-  for (var prevKey in prev) {
-    if (next.hasOwnProperty(prevKey)) {
-      if (pendingKeys.length) {
-        nextKeysPending[prevKey] = pendingKeys;
-        pendingKeys = [];
-      }
-    } else {
-      pendingKeys.push(prevKey);
-    }
-  }
-
-  var i = void 0;
-  var childMapping = {};
-  for (var nextKey in next) {
-    if (nextKeysPending.hasOwnProperty(nextKey)) {
-      for (i = 0; i < nextKeysPending[nextKey].length; i++) {
-        var pendingNextKey = nextKeysPending[nextKey][i];
-        childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
-      }
-    }
-    childMapping[nextKey] = getValueForKey(nextKey);
-  }
-
-  // Finally, add the keys which didn't appear before any key in `next`
-  for (i = 0; i < pendingKeys.length; i++) {
-    childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
-  }
-
-  return childMapping;
-}
-
-/***/ }),
-/* 418 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactDom = __webpack_require__(49);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _autoPrefix = __webpack_require__(117);
-
-var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ScaleInChild = function (_Component) {
-  (0, _inherits3.default)(ScaleInChild, _Component);
-
-  function ScaleInChild() {
-    (0, _classCallCheck3.default)(this, ScaleInChild);
-    return (0, _possibleConstructorReturn3.default)(this, (ScaleInChild.__proto__ || (0, _getPrototypeOf2.default)(ScaleInChild)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ScaleInChild, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearTimeout(this.enterTimer);
-      clearTimeout(this.leaveTimer);
-    }
-  }, {
-    key: 'componentWillAppear',
-    value: function componentWillAppear(callback) {
-      this.initializeAnimation(callback);
-    }
-  }, {
-    key: 'componentWillEnter',
-    value: function componentWillEnter(callback) {
-      this.initializeAnimation(callback);
-    }
-  }, {
-    key: 'componentDidAppear',
-    value: function componentDidAppear() {
-      this.animate();
-    }
-  }, {
-    key: 'componentDidEnter',
-    value: function componentDidEnter() {
-      this.animate();
-    }
-  }, {
-    key: 'componentWillLeave',
-    value: function componentWillLeave(callback) {
-      var style = _reactDom2.default.findDOMNode(this).style;
-
-      style.opacity = '0';
-      _autoPrefix2.default.set(style, 'transform', 'scale(' + this.props.minScale + ')');
-
-      this.leaveTimer = setTimeout(callback, 450);
-    }
-  }, {
-    key: 'animate',
-    value: function animate() {
-      var style = _reactDom2.default.findDOMNode(this).style;
-
-      style.opacity = '1';
-      _autoPrefix2.default.set(style, 'transform', 'scale(' + this.props.maxScale + ')');
-    }
-  }, {
-    key: 'initializeAnimation',
-    value: function initializeAnimation(callback) {
-      var style = _reactDom2.default.findDOMNode(this).style;
-
-      style.opacity = '0';
-      _autoPrefix2.default.set(style, 'transform', 'scale(0)');
-
-      this.enterTimer = setTimeout(callback, this.props.enterDelay);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          enterDelay = _props.enterDelay,
-          maxScale = _props.maxScale,
-          minScale = _props.minScale,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'enterDelay', 'maxScale', 'minScale', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-
-      var mergedRootStyles = (0, _simpleAssign2.default)({}, {
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        top: 0,
-        left: 0,
-        transition: _transitions2.default.easeOut(null, ['transform', 'opacity'])
-      }, style);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(mergedRootStyles) }),
-        children
-      );
-    }
-  }]);
-  return ScaleInChild;
-}(_react.Component);
-
-ScaleInChild.defaultProps = {
-  enterDelay: 0,
-  maxScale: 1,
-  minScale: 0
-};
-ScaleInChild.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-ScaleInChild.propTypes = process.env.NODE_ENV !== "production" ? {
-  children: _propTypes2.default.node,
-  enterDelay: _propTypes2.default.number,
-  maxScale: _propTypes2.default.number,
-  minScale: _propTypes2.default.number,
-  style: _propTypes2.default.object
-} : {};
-exports.default = ScaleInChild;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 419 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _toConsumableArray2 = __webpack_require__(191);
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _toArray2 = __webpack_require__(428);
-
-var _toArray3 = _interopRequireDefault(_toArray2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactDom = __webpack_require__(49);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _TransitionGroup = __webpack_require__(190);
-
-var _TransitionGroup2 = _interopRequireDefault(_TransitionGroup);
-
-var _dom = __webpack_require__(429);
-
-var _dom2 = _interopRequireDefault(_dom);
-
-var _CircleRipple = __webpack_require__(430);
-
-var _CircleRipple2 = _interopRequireDefault(_CircleRipple);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Remove the first element of the array
-var shift = function shift(_ref) {
-  var _ref2 = (0, _toArray3.default)(_ref),
-      newArray = _ref2.slice(1);
-
-  return newArray;
-};
-
-var TouchRipple = function (_Component) {
-  (0, _inherits3.default)(TouchRipple, _Component);
-
-  function TouchRipple(props, context) {
-    (0, _classCallCheck3.default)(this, TouchRipple);
-
-    // Touch start produces a mouse down event for compat reasons. To avoid
-    // showing ripples twice we skip showing a ripple for the first mouse down
-    // after a touch start. Note we don't store ignoreNextMouseDown in this.state
-    // to avoid re-rendering when we change it.
-    var _this = (0, _possibleConstructorReturn3.default)(this, (TouchRipple.__proto__ || (0, _getPrototypeOf2.default)(TouchRipple)).call(this, props, context));
-
-    _this.handleMouseDown = function (event) {
-      // only listen to left clicks
-      if (event.button === 0) {
-        _this.start(event, false);
-      }
-    };
-
-    _this.handleMouseUp = function () {
-      _this.end();
-    };
-
-    _this.handleMouseLeave = function () {
-      _this.end();
-    };
-
-    _this.handleTouchStart = function (event) {
-      event.stopPropagation();
-      // If the user is swiping (not just tapping), save the position so we can
-      // abort ripples if the user appears to be scrolling.
-      if (_this.props.abortOnScroll && event.touches) {
-        _this.startListeningForScrollAbort(event);
-        _this.startTime = Date.now();
-      }
-      _this.start(event, true);
-    };
-
-    _this.handleTouchEnd = function () {
-      _this.end();
-    };
-
-    _this.handleTouchMove = function (event) {
-      // Stop trying to abort if we're already 300ms into the animation
-      var timeSinceStart = Math.abs(Date.now() - _this.startTime);
-      if (timeSinceStart > 300) {
-        _this.stopListeningForScrollAbort();
-        return;
-      }
-
-      // If the user is scrolling...
-      var deltaY = Math.abs(event.touches[0].clientY - _this.firstTouchY);
-      var deltaX = Math.abs(event.touches[0].clientX - _this.firstTouchX);
-      // Call it a scroll after an arbitrary 6px (feels reasonable in testing)
-      if (deltaY > 6 || deltaX > 6) {
-        var currentRipples = _this.state.ripples;
-        var ripple = currentRipples[0];
-        // This clone will replace the ripple in ReactTransitionGroup with a
-        // version that will disappear immediately when removed from the DOM
-        var abortedRipple = _react2.default.cloneElement(ripple, { aborted: true });
-        // Remove the old ripple and replace it with the new updated one
-        currentRipples = shift(currentRipples);
-        currentRipples = [].concat((0, _toConsumableArray3.default)(currentRipples), [abortedRipple]);
-        _this.setState({ ripples: currentRipples }, function () {
-          // Call end after we've set the ripple to abort otherwise the setState
-          // in end() merges with this and the ripple abort fails
-          _this.end();
-        });
-      }
-    };
-
-    _this.ignoreNextMouseDown = false;
-
-    _this.state = {
-      // This prop allows us to only render the ReactTransitionGroup
-      // on the first click of the component, making the inital render faster.
-      hasRipples: false,
-      nextKey: 0,
-      ripples: []
-    };
-    return _this;
-  }
-
-  (0, _createClass3.default)(TouchRipple, [{
-    key: 'start',
-    value: function start(event, isRippleTouchGenerated) {
-      var theme = this.context.muiTheme.ripple;
-
-      if (this.ignoreNextMouseDown && !isRippleTouchGenerated) {
-        this.ignoreNextMouseDown = false;
-        return;
-      }
-
-      var ripples = this.state.ripples;
-
-      // Add a ripple to the ripples array
-      ripples = [].concat((0, _toConsumableArray3.default)(ripples), [_react2.default.createElement(_CircleRipple2.default, {
-        key: this.state.nextKey,
-        style: !this.props.centerRipple ? this.getRippleStyle(event) : {},
-        color: this.props.color || theme.color,
-        opacity: this.props.opacity,
-        touchGenerated: isRippleTouchGenerated
-      })]);
-
-      this.ignoreNextMouseDown = isRippleTouchGenerated;
-      this.setState({
-        hasRipples: true,
-        nextKey: this.state.nextKey + 1,
-        ripples: ripples
-      });
-    }
-  }, {
-    key: 'end',
-    value: function end() {
-      var currentRipples = this.state.ripples;
-      this.setState({
-        ripples: shift(currentRipples)
-      });
-      if (this.props.abortOnScroll) {
-        this.stopListeningForScrollAbort();
-      }
-    }
-
-    // Check if the user seems to be scrolling and abort the animation if so
-
-  }, {
-    key: 'startListeningForScrollAbort',
-    value: function startListeningForScrollAbort(event) {
-      this.firstTouchY = event.touches[0].clientY;
-      this.firstTouchX = event.touches[0].clientX;
-      // Note that when scolling Chrome throttles this event to every 200ms
-      // Also note we don't listen for scroll events directly as there's no general
-      // way to cover cases like scrolling within containers on the page
-      document.body.addEventListener('touchmove', this.handleTouchMove);
-    }
-  }, {
-    key: 'stopListeningForScrollAbort',
-    value: function stopListeningForScrollAbort() {
-      document.body.removeEventListener('touchmove', this.handleTouchMove);
-    }
-  }, {
-    key: 'getRippleStyle',
-    value: function getRippleStyle(event) {
-      var el = _reactDom2.default.findDOMNode(this);
-      var elHeight = el.offsetHeight;
-      var elWidth = el.offsetWidth;
-      var offset = _dom2.default.offset(el);
-      var isTouchEvent = event.touches && event.touches.length;
-      var pageX = isTouchEvent ? event.touches[0].pageX : event.pageX;
-      var pageY = isTouchEvent ? event.touches[0].pageY : event.pageY;
-      var pointerX = pageX - offset.left;
-      var pointerY = pageY - offset.top;
-      var topLeftDiag = this.calcDiag(pointerX, pointerY);
-      var topRightDiag = this.calcDiag(elWidth - pointerX, pointerY);
-      var botRightDiag = this.calcDiag(elWidth - pointerX, elHeight - pointerY);
-      var botLeftDiag = this.calcDiag(pointerX, elHeight - pointerY);
-      var rippleRadius = Math.max(topLeftDiag, topRightDiag, botRightDiag, botLeftDiag);
-      var rippleSize = rippleRadius * 2;
-      var left = pointerX - rippleRadius;
-      var top = pointerY - rippleRadius;
-
-      return {
-        directionInvariant: true,
-        height: rippleSize,
-        width: rippleSize,
-        top: top,
-        left: left
-      };
-    }
-  }, {
-    key: 'calcDiag',
-    value: function calcDiag(a, b) {
-      return Math.sqrt(a * a + b * b);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          style = _props.style;
-      var _state = this.state,
-          hasRipples = _state.hasRipples,
-          ripples = _state.ripples;
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-
-      var rippleGroup = void 0;
-
-      if (hasRipples) {
-        var mergedStyles = (0, _simpleAssign2.default)({
-          height: '100%',
-          width: '100%',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          overflow: 'hidden',
-          pointerEvents: 'none',
-          zIndex: 1 // This is also needed so that ripples do not bleed past a parent border radius.
-        }, style);
-
-        rippleGroup = _react2.default.createElement(
-          _TransitionGroup2.default,
-          { style: prepareStyles(mergedStyles) },
-          ripples
-        );
-      }
-
-      return _react2.default.createElement(
-        'div',
-        {
-          onMouseUp: this.handleMouseUp,
-          onMouseDown: this.handleMouseDown,
-          onMouseLeave: this.handleMouseLeave,
-          onTouchStart: this.handleTouchStart,
-          onTouchEnd: this.handleTouchEnd
-        },
-        rippleGroup,
-        children
-      );
-    }
-  }]);
-  return TouchRipple;
-}(_react.Component);
-
-TouchRipple.defaultProps = {
-  abortOnScroll: true
-};
-TouchRipple.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-TouchRipple.propTypes = process.env.NODE_ENV !== "production" ? {
-  abortOnScroll: _propTypes2.default.bool,
-  centerRipple: _propTypes2.default.bool,
-  children: _propTypes2.default.node,
-  color: _propTypes2.default.string,
-  opacity: _propTypes2.default.number,
-  style: _propTypes2.default.object
-} : {};
-exports.default = TouchRipple;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
 /* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35925,1788 +32302,20 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 428 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _from = __webpack_require__(192);
-
-var _from2 = _interopRequireDefault(_from);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (arr) {
-  return Array.isArray(arr) ? arr : (0, _from2.default)(arr);
-};
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  isDescendant: function isDescendant(parent, child) {
-    var node = child.parentNode;
-
-    while (node !== null) {
-      if (node === parent) return true;
-      node = node.parentNode;
-    }
-
-    return false;
-  },
-  offset: function offset(el) {
-    var rect = el.getBoundingClientRect();
-    return {
-      top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft
-    };
-  }
-};
-
-/***/ }),
-/* 430 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactDom = __webpack_require__(49);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _shallowEqual = __webpack_require__(116);
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-var _autoPrefix = __webpack_require__(117);
-
-var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var CircleRipple = function (_Component) {
-  (0, _inherits3.default)(CircleRipple, _Component);
-
-  function CircleRipple() {
-    (0, _classCallCheck3.default)(this, CircleRipple);
-    return (0, _possibleConstructorReturn3.default)(this, (CircleRipple.__proto__ || (0, _getPrototypeOf2.default)(CircleRipple)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CircleRipple, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      return !(0, _shallowEqual2.default)(this.props, nextProps);
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearTimeout(this.enterTimer);
-      clearTimeout(this.leaveTimer);
-    }
-  }, {
-    key: 'componentWillAppear',
-    value: function componentWillAppear(callback) {
-      this.initializeAnimation(callback);
-    }
-  }, {
-    key: 'componentWillEnter',
-    value: function componentWillEnter(callback) {
-      this.initializeAnimation(callback);
-    }
-  }, {
-    key: 'componentDidAppear',
-    value: function componentDidAppear() {
-      this.animate();
-    }
-  }, {
-    key: 'componentDidEnter',
-    value: function componentDidEnter() {
-      this.animate();
-    }
-  }, {
-    key: 'componentWillLeave',
-    value: function componentWillLeave(callback) {
-      var style = _reactDom2.default.findDOMNode(this).style;
-      style.opacity = 0;
-      // If the animation is aborted, remove from the DOM immediately
-      var removeAfter = this.props.aborted ? 0 : 2000;
-      this.enterTimer = setTimeout(callback, removeAfter);
-    }
-  }, {
-    key: 'animate',
-    value: function animate() {
-      var style = _reactDom2.default.findDOMNode(this).style;
-      var transitionValue = _transitions2.default.easeOut('2s', 'opacity') + ', ' + _transitions2.default.easeOut('1s', 'transform');
-      _autoPrefix2.default.set(style, 'transition', transitionValue);
-      _autoPrefix2.default.set(style, 'transform', 'scale(1)');
-    }
-  }, {
-    key: 'initializeAnimation',
-    value: function initializeAnimation(callback) {
-      var style = _reactDom2.default.findDOMNode(this).style;
-      style.opacity = this.props.opacity;
-      _autoPrefix2.default.set(style, 'transform', 'scale(0)');
-      this.leaveTimer = setTimeout(callback, 0);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          aborted = _props.aborted,
-          color = _props.color,
-          opacity = _props.opacity,
-          style = _props.style,
-          touchGenerated = _props.touchGenerated,
-          other = (0, _objectWithoutProperties3.default)(_props, ['aborted', 'color', 'opacity', 'style', 'touchGenerated']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-
-      var mergedStyles = (0, _simpleAssign2.default)({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '100%',
-        width: '100%',
-        borderRadius: '50%',
-        backgroundColor: color
-      }, style);
-
-      return _react2.default.createElement('div', (0, _extends3.default)({}, other, { style: prepareStyles(mergedStyles) }));
-    }
-  }]);
-  return CircleRipple;
-}(_react.Component);
-
-CircleRipple.defaultProps = {
-  opacity: 0.1,
-  aborted: false
-};
-CircleRipple.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CircleRipple.propTypes = process.env.NODE_ENV !== "production" ? {
-  aborted: _propTypes2.default.bool,
-  color: _propTypes2.default.string,
-  opacity: _propTypes2.default.number,
-  style: _propTypes2.default.object,
-  touchGenerated: _propTypes2.default.bool
-} : {};
-exports.default = CircleRipple;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 431 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _FontIcon = __webpack_require__(432);
-
-var _FontIcon2 = _interopRequireDefault(_FontIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _FontIcon2.default;
-
-/***/ }),
-/* 432 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context, state) {
-  var color = props.color,
-      hoverColor = props.hoverColor;
-  var baseTheme = context.muiTheme.baseTheme;
-
-  var offColor = color || baseTheme.palette.textColor;
-  var onColor = hoverColor || offColor;
-
-  return {
-    root: {
-      color: state.hovered ? onColor : offColor,
-      position: 'relative',
-      fontSize: baseTheme.spacing.iconSize,
-      display: 'inline-block',
-      userSelect: 'none',
-      transition: _transitions2.default.easeOut()
-    }
-  };
-}
-
-var FontIcon = function (_Component) {
-  (0, _inherits3.default)(FontIcon, _Component);
-
-  function FontIcon() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, FontIcon);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FontIcon.__proto__ || (0, _getPrototypeOf2.default)(FontIcon)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      hovered: false
-    }, _this.handleMouseLeave = function (event) {
-      // hover is needed only when a hoverColor is defined
-      if (_this.props.hoverColor !== undefined) {
-        _this.setState({ hovered: false });
-      }
-      if (_this.props.onMouseLeave) {
-        _this.props.onMouseLeave(event);
-      }
-    }, _this.handleMouseEnter = function (event) {
-      // hover is needed only when a hoverColor is defined
-      if (_this.props.hoverColor !== undefined) {
-        _this.setState({ hovered: true });
-      }
-      if (_this.props.onMouseEnter) {
-        _this.props.onMouseEnter(event);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(FontIcon, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          hoverColor = _props.hoverColor,
-          onMouseLeave = _props.onMouseLeave,
-          onMouseEnter = _props.onMouseEnter,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['hoverColor', 'onMouseLeave', 'onMouseEnter', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context, this.state);
-
-      return _react2.default.createElement('span', (0, _extends3.default)({}, other, {
-        onMouseLeave: this.handleMouseLeave,
-        onMouseEnter: this.handleMouseEnter,
-        style: prepareStyles((0, _simpleAssign2.default)(styles.root, style))
-      }));
-    }
-  }]);
-  return FontIcon;
-}(_react.Component);
-
-FontIcon.muiName = 'FontIcon';
-FontIcon.defaultProps = {
-  onMouseEnter: function onMouseEnter() {},
-  onMouseLeave: function onMouseLeave() {}
-};
-FontIcon.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-FontIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * This is the font color of the font icon. If not specified,
-   * this component will default to muiTheme.palette.textColor.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * This is the icon color when the mouse hovers over the icon.
-   */
-  hoverColor: _propTypes2.default.string,
-  /** @ignore */
-  onMouseEnter: _propTypes2.default.func,
-  /** @ignore */
-  onMouseLeave: _propTypes2.default.func,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = FontIcon;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 433 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _transitions = __webpack_require__(33);
-
-var _transitions2 = _interopRequireDefault(_transitions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context, state) {
-  var verticalPosition = props.verticalPosition;
-  var horizontalPosition = props.horizontalPosition;
-  var touchMarginOffset = props.touch ? 10 : 0;
-  var touchOffsetTop = props.touch ? -20 : -10;
-  var offset = verticalPosition === 'bottom' ? 14 + touchMarginOffset : -14 - touchMarginOffset;
-
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      zIndex = _context$muiTheme.zIndex,
-      tooltip = _context$muiTheme.tooltip,
-      borderRadius = _context$muiTheme.borderRadius;
-
-
-  var styles = {
-    root: {
-      position: 'absolute',
-      fontFamily: baseTheme.fontFamily,
-      fontSize: '10px',
-      lineHeight: '22px',
-      padding: '0 8px',
-      zIndex: zIndex.tooltip,
-      color: tooltip.color,
-      overflow: 'hidden',
-      top: -10000,
-      borderRadius: borderRadius,
-      userSelect: 'none',
-      opacity: 0,
-      right: horizontalPosition === 'left' ? 12 : null,
-      left: horizontalPosition === 'center' ? (state.offsetWidth - 48) / 2 * -1 : horizontalPosition === 'right' ? 12 : null,
-      transition: _transitions2.default.easeOut('0ms', 'top', '450ms') + ', ' + _transitions2.default.easeOut('450ms', 'transform', '0ms') + ', ' + _transitions2.default.easeOut('450ms', 'opacity', '0ms')
-    },
-    label: {
-      position: 'relative',
-      whiteSpace: 'nowrap'
-    },
-    ripple: {
-      position: 'absolute',
-      left: horizontalPosition === 'center' ? '50%' : horizontalPosition === 'left' ? '100%' : '0%',
-      top: verticalPosition === 'bottom' ? 0 : '100%',
-      transform: 'translate(-50%, -50%)',
-      borderRadius: '50%',
-      backgroundColor: 'transparent',
-      transition: _transitions2.default.easeOut('0ms', 'width', '450ms') + ', ' + _transitions2.default.easeOut('0ms', 'height', '450ms') + ', ' + _transitions2.default.easeOut('450ms', 'backgroundColor', '0ms')
-    },
-    rootWhenShown: {
-      top: verticalPosition === 'top' ? touchOffsetTop : 36,
-      opacity: tooltip.opacity,
-      transform: 'translate(0px, ' + offset + 'px)',
-      transition: _transitions2.default.easeOut('0ms', 'top', '0ms') + ', ' + _transitions2.default.easeOut('450ms', 'transform', '0ms') + ', ' + _transitions2.default.easeOut('450ms', 'opacity', '0ms')
-    },
-    rootWhenTouched: {
-      fontSize: '14px',
-      lineHeight: '32px',
-      padding: '0 16px'
-    },
-    rippleWhenShown: {
-      backgroundColor: tooltip.rippleBackgroundColor,
-      transition: _transitions2.default.easeOut('450ms', 'width', '0ms') + ', ' + _transitions2.default.easeOut('450ms', 'height', '0ms') + ', ' + _transitions2.default.easeOut('450ms', 'backgroundColor', '0ms')
-    }
-  };
-
-  return styles;
-}
-
-var Tooltip = function (_Component) {
-  (0, _inherits3.default)(Tooltip, _Component);
-
-  function Tooltip() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    (0, _classCallCheck3.default)(this, Tooltip);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tooltip.__proto__ || (0, _getPrototypeOf2.default)(Tooltip)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      offsetWidth: null
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(Tooltip, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.setRippleSize();
-      this.setTooltipPosition();
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps() {
-      this.setTooltipPosition();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      this.setRippleSize();
-    }
-  }, {
-    key: 'setRippleSize',
-    value: function setRippleSize() {
-      var ripple = this.refs.ripple;
-      var tooltip = this.refs.tooltip;
-      var tooltipWidth = parseInt(tooltip.offsetWidth, 10) / (this.props.horizontalPosition === 'center' ? 2 : 1);
-      var tooltipHeight = parseInt(tooltip.offsetHeight, 10);
-
-      var rippleDiameter = Math.ceil(Math.sqrt(Math.pow(tooltipHeight, 2) + Math.pow(tooltipWidth, 2)) * 2);
-      if (this.props.show) {
-        ripple.style.height = rippleDiameter + 'px';
-        ripple.style.width = rippleDiameter + 'px';
-      } else {
-        ripple.style.width = '0px';
-        ripple.style.height = '0px';
-      }
-    }
-  }, {
-    key: 'setTooltipPosition',
-    value: function setTooltipPosition() {
-      this.setState({ offsetWidth: this.refs.tooltip.offsetWidth });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          horizontalPosition = _props.horizontalPosition,
-          label = _props.label,
-          show = _props.show,
-          touch = _props.touch,
-          verticalPosition = _props.verticalPosition,
-          other = (0, _objectWithoutProperties3.default)(_props, ['horizontalPosition', 'label', 'show', 'touch', 'verticalPosition']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context, this.state);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, {
-          ref: 'tooltip',
-          style: prepareStyles((0, _simpleAssign2.default)(styles.root, this.props.show && styles.rootWhenShown, this.props.touch && styles.rootWhenTouched, this.props.style))
-        }),
-        _react2.default.createElement('div', {
-          ref: 'ripple',
-          style: prepareStyles((0, _simpleAssign2.default)(styles.ripple, this.props.show && styles.rippleWhenShown))
-        }),
-        _react2.default.createElement(
-          'span',
-          { style: prepareStyles(styles.label) },
-          label
-        )
-      );
-    }
-  }]);
-  return Tooltip;
-}(_react.Component);
-
-Tooltip.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-Tooltip.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * The css class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  horizontalPosition: _propTypes2.default.oneOf(['left', 'right', 'center']),
-  label: _propTypes2.default.node.isRequired,
-  show: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  touch: _propTypes2.default.bool,
-  verticalPosition: _propTypes2.default.oneOf(['top', 'bottom'])
-} : {};
-exports.default = Tooltip;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 434 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.extendChildren = extendChildren;
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function extendChildren(children, extendedProps, extendedChildren) {
-  return _react2.default.Children.map(children, function (child) {
-    if (!_react2.default.isValidElement(child)) {
-      return child;
-    }
-
-    var newProps = typeof extendedProps === 'function' ? extendedProps(child) : extendedProps;
-
-    var newChildren = typeof extendedChildren === 'function' ? extendedChildren(child) : extendedChildren ? extendedChildren : child.props.children;
-
-    return _react2.default.cloneElement(child, newProps, newChildren);
-  });
-}
-
-/***/ }),
-/* 435 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Avatar = __webpack_require__(436);
-
-var _Avatar2 = _interopRequireDefault(_Avatar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var card = context.muiTheme.card;
-
-
-  return {
-    root: {
-      padding: 16,
-      fontWeight: card.fontWeight,
-      boxSizing: 'border-box',
-      position: 'relative',
-      whiteSpace: 'nowrap'
-    },
-    text: {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      whiteSpace: 'normal',
-      paddingRight: '90px'
-    },
-    avatar: {
-      marginRight: 16
-    },
-    title: {
-      color: props.titleColor || card.titleColor,
-      display: 'block',
-      fontSize: 15
-    },
-    subtitle: {
-      color: props.subtitleColor || card.subtitleColor,
-      display: 'block',
-      fontSize: 14
-    }
-  };
-}
-
-var CardHeader = function (_Component) {
-  (0, _inherits3.default)(CardHeader, _Component);
-
-  function CardHeader() {
-    (0, _classCallCheck3.default)(this, CardHeader);
-    return (0, _possibleConstructorReturn3.default)(this, (CardHeader.__proto__ || (0, _getPrototypeOf2.default)(CardHeader)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardHeader, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          avatarProp = _props.avatar,
-          children = _props.children,
-          closeIcon = _props.closeIcon,
-          expandable = _props.expandable,
-          openIcon = _props.openIcon,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          subtitle = _props.subtitle,
-          subtitleColor = _props.subtitleColor,
-          subtitleStyle = _props.subtitleStyle,
-          textStyle = _props.textStyle,
-          title = _props.title,
-          titleColor = _props.titleColor,
-          titleStyle = _props.titleStyle,
-          iconStyle = _props.iconStyle,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'avatar', 'children', 'closeIcon', 'expandable', 'openIcon', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'textStyle', 'title', 'titleColor', 'titleStyle', 'iconStyle']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      var avatar = avatarProp;
-
-      if ((0, _react.isValidElement)(avatarProp)) {
-        avatar = _react2.default.cloneElement(avatar, {
-          style: (0, _simpleAssign2.default)(styles.avatar, avatar.props.style)
-        });
-      } else if (avatar !== null) {
-        avatar = _react2.default.createElement(_Avatar2.default, { src: avatarProp, style: styles.avatar });
-      }
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
-        avatar,
-        _react2.default.createElement(
-          'div',
-          { style: prepareStyles((0, _simpleAssign2.default)(styles.text, textStyle)) },
-          _react2.default.createElement(
-            'span',
-            { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
-            title
-          ),
-          _react2.default.createElement(
-            'span',
-            { style: prepareStyles((0, _simpleAssign2.default)(styles.subtitle, subtitleStyle)) },
-            subtitle
-          )
-        ),
-        children
-      );
-    }
-  }]);
-  return CardHeader;
-}(_react.Component);
-
-CardHeader.muiName = 'CardHeader';
-CardHeader.defaultProps = {
-  avatar: null
-};
-CardHeader.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardHeader.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
-   * If `avatar` is an `Avatar` or other element, it will be rendered.
-   * If `avatar` is a string, it will be used as the image `src` for an `Avatar`.
-   */
-  avatar: _propTypes2.default.node,
-  /**
-   * Can be used to render elements inside the Card Header.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
-   */
-  closeIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the iconStyle of the Icon Button.
-   */
-  iconStyle: _propTypes2.default.object,
-  /**
-   * Can be used to pass a openIcon if you don't like the default expandable open Icon.
-   */
-  openIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Can be used to render a subtitle in Card Header.
-   */
-  subtitle: _propTypes2.default.node,
-  /**
-   * Override the subtitle color.
-   */
-  subtitleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the subtitle.
-   */
-  subtitleStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the text.
-   */
-  textStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render a title in Card Header.
-   */
-  title: _propTypes2.default.node,
-  /**
-   * Override the title color.
-   */
-  titleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the title.
-   */
-  titleStyle: _propTypes2.default.object
-} : {};
-exports.default = CardHeader;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 436 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _Avatar = __webpack_require__(437);
-
-var _Avatar2 = _interopRequireDefault(_Avatar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Avatar2.default;
-
-/***/ }),
-/* 437 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var backgroundColor = props.backgroundColor,
-      color = props.color,
-      size = props.size;
-  var avatar = context.muiTheme.avatar;
-
-
-  var styles = {
-    root: {
-      color: color || avatar.color,
-      backgroundColor: backgroundColor || avatar.backgroundColor,
-      userSelect: 'none',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: size / 2,
-      borderRadius: '50%',
-      height: size,
-      width: size
-    },
-    icon: {
-      color: color || avatar.color,
-      width: size * 0.6,
-      height: size * 0.6,
-      fontSize: size * 0.6,
-      margin: size * 0.2
-    }
-  };
-
-  return styles;
-}
-
-var Avatar = function (_Component) {
-  (0, _inherits3.default)(Avatar, _Component);
-
-  function Avatar() {
-    (0, _classCallCheck3.default)(this, Avatar);
-    return (0, _possibleConstructorReturn3.default)(this, (Avatar.__proto__ || (0, _getPrototypeOf2.default)(Avatar)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(Avatar, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          backgroundColor = _props.backgroundColor,
-          icon = _props.icon,
-          src = _props.src,
-          style = _props.style,
-          className = _props.className,
-          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'icon', 'src', 'style', 'className']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      if (src) {
-        return _react2.default.createElement('img', (0, _extends3.default)({
-          style: prepareStyles((0, _simpleAssign2.default)(styles.root, style))
-        }, other, {
-          src: src,
-          className: className
-        }));
-      } else {
-        return _react2.default.createElement(
-          'div',
-          (0, _extends3.default)({}, other, {
-            style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)),
-            className: className
-          }),
-          icon && _react2.default.cloneElement(icon, {
-            color: styles.icon.color,
-            style: (0, _simpleAssign2.default)(styles.icon, icon.props.style)
-          }),
-          this.props.children
-        );
-      }
-    }
-  }]);
-  return Avatar;
-}(_react.Component);
-
-Avatar.muiName = 'Avatar';
-Avatar.defaultProps = {
-  size: 40
-};
-Avatar.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-Avatar.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * The backgroundColor of the avatar. Does not apply to image avatars.
-   */
-  backgroundColor: _propTypes2.default.string,
-  /**
-   * Can be used, for instance, to render a letter inside the avatar.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * The css class name of the root `div` or `img` element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * The icon or letter's color.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * This is the SvgIcon or FontIcon to be used inside the avatar.
-   */
-  icon: _propTypes2.default.element,
-  /**
-   * This is the size of the avatar in pixels.
-   */
-  size: _propTypes2.default.number,
-  /**
-   * If passed in, this component will render an img element. Otherwise, a div will be rendered.
-   */
-  src: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = Avatar;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 438 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var card = context.muiTheme.card;
-
-
-  return {
-    root: {
-      padding: 16,
-      position: 'relative'
-    },
-    title: {
-      fontSize: 24,
-      color: props.titleColor || card.titleColor,
-      display: 'block',
-      lineHeight: '36px'
-    },
-    subtitle: {
-      fontSize: 14,
-      color: props.subtitleColor || card.subtitleColor,
-      display: 'block'
-    }
-  };
-}
-
-var CardTitle = function (_Component) {
-  (0, _inherits3.default)(CardTitle, _Component);
-
-  function CardTitle() {
-    (0, _classCallCheck3.default)(this, CardTitle);
-    return (0, _possibleConstructorReturn3.default)(this, (CardTitle.__proto__ || (0, _getPrototypeOf2.default)(CardTitle)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardTitle, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          closeIcon = _props.closeIcon,
-          expandable = _props.expandable,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          subtitle = _props.subtitle,
-          subtitleColor = _props.subtitleColor,
-          subtitleStyle = _props.subtitleStyle,
-          title = _props.title,
-          titleColor = _props.titleColor,
-          titleStyle = _props.titleStyle,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'closeIcon', 'expandable', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'title', 'titleColor', 'titleStyle']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)({}, styles.root, style);
-      var extendedTitleStyle = (0, _simpleAssign2.default)({}, styles.title, titleStyle);
-      var extendedSubtitleStyle = (0, _simpleAssign2.default)({}, styles.subtitle, subtitleStyle);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        _react2.default.createElement(
-          'span',
-          { style: prepareStyles(extendedTitleStyle) },
-          title
-        ),
-        _react2.default.createElement(
-          'span',
-          { style: prepareStyles(extendedSubtitleStyle) },
-          subtitle
-        ),
-        children
-      );
-    }
-  }]);
-  return CardTitle;
-}(_react.Component);
-
-CardTitle.muiName = 'CardTitle';
-CardTitle.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardTitle.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Title.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
-   */
-  closeIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Can be used to render a subtitle in the Card Title.
-   */
-  subtitle: _propTypes2.default.node,
-  /**
-   * Override the subtitle color.
-   */
-  subtitleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the subtitle.
-   */
-  subtitleStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render a title in the Card Title.
-   */
-  title: _propTypes2.default.node,
-  /**
-   * Override the title color.
-   */
-  titleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the title.
-   */
-  titleStyle: _propTypes2.default.object
-} : {};
-exports.default = CardTitle;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 439 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var cardMedia = context.muiTheme.cardMedia;
-
-
-  return {
-    root: {
-      position: 'relative'
-    },
-    overlayContainer: {
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      right: 0,
-      left: 0
-    },
-    overlay: {
-      height: '100%',
-      position: 'relative'
-    },
-    overlayContent: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-      paddingTop: 8,
-      background: cardMedia.overlayContentBackground
-    },
-    media: {},
-    mediaChild: {
-      verticalAlign: 'top',
-      maxWidth: '100%',
-      minWidth: '100%',
-      width: '100%'
-    }
-  };
-}
-
-var CardMedia = function (_Component) {
-  (0, _inherits3.default)(CardMedia, _Component);
-
-  function CardMedia() {
-    (0, _classCallCheck3.default)(this, CardMedia);
-    return (0, _possibleConstructorReturn3.default)(this, (CardMedia.__proto__ || (0, _getPrototypeOf2.default)(CardMedia)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardMedia, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          expandable = _props.expandable,
-          mediaStyle = _props.mediaStyle,
-          overlay = _props.overlay,
-          overlayContainerStyle = _props.overlayContainerStyle,
-          overlayContentStyle = _props.overlayContentStyle,
-          overlayStyle = _props.overlayStyle,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'mediaStyle', 'overlay', 'overlayContainerStyle', 'overlayContentStyle', 'overlayStyle', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
-      var extendedMediaStyle = (0, _simpleAssign2.default)(styles.media, mediaStyle);
-      var extendedOverlayContainerStyle = (0, _simpleAssign2.default)(styles.overlayContainer, overlayContainerStyle);
-      var extendedOverlayContentStyle = (0, _simpleAssign2.default)(styles.overlayContent, overlayContentStyle);
-      var extendedOverlayStyle = (0, _simpleAssign2.default)(styles.overlay, overlayStyle);
-      var titleColor = this.context.muiTheme.cardMedia.titleColor;
-      var subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
-      var color = this.context.muiTheme.cardMedia.color;
-
-      var styledChildren = _react2.default.Children.map(children, function (child) {
-        if (!child) {
-          return child;
-        }
-
-        return _react2.default.cloneElement(child, {
-          style: prepareStyles((0, _simpleAssign2.default)({}, styles.mediaChild, child.props.style))
-        });
-      });
-
-      var overlayChildren = _react2.default.Children.map(overlay, function (child) {
-        var childMuiName = child && child.type ? child.type.muiName : null;
-
-        if (childMuiName === 'CardHeader' || childMuiName === 'CardTitle') {
-          return _react2.default.cloneElement(child, {
-            titleColor: titleColor,
-            subtitleColor: subtitleColor
-          });
-        } else if (childMuiName === 'CardText') {
-          return _react2.default.cloneElement(child, {
-            color: color
-          });
-        } else {
-          return child;
-        }
-      });
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        _react2.default.createElement(
-          'div',
-          { style: prepareStyles(extendedMediaStyle) },
-          styledChildren
-        ),
-        overlay ? _react2.default.createElement(
-          'div',
-          { style: prepareStyles(extendedOverlayContainerStyle) },
-          _react2.default.createElement(
-            'div',
-            { style: prepareStyles(extendedOverlayStyle) },
-            _react2.default.createElement(
-              'div',
-              { style: prepareStyles(extendedOverlayContentStyle) },
-              overlayChildren
-            )
-          )
-        ) : ''
-      );
-    }
-  }]);
-  return CardMedia;
-}(_react.Component);
-
-CardMedia.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardMedia.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Media.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the Card Media.
-   */
-  mediaStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render overlay element in Card Media.
-   */
-  overlay: _propTypes2.default.node,
-  /**
-   * Override the inline-styles of the overlay container.
-   */
-  overlayContainerStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the overlay content.
-   */
-  overlayContentStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the overlay element.
-   */
-  overlayStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardMedia;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 440 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var cardText = context.muiTheme.cardText;
-
-
-  return {
-    root: {
-      padding: 16,
-      fontSize: 14,
-      color: props.color || cardText.textColor
-    }
-  };
-}
-
-var CardText = function (_Component) {
-  (0, _inherits3.default)(CardText, _Component);
-
-  function CardText() {
-    (0, _classCallCheck3.default)(this, CardText);
-    return (0, _possibleConstructorReturn3.default)(this, (CardText.__proto__ || (0, _getPrototypeOf2.default)(CardText)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardText, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          color = _props.color,
-          expandable = _props.expandable,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'color', 'expandable', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        children
-      );
-    }
-  }]);
-  return CardText;
-}(_react.Component);
-
-CardText.muiName = 'CardText';
-CardText.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardText.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Text.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Override the CardText color.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardText;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 441 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(17);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(18);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(11);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(9);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(12);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(13);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(14);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(15);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles() {
-  return {
-    root: {
-      padding: 8,
-      position: 'relative'
-    },
-    action: {
-      marginRight: 8
-    }
-  };
-}
-
-var CardActions = function (_Component) {
-  (0, _inherits3.default)(CardActions, _Component);
-
-  function CardActions() {
-    (0, _classCallCheck3.default)(this, CardActions);
-    return (0, _possibleConstructorReturn3.default)(this, (CardActions.__proto__ || (0, _getPrototypeOf2.default)(CardActions)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardActions, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          expandable = _props.expandable,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'showExpandableButton', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      var styledChildren = _react2.default.Children.map(children, function (child) {
-        if (_react2.default.isValidElement(child)) {
-          return _react2.default.cloneElement(child, {
-            style: (0, _simpleAssign2.default)({}, styles.action, child.props.style)
-          });
-        }
-      });
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
-        styledChildren
-      );
-    }
-  }]);
-  return CardActions;
-}(_react.Component);
-
-CardActions.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardActions.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Action.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardActions;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
 /* 442 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -39773,8 +34382,14 @@ var Manage = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Manage.prototype.render = function () {
+        var globals = this.props.globals;
+        if (globals.previousMessage) {
+            this.previousMessage = globals.previousMessage;
+            globals.previousMessage = "";
+        }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__tools_Auth__["b" /* default */], { globals: this.props.globals },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container" },
+                this.previousMessage ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "success" }, this.previousMessage) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Channel Management!"))));
     };
     return Manage;
@@ -39789,9 +34404,9 @@ var Manage = /** @class */ (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_Auth__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UploadFile__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_Form__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UploadFile__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Design__ = __webpack_require__(604);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -39806,21 +34421,95 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
-var Upload = /** @class */ (function (_super) {
-    __extends(Upload, _super);
-    function Upload() {
+var CardForm = /** @class */ (function (_super) {
+    __extends(CardForm, _super);
+    function CardForm() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    CardForm.prototype.formSubmit = function (fields) { };
+    CardForm.prototype.formRender = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["h" /* Row */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__forms_Form__["b" /* Input */], { type: "text", placeholder: "Title", name: "title", validations: [__WEBPACK_IMPORTED_MODULE_1__forms_Form__["e" /* valid */].required] })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__forms_Form__["c" /* Textarea */], { style: { width: "100%" }, name: "description", placeholder: "Video description", validations: [__WEBPACK_IMPORTED_MODULE_1__forms_Form__["e" /* valid */].required, __WEBPACK_IMPORTED_MODULE_1__forms_Form__["e" /* valid */].under255] })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__forms_Form__["a" /* Button */], null, "Update Card"))));
+    };
+    return CardForm;
+}(__WEBPACK_IMPORTED_MODULE_1__forms_Form__["d" /* default */]));
+var Upload = /** @class */ (function (_super) {
+    __extends(Upload, _super);
+    function Upload(props) {
+        var _this = _super.call(this, props) || this;
+        _this.onThumbnailChange = _this.onThumbnailChange.bind(_this);
+        _this.onVideoChange = _this.onVideoChange.bind(_this);
+        _this.submit = _this.submit.bind(_this);
+        _this.state = {
+            error: false,
+            imgUrl: "",
+            videoUrl: "",
+            title: "",
+            description: ""
+        };
+        return _this;
+    }
+    Upload.prototype.onThumbnailChange = function (file, fileUrl) {
+        this.setState({ imgUrl: fileUrl });
+    };
+    Upload.prototype.onVideoChange = function (file, fileUrl) {
+        this.setState({ videoUrl: fileUrl });
+    };
+    Upload.prototype.submit = function (e) {
+        e.preventDefault();
+        if (!this.state.videoUrl.length) {
+            this.setState({ error: true });
+        }
+        else if (!this.state.imgUrl.length) {
+            this.setState({ error: true });
+        }
+        else {
+            this.props.globals.previousMessage = "Upload Successful!";
+            this.props.globals.changeRoute('/manage');
+        }
+    };
     Upload.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__tools_Auth__["b" /* default */], { globals: this.props.globals },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Uploads!")),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["e" /* Row */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["b" /* ColAuto */], null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__UploadFile__["a" /* ImageUpload */], null))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["e" /* Row */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__BootstrapWrappers__["b" /* ColAuto */], null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__UploadFile__["b" /* VideoUpload */], null)))));
+        var _this = this;
+        var globals = this.props.globals;
+        if (!globals.auth.islogged()) {
+            globals.goHome();
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "error" }, "No Access");
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["h" /* Row */], { className: "form-container" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Upload your own video!")),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], { className: "upload" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { style: { margin: "1em" } }, "Upload your video")),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                    !this.state.error || this.state.videoUrl.length ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null)) :
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "error" }, "Please upload the video")),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], { style: { minHeight: "8em" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__UploadFile__["b" /* VideoUpload */], { onChange: this.onVideoChange }))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { style: { margin: "1em" } }, "Create your video card")),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                    !this.state.error || this.state.imgUrl.length ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null)) :
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "error" }, "Please upload the thumbnail image")),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], { style: { minHeight: "8em" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["h" /* Row */], null,
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-lg-4" },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__UploadFile__["a" /* ImageUpload */], { onChange: this.onThumbnailChange })),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-lg-8" },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CardForm, { globals: this.props.globals, onSubmit: function (values) {
+                                        _this.setState({ title: values.title, description: values.description });
+                                    } })))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["i" /* VideoCard */], { imgSrc: this.state.imgUrl, title: this.state.title, author: globals.auth.userInfo.f_name + " " + globals.auth.userInfo.l_name, username: globals.auth.userInfo.username, description: this.state.description }))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", { onClick: this.submit }, "Upload Video")))));
     };
     return Upload;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -39879,10 +34568,12 @@ var Upload = /** @class */ (function (_super) {
         var state = this.state;
         var props = this.props;
         console.log("img url: " + state.imagePreviewUrl);
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "previewComponent" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "fileInput", type: "file", onChange: function (e) { return _this.handleImageChange(e); } }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "imgPreview" }, state.invalidType ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "error" }, props.error)) :
-                state.imagePreviewUrl.length === 0 ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "previewText" }, props.message)) :
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "upload-file" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { paddingBottom: ".5em" } }, props.message),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { style: { color: "white" }, type: "file", onChange: function (e) { return _this.handleImageChange(e); } }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { minWidth: "15em", color: "white !important" } }, state.invalidType ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "error" }, props.error)) :
+                state.imagePreviewUrl.length === 0 ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null) :
                     props.displayFile(state.imagePreviewUrl))));
     };
     return Upload;
@@ -39890,38 +34581,28 @@ var Upload = /** @class */ (function (_super) {
 /* unused harmony default export */ var _unused_webpack_default_export = (Upload);
 var ImageUpload = /** @class */ (function (_super) {
     __extends(ImageUpload, _super);
-    function ImageUpload(props) {
-        var _this = _super.call(this, props) || this;
-        _this.onChange = _this.onChange.bind(_this);
-        return _this;
+    function ImageUpload() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     ImageUpload.prototype.displayFile = function (fileUrl) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: fileUrl });
-    };
-    ImageUpload.prototype.onChange = function (file, fileUrl) {
-        console.log("got the file: " + file);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null); //<img src={fileUrl} width="192" height="108" />
     };
     ImageUpload.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Upload, { displayFile: this.displayFile, isValidType: function (type) { return (type.match('image.*')); }, error: "Invalid file type, It should be an image", message: "Upload an image", onChange: this.onChange }));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Upload, { displayFile: this.displayFile, isValidType: function (type) { return (type.match('image.*')); }, error: "Invalid file type, It should be an image", message: "Upload an image", onChange: this.props.onChange }));
     };
     return ImageUpload;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
 
 var VideoUpload = /** @class */ (function (_super) {
     __extends(VideoUpload, _super);
-    function VideoUpload(props) {
-        var _this = _super.call(this, props) || this;
-        _this.onChange = _this.onChange.bind(_this);
-        return _this;
+    function VideoUpload() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     VideoUpload.prototype.displayFile = function (fileUrl) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_video_react__["a" /* Player */], { playsInline: true, src: fileUrl });
     };
-    VideoUpload.prototype.onChange = function (file, fileUrl) {
-        console.log("got the file: " + file);
-    };
     VideoUpload.prototype.render = function () {
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Upload, { displayFile: this.displayFile, isValidType: function (type) { return (type.match('video.*')); }, error: "Invalid file type, It should be a video", message: "Upload a video", onChange: this.onChange }));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Upload, { displayFile: this.displayFile, isValidType: function (type) { return (type.match('video.*')); }, error: "Invalid file type, It should be a video", message: "Upload a video", onChange: this.props.onChange }));
     };
     return VideoUpload;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -39937,7 +34618,7 @@ var VideoUpload = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_Api__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_Form__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Design__ = __webpack_require__(604);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -39982,25 +34663,25 @@ var Login = /** @class */ (function (_super) {
     };
     Login.prototype.formRender = function () {
         var globals = this.props.globals;
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["e" /* Row */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Log into your account")),
-            this.getError(),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["b" /* ColAuto */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null,
-                    "Username",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["b" /* ColAuto */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", null,
-                    "Password",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "password", name: "password", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", { style: { width: "100%" } }, "Log into your account")),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                this.getError(),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Username",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Password",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "password", name: "password", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["a" /* Button */], null, "Login"))));
     };
     return Login;
-}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["c" /* default */]));
+}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* default */]));
 /* harmony default export */ __webpack_exports__["a"] = (Login);
 
 
@@ -41677,6 +36358,15 @@ var valid = {
             // 'confirm' - name of input
             // components['confirm'] - array of same-name components because of checkboxes and radios
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "error" }, "Passwords are not equal.");
+        }
+    },
+    under255: function (value) {
+        var len = value.toString().trim().length;
+        if (len >= 255) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "error" },
+                "Must be under 255 characters. (current: ",
+                len,
+                ")");
         }
     }
 };
@@ -44279,7 +38969,7 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_Api__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_Form__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Design__ = __webpack_require__(604);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -44325,38 +39015,43 @@ var Create = /** @class */ (function (_super) {
     };
     Create.prototype.formRender = function () {
         var globals = this.props.globals;
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["e" /* Row */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Create your account")),
-            this.getError(),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], { style: { marginBottom: "2em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "First Name",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "f_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Last Name",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "l_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], { style: { marginBottom: "2em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Username",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Email",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "email", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].email] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Password",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].password] })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Confirm",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'confirm', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                this.getError(),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "First Name",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "f_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Last Name",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "l_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Username",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Email",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "email", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].email] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Password",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].password] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Confirm",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'confirm', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["a" /* Button */], null, "Create"))));
     };
     return Create;
-}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["c" /* default */]));
+}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* default */]));
 /* harmony default export */ __webpack_exports__["a"] = (Create);
 
 
@@ -44369,7 +39064,7 @@ var Create = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_Api__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_Form__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Design__ = __webpack_require__(604);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -44419,32 +39114,35 @@ var InfoSettings = /** @class */ (function (_super) {
     InfoSettings.prototype.formRender = function () {
         var globals = this.props.globals;
         var info = globals.auth.userInfo;
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["e" /* Row */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Update user information")),
-            this.getError(),
-            this.getMessage(),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], { style: { marginBottom: "2em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "First Name",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "f_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required], value: info.f_name })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Last Name",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "l_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required], value: info.l_name }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], { style: { marginBottom: "2em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Username",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required], value: info.username })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Email",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "email", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].email], value: info.email }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Update your info")),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                this.getError(),
+                this.getMessage(),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "First Name",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "f_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required], value: info.f_name }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Last Name",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "l_name", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required], value: info.l_name }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Username",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "username", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required], value: info.username }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Email",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: "text", name: "email", validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].email], value: info.email }))))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["a" /* Button */], null, "Update Info"))));
     };
     return InfoSettings;
-}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["c" /* default */]));
+}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* default */]));
 var PasswordSettings = /** @class */ (function (_super) {
     __extends(PasswordSettings, _super);
     function PasswordSettings() {
@@ -44484,31 +39182,31 @@ var PasswordSettings = /** @class */ (function (_super) {
     PasswordSettings.prototype.formRender = function () {
         var globals = this.props.globals;
         var info = globals.auth.userInfo;
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["e" /* Row */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Update Password")),
-            this.getError(),
-            this.getMessage(),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["e" /* Row */], { style: { marginBottom: "2em" } },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["a" /* Col */], null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Old Password",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'old_password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["a" /* Col */], null)),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["f" /* RowAuto */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Password",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].password] })),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["d" /* Label */], null,
-                    "Confirm",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'confirm', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* valid */].required] }))),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["c" /* ColFull */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["a" /* Button */], null, "Update Password"))));
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["a" /* Block */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, "Update your password")),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["e" /* Content */], null,
+                this.getError(),
+                this.getMessage(),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["f" /* ContentBlock */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["d" /* Col2a */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Old Password",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'old_password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Password",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'password', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required, __WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].password] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["c" /* Col2 */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["g" /* Label */], null,
+                            "Confirm",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["b" /* Input */], { type: 'password', name: 'confirm', validations: [__WEBPACK_IMPORTED_MODULE_2__forms_Form__["e" /* valid */].required] }))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["a" /* Button */], null, "Update Password"))))));
     };
     return PasswordSettings;
-}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["c" /* default */]));
+}(__WEBPACK_IMPORTED_MODULE_2__forms_Form__["d" /* default */]));
 var Settings = /** @class */ (function (_super) {
     __extends(Settings, _super);
     function Settings() {
@@ -44521,7 +39219,7 @@ var Settings = /** @class */ (function (_super) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "error" }, "No Access");
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { width: "100%" } },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__BootstrapWrappers__["g" /* RowFull */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Design__["b" /* Center */], null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Change your user settings")),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(InfoSettings, { globals: globals }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(PasswordSettings, { globals: globals })));
@@ -55015,6 +49713,196 @@ function applyMiddleware() {
     };
   };
 }
+
+/***/ }),
+/* 604 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return Row; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Block; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Content; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return ContentBlock; });
+/* unused harmony export Col */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Col2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Col2a; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return Label; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Center; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return VideoCard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+function className(type, props) {
+    if (props.className)
+        return type + " " + props.className;
+    else
+        return type;
+}
+var Row = /** @class */ (function (_super) {
+    __extends(Row, _super);
+    function Row() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Row.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("row", this.props), style: { width: "100%", margin: "0em" } }), this.props.children));
+    };
+    return Row;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Block = /** @class */ (function (_super) {
+    __extends(Block, _super);
+    function Block() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Block.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("content-block-container", this.props) }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, { className: "content-block" }, this.props.children)));
+    };
+    return Block;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Content = /** @class */ (function (_super) {
+    __extends(Content, _super);
+    function Content() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Content.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, __assign({}, this.props, { className: className("inner-block", this.props) }), this.props.children));
+    };
+    return Content;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var ContentBlock = /** @class */ (function (_super) {
+    __extends(ContentBlock, _super);
+    function ContentBlock() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ContentBlock.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, __assign({}, this.props, { className: className("inner-inner-block", this.props) }), this.props.children));
+    };
+    return ContentBlock;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Col = /** @class */ (function (_super) {
+    __extends(Col, _super);
+    function Col() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Col.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-12", this.props) }), this.props.children));
+    };
+    return Col;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Col2 = /** @class */ (function (_super) {
+    __extends(Col2, _super);
+    function Col2() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Col2.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-12 col-md-6", this.props) }), this.props.children));
+    };
+    return Col2;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Col2a = /** @class */ (function (_super) {
+    __extends(Col2a, _super);
+    function Col2a() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Col2a.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { className: className("col-12 col-md-6 offset-md-3", this.props) }), this.props.children));
+    };
+    return Col2a;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Label = /** @class */ (function (_super) {
+    __extends(Label, _super);
+    function Label() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Label.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Col, null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", __assign({ style: { width: "95%" } }, this.props), this.props.children)));
+    };
+    return Label;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Center = /** @class */ (function (_super) {
+    __extends(Center, _super);
+    function Center() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Center.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", __assign({}, this.props, { style: { textAlign: "center", width: "100%" } }), this.props.children));
+    };
+    return Center;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+var Example = /** @class */ (function (_super) {
+    __extends(Example, _super);
+    function Example() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Example.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Block, null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Content, null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ContentBlock, null, "Hello"),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ContentBlock, null, "World"))));
+    };
+    return Example;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+var VideoCard = /** @class */ (function (_super) {
+    __extends(VideoCard, _super);
+    function VideoCard() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VideoCard.prototype.render = function () {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, { style: { minHeight: "10em" } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-3", style: { padding: "15px" } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: this.props.imgSrc, width: "192", height: "108", style: { width: "100%", height: "auto" } })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-9" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-6", style: { textAlign: "left", padding: "0em" } }, this.props.title),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12 col-md-6", style: { textAlign: "right", padding: "0em" } },
+                        this.props.author,
+                        " ",
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "username" },
+                            "@",
+                            this.props.username))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", { style: { margin: ".2rem 0em", width: "100%" } }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Row, null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, this.props.description)))));
+    };
+    return VideoCard;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+
+
+
+/***/ }),
+/* 605 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(1),__webpack_require__(4),__webpack_require__(463)):"function"===typeof define&&define.amd?define(["react","prop-types","uuid/v4"],t):"object"===typeof exports?exports.textarea=t(require("react"),require("prop-types"),require("uuid/v4")):e.textarea=t(e.React,e.PropTypes,e.uuid)}(this,function(e,t,n){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="/",t(t.s=14)}([function(t,n){t.exports=e},function(e,n){e.exports=t},function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function i(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function u(e){var t,n;return n=t=function(t){function n(){return r(this,n),o(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return i(n,t),f(n,[{key:"render",value:function(){var t=this.context._getProps(this.id);return t?c.a.createElement(e,Object.assign({},t,{onChange:this.handleChange,onBlur:this.handleBlur})):null}}]),n}(s.a),t.displayName="Control("+e.name+")",n}t.a=u;var a=n(0),c=n.n(a),s=n(3),f=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}()},function(e,t,n){"use strict";function r(e,t){var n={};for(var r in e)t.indexOf(r)>=0||Object.prototype.hasOwnProperty.call(e,r)&&(n[r]=e[r]);return n}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function u(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=n(0),c=(n.n(a),n(1)),s=n.n(c),f=n(4),p=n.n(f),l=n(5),d=n.n(l),h=n(6),y=n.n(h),v=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),b=function(e){function t(){var e,n,r,u;o(this,t);for(var a=arguments.length,c=Array(a),s=0;s<a;s++)c[s]=arguments[s];return n=r=i(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(c))),r.id=y()(),r.handleChange=function(e){e.persist(),r.context._handleChange(e,r.id),r.props.onChange&&r.props.onChange(e)},r.handleBlur=function(e){e.persist(),r.context._handleBlur(e,r.id),r.props.onBlur&&r.props.onBlur(e)},u=n,i(r,u)}return u(t,e),v(t,[{key:"componentDidMount",value:function(){this.context._register(this,this.id)}},{key:"componentWillUnmount",value:function(){this.context._unregister(this,this.id)}},{key:"componentWillReceiveProps",value:function(e){var t=e.validations,n=r(e,["validations"]),o=this.props,i=o.validations,u=r(o,["validations"]);d()(u,n)&&p()(i,t)||this.context._setProps(n,this.id)}},{key:"shouldComponentUpdate",value:function(e,t,n){return n!==this.context}},{key:"render",value:function(){return null}}]),t}(a.Component);b.contextTypes={_register:s.a.func.isRequired,_unregister:s.a.func.isRequired,_setProps:s.a.func.isRequired,_handleChange:s.a.func.isRequired,_handleBlur:s.a.func.isRequired,_getProps:s.a.func.isRequired},b.propTypes={validations:s.a.arrayOf(s.a.func),onChange:s.a.func,onBlur:s.a.func},b.defaultProps={validations:[]},t.a=b},function(e,t){e.exports=function(e,t){if(e===t)return!0;var n=e.length;if(t.length!==n)return!1;for(var r=0;r<n;r++)if(e[r]!==t[r])return!1;return!0}},function(e,t){e.exports=function(e,t){if(e===t)return!0;var n=Object.keys(e),r=Object.keys(t),o=n.length;if(r.length!==o)return!1;for(var i=0;i<o;i++){var u=n[i];if(e[u]!==t[u])return!1}return!0}},function(e,t){e.exports=n},,,,,,,,function(e,t,n){"use strict";function r(e,t){var n={};for(var r in e)t.indexOf(r)>=0||Object.prototype.hasOwnProperty.call(e,r)&&(n[r]=e[r]);return n}Object.defineProperty(t,"__esModule",{value:!0});var o=n(0),i=n.n(o),u=n(1),a=n.n(u),c=n(2),s=function(e){var t=e.error,n=e.isChanged,o=e.isUsed,u=r(e,["error","isChanged","isUsed"]);return i.a.createElement("div",null,i.a.createElement("textarea",u),n&&o&&t)};s.propTypes={error:a.a.oneOfType([a.a.node,a.a.string])},t.default=Object(c.a)(s)}])});
+//# sourceMappingURL=textarea.js.map
 
 /***/ })
 /******/ ]);

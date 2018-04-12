@@ -7,11 +7,10 @@ function className(type, props) {
         return type
 }
 
-
 export class Row extends Component<any> {
     render() {
         return (
-            <div {...this.props} className={className("col-12 row", this.props)}>
+            <div {...this.props} className={className("row", this.props)} style={{ width: "100%", margin: "0em" }}>
                 {this.props.children}
             </div>
         )
@@ -28,16 +27,37 @@ export class Col extends Component<any> {
     }
 }
 
-export class ColAuto extends Component<any> {
+export class Col2 extends Component<any> {
     render() {
         return (
-            <div className="col-12">
+            <div {...this.props} className={className("col-6", this.props)} >
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
+export class Col2a extends Component<any> {
+    render() {
+        return (
+            <div {...this.props} className={className("col-12 col-md-6", this.props)} >
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
+export class ColAuto extends Component<any> {
+    render() {
+
+        return (
+            <div className={className("col-12", this.props)} >
                 <div className="col-md-2 .d-none .d-md-block"></div>
-                <div {...this.props} className={className("col-md-8 offset-md-2 col-12", this.props)}>
+                <div {...this.props} className="col-md-8 offset-md-2 col-12">
                     {this.props.children}
                 </div>
                 <div className="col-md-2 .d-none .d-md-block"></div>
-            </div>
+            </div >
         )
     }
 }
@@ -45,11 +65,13 @@ export class ColAuto extends Component<any> {
 export class RowAuto extends Component<any> {
     render() {
         return (
-            <ColAuto>
-                <div {...this.props} className={className("row", this.props)} >
-                    {this.props.children}
-                </div>
-            </ColAuto>
+            <Row>
+                <ColAuto>
+                    <Row {...this.props}>
+                        {this.props.children}
+                    </Row>
+                </ColAuto>
+            </Row>
         )
     }
 }
@@ -65,11 +87,9 @@ export class ColFull extends Component<any> {
 export class RowFull extends Component<any> {
     render() {
         return (
-            <div className="row" style={{ width: "100%", margin: "0em" }}>
-                <ColFull {...this.props}>
-                    {this.props.children}
-                </ColFull>
-            </div>
+            <Row {...this.props}>
+                {this.props.children}
+            </Row>
         )
     }
 }
@@ -81,7 +101,7 @@ export class Label extends Component<any> {
     render() {
         return (
             <Col>
-                <label style={{ width: "90%" }} {...this.props}>
+                <label style={{ width: "95%" }} {...this.props}>
                     {this.props.children}
                 </label>
             </Col >

@@ -38,5 +38,11 @@ export const valid = {
             // components['confirm'] - array of same-name components because of checkboxes and radios
             return <span className="error">Passwords are not equal.</span>
         }
+    },
+    under255: (value) => {
+        const len = value.toString().trim().length
+        if (len >= 255) {
+            return <span className="error">Must be under 255 characters. (current: {len})</span>
+        }
     }
 }

@@ -1,18 +1,22 @@
+h1 {
+    margin: .5em 0em;
+}
+
 img {
     width: 100%;
     border-radius: 1em;
 
 }
 .content-block-container {
-    padding: 2em;
+
 }
 .content-block {
-    border-radius: 2em;
+    border-radius: 1em;
     background-color: $dark4;
 
-    -moz-box-shadow:    0em 0em 2em #fff;
-    -webkit-box-shadow: 0em 0em 2em #fff;
-    box-shadow:         0em 0em 2em #fff;
+    -moz-box-shadow:    0em 0em 2em #aaa;
+    -webkit-box-shadow: 0em 0em 2em #aaa;
+    box-shadow:         0em 0em 2em #aaa;
 
 
 
@@ -21,4 +25,72 @@ img {
     a {
 	color: #8BD3F9 !important;
     }
+}
+
+
+.upload {
+    .content-block {
+	margin-bottom: 2em;
+    }
+}
+
+.shadow {
+    -moz-box-shadow:    0em 0em 1em #000;
+    -webkit-box-shadow: 0em 0em 1em #000;
+    box-shadow:         0em 0em 1em #000;
+}
+.reverse-shadow {
+    -moz-box-shadow:    inset 0em 0em 1em #000;
+    -webkit-box-shadow: inset 0em 0em 1em #000;
+    box-shadow:         inset 0em 0em 1em #000;
+}
+
+.inner-block {
+    @extend .reverse-shadow;
+    padding: 1em;
+    background-color: $dark3;
+    border-radius: .5em;
+
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+
+.inner-inner-block {
+    @extend .shadow;
+    background-color: $dark4;
+    padding: .5em;
+}
+.inner-inner-block + .inner-inner-block {
+    margin-top: 1em !important;
+}
+
+.upload-file {
+    @extend .row;
+    width: 100%;
+    margin: 1em 0em;
+    text-align: center;
+
+    .file-input {
+	@extend .inner-inner-block;
+	@extend .col-12;
+	min-height: 4em;
+    }
+    .file-preview {
+	@extend .inner-inner-block;
+	@extend .col-12;
+	min-height: 8em;
+    }
+}
+
+
+
+
+.content-block-container {
+    @extend .container;
+}
+
+
+.username {
+    color: $light2;
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Player } from 'video-react'
+import { Row, Col2, Col2a, Block, Content, ContentBlock, Label, Center } from './Design'
+
 
 interface UploadProps {
     message: string
@@ -46,32 +48,29 @@ export default class Upload extends Component<UploadProps> {
 
         console.log("img url: " + state.imagePreviewUrl)
         return (
-            <div className="previewComponent">
-                <input className="fileInput"
-                    type="file"
-                    onChange={(e) => this.handleImageChange(e)} />
-                <div className="imgPreview">
+            <div className="upload-file" >
+                <div style={{ paddingBottom: ".5em" }}>{props.message}</div>
+
+                <input style={{ color: "white" }} type="file" onChange={(e) => this.handleImageChange(e)} />
+                <hr />
+                <div style={{ minWidth: "15em", color: "white !important" }}>
                     {state.invalidType ? (<div className="error">{props.error}</div>) :
-                        state.imagePreviewUrl.length === 0 ? (<div className="previewText">{props.message}</div>) :
+                        state.imagePreviewUrl.length === 0 ? <div></div> :
                             props.displayFile(state.imagePreviewUrl)}
                 </div>
-
-            </div>
+            </div >
         )
     }
 }
 
+interface FileUploadProps {
+    onChange: (file, fileUrl) => void
+}
 
-export class ImageUpload extends Component {
+
+export class ImageUpload extends Component<FileUploadProps> {
     displayFile(fileUrl) {
-        return <img src={fileUrl} />
-    }
-    onChange(file, fileUrl) {
-        console.log("got the file: " + file)
-    }
-    constructor(props) {
-        super(props)
-        this.onChange = this.onChange.bind(this)
+        return <div></div>//<img src={fileUrl} width="192" height="108" />
     }
     render() {
         return (
@@ -80,23 +79,16 @@ export class ImageUpload extends Component {
                 isValidType={(type) => (type.match('image.*'))}
                 error="Invalid file type, It should be an image"
                 message="Upload an image"
-                onChange={this.onChange}
+                onChange={this.props.onChange}
             />
         )
     }
 }
 
-export class VideoUpload extends Component {
+export class VideoUpload extends Component<FileUploadProps> {
     placeholder: "Upload an image"
     displayFile(fileUrl) {
         return <Player playsInline src={fileUrl} />
-    }
-    onChange(file, fileUrl) {
-        console.log("got the file: " + file)
-    }
-    constructor(props) {
-        super(props)
-        this.onChange = this.onChange.bind(this)
     }
     render() {
         return (
@@ -105,7 +97,7 @@ export class VideoUpload extends Component {
                 isValidType={(type) => (type.match('video.*'))}
                 error="Invalid file type, It should be a video"
                 message="Upload a video"
-                onChange={this.onChange}
+                onChange={this.props.onChange}
             />
         )
     }

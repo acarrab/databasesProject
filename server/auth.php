@@ -64,7 +64,7 @@ class Auth {
   }
 
   public static function update_password($passdata) {
-    $s = &state::get_instance();
+    $s = &State::get_instance();
 
 
     $user = self::validate_pass($s->user->username, $passdata->old_password);
@@ -83,7 +83,7 @@ class Auth {
   }
 
   public static function update_account($user) {
-    $s = &state::get_instance();
+    $s = &State::get_instance();
     $u = $s->user;
     $sql = null;
 
@@ -137,7 +137,7 @@ class Auth {
   }
   // checks if the user is logged in
   public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }
-
+  public static function assert_access() { if (!$islogged) { Errors::unauthorized(); } }
 }
 
 ?>

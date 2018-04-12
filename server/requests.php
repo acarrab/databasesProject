@@ -29,10 +29,10 @@ class Request {
     $data = Request::get_data();
     foreach ($needed_fields as $field_name) {
       if (!isset($data[$field_name])) {
-	Errors::server_error("$field_name does not exist");
+	Errors::bad_request("$field_name does not exist");
       }
       if (strlen(trim($data[$field_name])) === 0) {
-	Errors::server_error("$field_name is of length 0 when trimmed");
+	Errors::bad_request("$field_name is of length 0 when trimmed");
       }
     }
     return (object)$data;

@@ -36,8 +36,6 @@ class InfoSettings extends Form<UserInfo>{
     formRender() {
         let globals: Globals = this.props.globals
         let info: UserInfo = globals.auth.userInfo
-
-
         return (
             <Block>
                 <Center><h3>Update your info</h3></Center>
@@ -124,18 +122,18 @@ class PasswordSettings extends Form<PasswordFields>{
                     <ContentBlock>
                         <Col2a>
                             <Label>Old Password
-			    <Input type='password' name='old_password' validations={[valid.required]} />
+				<Input type='password' name='old_password' validations={[valid.required]} />
                             </Label>
                         </Col2a>
                         <hr />
                         <Col2>
                             <Label>Password
-			    <Input type='password' name='password' validations={[valid.required, valid.password]} />
+				<Input type='password' name='password' validations={[valid.required, valid.password]} />
                             </Label>
                         </Col2>
                         <Col2>
                             <Label>Confirm
-			    <Input type='password' name='confirm' validations={[valid.required]} />
+				<Input type='password' name='confirm' validations={[valid.required]} />
                             </Label>
                         </Col2>
                         <Center><Button>Update Password</Button></Center>
@@ -150,10 +148,7 @@ class PasswordSettings extends Form<PasswordFields>{
 export default class Settings extends Component<GlobalProps> {
     render() {
         let globals: Globals = this.props.globals
-        if (!globals.auth.islogged()) {
-            globals.goHome()
-            return <div className="error">No Access</div>
-        }
+        if (globals.noAccess()) return globals.noAccessRet()
         return (
             <div style={{ width: "100%" }}>
                 <Center><h1>Change your user settings</h1></Center>

@@ -9,6 +9,7 @@ export class UserInfo {
     l_name: string
     username: string
     email: string
+    is_contact?: boolean
     constructor(f_name: string, l_name: string, username: string, email: string) {
         this.f_name = f_name
         this.l_name = l_name
@@ -16,82 +17,99 @@ export class UserInfo {
         this.email = email
     }
 }
-interface GetUserInfo {
-    itWorked: (data: UserInfo) => void
-    itFailed: (err: any) => void
-}
-
+interface GetUserInfo { itWorked: (data: UserInfo) => void, itFailed: (err: any) => void }
 
 
 export interface LoginInput extends GetUserInfo {
-    username: string
-    password: string
+    username: string, password: string
 }
 export interface UpdateInput extends GetUserInfo {
-    f_name: string
-    l_name: string
-    email: string
-    username: string
+    f_name: string, l_name: string, email: string, username: string
 }
 export interface CreateInput extends UpdateInput {
     password: string
 }
 
 export interface UpdatePasswordInput extends GetUserInfo {
-    password: string
-    old_password: string
+    password: string, old_password: string
+}
+/*
+  allows you to create generic paths for the api that map the way the api directory is laid out
+*/
+abstract class ApiBranch {
+    location: string
+    post(route: string, data: any, success?: (res: any) => any, failure?: (err: any) => any) {
+        if (success === undefined)
+            success = (res) => { console.log("success: " + this.location + "/" + route); console.log(res); }
+        if (failure === undefined)
+            failure = (err) => { console.error("failure: " + this.location + "/" + route); console.log(err); }
+
+        return axios.post(this.location + '/' + route, data).then(res => success(res.data)).catch(failure)
+    }
+    constructor(prefix: string, suffix: string) { this.location = prefix + '/' + suffix }
 }
 
 
-
-class Auth {
-    location: string
-    constructor(prefix: string) { this.location = prefix + '/auth' }
+class Auth extends ApiBranch {
+    constructor(p: string) { super(p, 'auth') }
 
     public login(vars: LoginInput) {
-        return axios.post(this.location + '/login.php', { username: vars.username, password: vars.password })
-            .then((res) => { vars.itWorked(res.data) })
-            .catch((err) => { vars.itFailed(err) })
+        return this.post(
+            'login.php',
+            {
+                username: vars.username,
+                password: vars.password
+            },
+            vars.itWorked,
+            vars.itFailed
+        )
     }
-    public logout() {
-        return axios.post(this.location + '/logout.php')
-            .then((res) => { console.log("logout success") })
-            .catch((err) => { console.error("logout failure") })
-    }
+
+    public logout() { return this.post('logout.php', {}) }
+
     public create(vars: CreateInput) {
-        return axios.post(this.location + '/create.php', {
-            f_name: vars.f_name,
-            l_name: vars.l_name,
-            username: vars.username,
-            password: vars.password,
-            email: vars.email
-        })
-            .then((res) => { vars.itWorked(res.data) })
-            .catch((err) => { vars.itFailed(err) })
+        return this.post(
+            'create.php',
+            {
+                f_name: vars.f_name,
+                l_name: vars.l_name,
+                username: vars.username,
+                password: vars.password,
+                email: vars.email
+            },
+            vars.itWorked,
+            vars.itFailed
+        )
     }
     public update(vars: UpdateInput) {
-        return axios.post(this.location + '/update.php', {
-            f_name: vars.f_name,
-            l_name: vars.l_name,
-            username: vars.username,
-            email: vars.email
-        })
-            .then((res) => { vars.itWorked(res.data) })
-            .catch((err) => { vars.itFailed(err) })
+        return this.post(
+            'update.php',
+            {
+                f_name: vars.f_name,
+                l_name: vars.l_name,
+                username: vars.username,
+                email: vars.email
+            },
+            vars.itWorked,
+            vars.itFailed
+        )
     }
     public updatePassword(vars: UpdatePasswordInput) {
-        return axios.post(this.location + '/update_password.php', {
-            password: vars.password,
-            old_password: vars.old_password
-        })
-            .then((res) => { vars.itWorked(res.data) })
-            .catch((err) => { vars.itFailed(err) })
+        return this.post(
+            'update_password.php',
+            {
+                password: vars.password,
+                old_password: vars.old_password
+            },
+            vars.itWorked,
+            vars.itFailed
+        )
     }
 
 }
 
 
-export interface SearchInput {
+export interface SearchInput extends ApiBranch {
     searchText: string
     itWorked: (res: any) => void
     itFailed: (res: any) => void
@@ -99,51 +117,70 @@ export interface SearchInput {
 
 
 
-class User {
-    location: string
-    constructor(prefix: string) { this.location = prefix + '/user' }
+class User extends ApiBranch {
+    constructor(p: string) { super(p, 'user') }
 
-    public text_list(searchText: string,
-        itWorked: (userNames: Array<string>) => void,
-        itFailed: (res: any) => void) {
-        return axios.post(this.location + '/text.php', {
-            searchText: searchText
-        }).then((res) => { itWorked(res.data); })
-            .catch(itFailed)
-
+    public text_list(searchText: string, itWorked: (userNames: Array<string>) => void, itFailed: (res: any) => void) {
+        return this.post(
+            'text.php',
+            {
+                searchText: searchText
+            },
+            itWorked,
+            itFailed
+        )
     }
-    public user_list(searchText: string,
-        itWorked: (userNames: Array<UserInfo>) => void,
-        itFailed: (res: any) => void) {
-        return axios.post(this.location + '/objects.php', {
-            searchText: searchText
-        }).then((res) => { itWorked(res.data); })
-            .catch(itFailed)
+    public user_list(searchText: string, itWorked: (userNames: Array<UserInfo>) => void, itFailed: (res: any) => void) {
+        return this.post(
+            'objects.php',
+            {
+                searchText: searchText
+            },
+            (users: Array<UserInfo>) => {
+                users.map((user: any) => {
+                    user.is_contact = user.is_contact === '1' ? true : false;
+                    return user
+                })
+                itWorked(users)
+            },
+            itFailed
+        )
     }
-
-
 }
 
-
-class Search {
-    location: string
+class Search extends ApiBranch {
     User: User
-    constructor(prefix: string) {
-        this.location = prefix + '/search'
+    constructor(p: string) {
+        super(p, 'search')
         this.User = new User(this.location)
     }
 }
 
-class Api {
+
+class Users extends ApiBranch {
+    constructor(p: string) { super(p, 'users') }
+    add_relationship(username: string, success: (any) => void) {
+        console.log("username: " + username);
+        return this.post('update_rel.php', { username: username, status: "1" }, success)
+    }
+    remove_relationship(username: string, success: (any) => void) {
+        return this.post('update_rel.php', { username: username, status: "0" }, success)
+    }
+}
+class Api extends ApiBranch {
     location: string = 'api'
 
     Auth: Auth
     Search: Search
+    Users: Users
     constructor() {
+        super('', 'api')
         this.Auth = new Auth(this.location)
         this.Search = new Search(this.location)
+        this.Users = new Users(this.location)
     }
 }
+
 
 
 const api = new Api();

@@ -61,26 +61,26 @@ export default class Create extends Form<CreateFields>{
                         <Col2>
                             <Label>
                                 Username
-				    <Input type="text" name="username" validations={[valid.required]} />
+				<Input type="text" name="username" validations={[valid.required]} />
                             </Label>
                         </Col2>
                         <Col2>
                             <Label>
                                 Email
-				    <Input type="text" name="email" validations={[valid.required, valid.email]} />
+				<Input type="text" name="email" validations={[valid.required, valid.email]} />
                             </Label>
                         </Col2>
                         <hr />
                         <Col2>
                             <Label>
                                 Password
-				    <Input type='password' name='password' validations={[valid.required, valid.password]} />
+				<Input type='password' name='password' validations={[valid.required, valid.password]} />
                             </Label>
                         </Col2>
                         <Col2>
                             <Label>
                                 Confirm
-				    <Input type='password' name='confirm' validations={[valid.required]} />
+				<Input type='password' name='confirm' validations={[valid.required]} />
                             </Label>
                         </Col2>
                     </ContentBlock>

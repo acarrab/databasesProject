@@ -9,6 +9,8 @@ import Users from './explore/Users'
 import Videos from './explore/Videos'
 import Following from './explore/Following'
 
+import Contacts from './library/Contacts'
+
 
 import Manage from './channel/Manage'
 import Upload from './channel/Upload'
@@ -39,6 +41,7 @@ class MyLinks {
     Settings: MyLink = linkOf('Settings', 'cogs')
     Login: MyLink = linkOf('Login', 'sign-in-alt')
     Create: MyLink = linkOf('Create', 'sign-in-alt')
+    Contacts: MyLink = linkOf('Contacts', 'users')
 }
 
 const ml = new MyLinks()
@@ -46,6 +49,7 @@ const ml = new MyLinks()
 export const loggedInLinks: Array<Category> = [
     { title: '', data: [ml.Home] },
     { title: "Explore", data: [ml.Videos, ml.Following, ml.Users, ml.History] },
+    { title: "Library", data: [ml.Contacts] },
     { title: "My Channel", data: [ml.Manage, ml.Upload] },
     { title: 'Account', data: [ml.Settings] }
 ]
@@ -71,6 +75,7 @@ export default class Routes extends Component<GlobalProps> {
                         <Route path={ml.Settings.path} render={(props) => (<Settings {...props} {...this.props} />)} />
                         <Route path={ml.Login.path} render={(props) => (<Login {...props} {...this.props} />)} />
                         <Route path={ml.Create.path} render={(props) => (<Create {...props} {...this.props} />)} />
+                        <Route path={ml.Contacts.path} render={(props) => (<Contacts {...props} {...this.props} />)} />
                     </Switch>
                 </div>
             </div>

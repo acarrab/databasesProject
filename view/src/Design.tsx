@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import Visibility from 'material-ui/svg-icons/action/visibility';
+import VisibilityOff from 'material-ui/svg-icons/action/visibility-off'
 
 function className(type, props) {
     if (props.className)
@@ -64,6 +69,15 @@ export class Col2 extends Component<any> {
     render() {
         return (
             <div {...this.props} className={className("col-12 col-md-6", this.props)}>
+                {this.props.children}
+            </div>
+        )
+    }
+}
+export class Col6 extends Component<any> {
+    render() {
+        return (
+            <div {...this.props} className={className("col-4 col-md-2", this.props)}>
                 {this.props.children}
             </div>
         )
@@ -148,6 +162,27 @@ export class VideoCard extends Component<VideoContentBlockProps> {
                     </Row>
                 </div>
             </Row>
+        )
+    }
+}
+
+
+interface SelectorProps { active: boolean, update: (state: boolean) => void }
+export class Selector extends Component<SelectorProps> {
+    update() {
+        this.props.update(!this.props.active)
+    }
+    constructor(props) {
+        super(props)
+        this.update = this.update.bind(this)
+    }
+
+    render() {
+        return (
+            <Checkbox
+                checked={this.props.active}
+                onCheck={this.update}
+            />
         )
     }
 }

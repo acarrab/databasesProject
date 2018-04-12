@@ -51,12 +51,12 @@ export default class Login extends Form<LoginFields> {
                     <ContentBlock>
                         <Col2>
                             <Label>Username
-			    <Input type="text" name="username" validations={[valid.required]} />
+				<Input type="text" name="username" validations={[valid.required]} />
                             </Label>
                         </Col2>
                         <Col2>
                             <Label>Password
-			    <Input type="password" name="password" validations={[valid.required]} />
+				<Input type="password" name="password" validations={[valid.required]} />
                             </Label>
                         </Col2>
                     </ContentBlock>

@@ -7,7 +7,7 @@ import { Globals, GlobalProps } from '../Control'
 
 import Input from 'react-validation/build/input'
 import Button from 'react-validation/build/button'
-import Textarea from 'react-validation/build/Textarea'
+import Textarea from 'react-validation/build/textarea'
 import { valid } from './Validators'
 
 export { valid }

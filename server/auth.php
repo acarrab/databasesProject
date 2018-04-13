@@ -116,7 +116,8 @@ class Auth {
       . "f_name='$user->f_name',"
       . "l_name='$user->l_name',"
       . "email='$user->email',"
-      . "username='$user->username' "
+      . "username='$user->username', "
+      . "channel='$user->channel' "
       . "WHERE uid='$u->uid'";
 
 

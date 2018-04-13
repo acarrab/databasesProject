@@ -104,7 +104,9 @@ class Auth extends ApiBranch {
                 f_name: vars.f_name,
                 l_name: vars.l_name,
                 username: vars.username,
-                email: vars.email
+                email: vars.email,
+                channel: vars.channel
+
             },
             vars.itWorked,
             vars.itFailed

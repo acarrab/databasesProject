@@ -17,6 +17,7 @@ class InfoSettings extends Form<UserInfo>{
             l_name: fields.l_name,
             username: fields.username,
             email: fields.email,
+            channel: fields.channel,
             itWorked: (data: UserInfo) => {
                 console.log(data)
                 if (!data.username) {
@@ -36,6 +37,7 @@ class InfoSettings extends Form<UserInfo>{
     formRender() {
         let globals: Globals = this.props.globals
         let info: UserInfo = globals.auth.userInfo
+
         return (
             <Block>
                 <Center><h3>Update your info</h3></Center>
@@ -64,6 +66,11 @@ class InfoSettings extends Form<UserInfo>{
 				<Input type="text" name="email" validations={[valid.required, valid.email]} value={info.email} />
                             </Label>
                         </Col2>
+                        <Col2a>
+                            <Label>Channel Name
+				<Input type="text" name="channel" validations={[valid.required]} value={info.channel} />
+                            </Label>
+                        </Col2a>
                     </ContentBlock>
                 </Content>
                 <Center>

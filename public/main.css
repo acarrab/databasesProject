@@ -6166,6 +6166,18 @@ button:hover {
   padding-top: 2em;
   padding-bottom: 2em; }
 
+.my-btn {
+  border-color: white;
+  margin: 1em; }
+
+.my-btn:hover {
+  border-color: orange;
+  color: orange; }
+
+.my-btn:active {
+  border-color: red;
+  color: red; }
+
 .main-bar {
   position: fixed;
   top: 0;

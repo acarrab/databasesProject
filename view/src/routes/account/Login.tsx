@@ -32,7 +32,7 @@ export default class Login extends Form<LoginFields> {
                     globals.goHome()
                 } else {
                     this.setError("Connection Timed Out")
-                    console.error("This should not happen : Login.tsx");
+                    console.error("This should not happen : Login.tsx")
                 }
             },
             itFailed: (err) => {

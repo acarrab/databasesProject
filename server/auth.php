@@ -18,7 +18,8 @@ class Auth {
 
   private static function put_user(&$user) {
     $pub_user = new PublicUser($user);
-    Request::put_data($pub_user);
+    Request::put_data($user);
+
   }
 
   private static function validate_pass($username, $password) {
@@ -30,7 +31,7 @@ class Auth {
     $user = $login->fetch_object();
 
     if ($user && password_verify($password, $user->password)) {
-      return new User($user->uid, $user->f_name, $user->l_name, $user->username, $user->email);
+      return new User($user->uid, $user->f_name, $user->l_name, $user->username, $user->email, $user->channel);
     }
 
     Errors::unauthorized();
@@ -52,11 +53,12 @@ class Auth {
     // We must add a check to see if it actually exists
 
     $hashpass = &self::hash($user->password);
-    $sql = "INSERT INTO user (f_name, l_name, email, username, password) VALUES ".
+    $sql = "INSERT INTO user (f_name, l_name, email, username, channel, password) VALUES ".
       "('$user->f_name'".
       ",'$user->l_name'".
       ",'$user->email'".
       ",'$user->username'".
+      ",'$user->channel'".
       ",'$hashpass')";
     $db = &Database::get_instance();
     $db->exec_query($sql);

@@ -9,12 +9,14 @@ export class UserInfo {
     l_name: string
     username: string
     email: string
+    channel: string
     is_contact?: boolean
-    constructor(f_name: string, l_name: string, username: string, email: string) {
+    constructor(f_name: string, l_name: string, username: string, email: string, channel: string) {
         this.f_name = f_name
         this.l_name = l_name
         this.username = username
         this.email = email
+        this.channel = channel
     }
 }
 interface WorkFail { itWorked: (data: any) => void, itFailed: (err: any) => void }
@@ -27,7 +29,7 @@ export interface LoginInput extends GetUserInfo {
     username: string, password: string
 }
 export interface UpdateInput extends GetUserInfo {
-    f_name: string, l_name: string, email: string, username: string
+    f_name: string, l_name: string, email: string, username: string, channel: string
 }
 export interface CreateInput extends UpdateInput {
     password: string
@@ -88,6 +90,7 @@ class Auth extends ApiBranch {
                 l_name: vars.l_name,
                 username: vars.username,
                 password: vars.password,
+                channel: vars.channel,
                 email: vars.email
             },
             vars.itWorked,

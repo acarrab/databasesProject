@@ -4,7 +4,7 @@ require_once($server."/auth.php");
 
 if ( Request::is_post() ) {
 
-  $user = &Request::validate_and_get_data(array("username", "password", "email", "f_name", "l_name"));
+  $user = &Request::validate_and_get_data(array("username", "password", "email", "f_name", "l_name", "channel"));
   Auth::create_account($user);
   exit("Account creation successful.");
 

@@ -7,7 +7,7 @@ import Api, { UserInfo, CreateInput } from '../../tools/Api'
 
 import Form, { Input, Button, valid } from '../../forms/Form'
 
-import { Row, Col2, Block, Content, ContentBlock, Label, Center } from '../../Design'
+import { Row, Col2, Col2a, Block, Content, ContentBlock, Label, Center } from '../../Design'
 
 interface CreateFields extends UserInfo {
     password: string
@@ -22,6 +22,7 @@ export default class Create extends Form<CreateFields>{
             f_name: fields.f_name,
             l_name: fields.l_name,
             username: fields.username,
+            channel: fields.channel,
             email: fields.email,
             password: fields.password,
             itWorked: (data: UserInfo) => {
@@ -70,6 +71,13 @@ export default class Create extends Form<CreateFields>{
 				<Input type="text" name="email" validations={[valid.required, valid.email]} />
                             </Label>
                         </Col2>
+                        <hr />
+                        <Col2a>
+                            <Label>
+                                Channel Name
+				<Input type="text" name="channel" validations={[valid.required]} />
+                            </Label>
+                        </Col2a>
                         <hr />
                         <Col2>
                             <Label>

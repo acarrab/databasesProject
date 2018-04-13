@@ -174,6 +174,23 @@ class Search extends ApiBranch {
     }
 }
 
+export interface UploadVideoFields {
+    title: string
+    description: string
+    keywords: string
+    category: string
+    video_data: string
+    extension: string
+}
+
+
+class Videos extends ApiBranch {
+    constructor(p: string) { super(p, 'videos') }
+    upload(vars: UploadVideoFields, success: (any) => void) {
+        return this.post("upload.php", vars, success)
+    }
+}
+
 
 class Users extends ApiBranch {
     constructor(p: string) { super(p, 'users') }
@@ -194,11 +211,13 @@ class Api extends ApiBranch {
     Auth: Auth
     Search: Search
     Users: Users
+    Videos: Videos
     constructor() {
         super('', 'api')
         this.Auth = new Auth(this.location)
         this.Search = new Search(this.location)
         this.Users = new Users(this.location)
+        this.Videos = new Videos(this.location)
     }
 }
 

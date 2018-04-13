@@ -31,7 +31,7 @@ class UserResult extends Component<UserResultProps> {
                     <Row><p className="username">@{user.username}</p></Row>
                 </Col2>
                 <Col2 style={{ textAlign: "right" }}>
-                    <button onClick={() => this.props.contactUpdate(false, user.username)}>Remove as Contact</button>
+                    <button className="my-btn" onClick={() => this.props.contactUpdate(false, user.username)}>Remove as Contact</button>
                 </Col2>
             </ContentBlock >
         )
@@ -88,7 +88,6 @@ class ContactDisplay extends Component<GlobalProps> {
                         </Content>
                     </Block>
                 }
-
             </div>
         );
     }

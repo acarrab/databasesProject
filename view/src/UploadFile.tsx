@@ -46,7 +46,6 @@ export default class Upload extends Component<UploadProps> {
         const state: UploadState = this.state
         const props: UploadProps = this.props
 
-        console.log("img url: " + state.imagePreviewUrl)
         return (
             <div className="upload-file" >
                 <div style={{ paddingBottom: ".5em" }}>{props.message}</div>

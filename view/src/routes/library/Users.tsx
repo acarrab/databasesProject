@@ -117,8 +117,15 @@ class UsersSearch extends Component<GlobalProps> {
                     <Contacts globals={globals} />
                     :
                     <Block>
-                        <Center><h1>Search Results</h1></Center>
-                        <button onClick={() => { this.setState({ users: [] }) }}>Clear Results</button>
+                        <Row>
+                            <div className=".d-none .d-md-block col-3"></div>
+                            <div className="col-md-6 col-12">
+                                <Center><h1>Search Results</h1></Center>
+                            </div>
+                            <div className="col-md-3  col-12" style={{ textAlign: "right" }}>
+                                <button className="my-btn" onClick={() => { this.setState({ users: [] }) }}>Close Results</button>
+                            </div>
+                        </Row>
                         <Content>
                             {state.users.map((user: UserInfo) => (
                                 <UserResult key={user.username} user={user} contactUpdate={this.contact} />

@@ -5,7 +5,7 @@ module.exports = {
     context: projectRootPath,
     entry: './src/App.tsx',
     output: {
-        path: path.resolve('../public'),
+        path: path.resolve('./public'),
         publicPath: 'resources',
         filename: 'bundle.js'
     },
@@ -13,8 +13,8 @@ module.exports = {
     resolve: {
 	extensions: ['*', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx'],
 	modules: [
-	    path.resolve('./src'),
-	    path.resolve('../node_modules')
+	    path.resolve('./view/src'),
+	    path.resolve('./node_modules')
 	]
     },
     module: {

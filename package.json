@@ -6,8 +6,8 @@
   "scripts": {
     "build-scss": "node-sass view/scss -o public",
     "watch-scss": "npm run build-scss; while true; do node-sass --watch view/scss -o public; sleep 1; done",
-    "build-web": "cd view; webpack;",
-    "watch-web": "cd view; webpack --watch;",
+    "build-web": "webpack --config='view/webpack.config.js'",
+    "watch-web": "webpack --watch --config='view/webpack.config.js'",
     "test-server": "php -S 'localhost:8000'",
     "build": "npm run build-scss; npm run build-web",
     "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-scss' 'npm run watch-web'"

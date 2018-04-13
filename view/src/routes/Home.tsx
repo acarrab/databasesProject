@@ -59,8 +59,8 @@ export default class Home extends Component<GlobalProps> {
                             <h2>Following</h2>
                             <img src="public/images/following.png" />
                         </MainLink>
-                        <MainLink to="/users">
-                            <h2>Users</h2>
+                        <MainLink to="/contacts">
+                            <h2>Contacts</h2>
                             <img src="public/images/users.png" />
                         </MainLink>
                         <MainLink to="/manage">

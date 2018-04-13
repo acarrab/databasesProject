@@ -8,6 +8,8 @@ import SearchBar from '../../tools/SearchBar'
 import Api, { UserInfo } from '../../tools/Api'
 import { Row, Col2, Col6, Col2a, Block, Content, ContentBlock, Label, Center, Selector } from '../../Design'
 
+import Contacts from './Contacts'
+
 
 interface UserResultProps {
     user: UserInfo
@@ -88,7 +90,6 @@ class UsersSearch extends Component<GlobalProps> {
         }
     }
     contact(is_contact: boolean, username: string) {
-        console.log("we want to change")
         if (is_contact)
             Api.Users.add_relationship(username, () => (this.runSearch(this.lastSubmitted)))
         else
@@ -111,10 +112,13 @@ class UsersSearch extends Component<GlobalProps> {
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
                 ></SearchBar>
-                <h1>Search For Users</h1>
-                {!state.users.length ? <div></div> :
+                <h1>Contacts and Search</h1>
+                {!state.users.length ?
+                    <Contacts globals={globals} />
+                    :
                     <Block>
-                        <Center><h1>Results</h1></Center>
+                        <Center><h1>Search Results</h1></Center>
+                        <button onClick={() => { this.setState({ users: [] }) }}>Clear Results</button>
                         <Content>
                             {state.users.map((user: UserInfo) => (
                                 <UserResult key={user.username} user={user} contactUpdate={this.contact} />

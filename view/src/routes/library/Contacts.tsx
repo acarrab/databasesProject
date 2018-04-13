@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import { Globals, GlobalProps } from '../../Control'
-
+import Users from './Users'
 
 
 import SearchBar from '../../tools/SearchBar'
@@ -30,9 +30,8 @@ class UserResult extends Component<UserResultProps> {
                     <Row><h4>{user.f_name + " " + user.l_name}</h4></Row>
                     <Row><p className="username">@{user.username}</p></Row>
                 </Col2>
-                <Col2 style={{ textAlign: "left" }}>
-                    In contact list:
-                    <Selector active={this.props.user.is_contact} update={this.updateContact} />
+                <Col2 style={{ textAlign: "right" }}>
+                    <button onClick={() => this.props.contactUpdate(false, user.username)}>Remove as Contact</button>
                 </Col2>
             </ContentBlock >
         )
@@ -44,77 +43,44 @@ interface UsersState {
     suggestions: Array<{ text: string }>
     users: Array<UserInfo>
 }
-class UsersSearch extends Component<GlobalProps> {
+class ContactDisplay extends Component<GlobalProps> {
     state: UsersState
-    onChange(text: string) {
-        this.setState({ value: text })
-        if (text.trim().length) {
-            Api.Search.User.text_list(
-                text,
-                (usernames: Array<string>) => { this.setState({ suggestions: usernames.map(name => ({ text: name })) }) },
-                (err) => { console.error(err) }
-            )
-        } else {
-            this.setState({ value: text, suggestions: [] })
-        }
-    }
-    lastSubmitted: string
-    runSearch(text: string) {
-        Api.Search.User.user_list(
-            text,
-            (users: Array<UserInfo>) => { this.setState({ users: users }) },
-            (err) => { console.error(err) }
+    getContacts() {
+        Api.Users.get_contacts(
+            (users: Array<UserInfo>) => { console.log(users); this.setState({ users: users }) }
         )
-    }
-
-    onSubmit(text: string) {
-        if (!text.trim().length) {
-            text = "%"
-        }
-        this.lastSubmitted = text;
-        this.runSearch(text);
     }
     constructor(props) {
         super(props)
-        this.lastSubmitted = ""
-        this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-        this.runSearch = this.runSearch.bind(this)
+        this.getContacts = this.getContacts.bind(this)
         this.contact = this.contact.bind(this)
         this.state = {
             value: "",
             suggestions: [],
             users: [],
         }
+        let globals: Globals = this.props.globals
+        if (!globals.noAccess()) this.getContacts()
+
     }
     contact(is_contact: boolean, username: string) {
-        console.log("we want to change")
         if (is_contact)
-            Api.Users.add_relationship(username, () => (this.runSearch(this.lastSubmitted)))
+            Api.Users.add_relationship(username, () => (this.getContacts()))
         else
-            Api.Users.remove_relationship(username, () => (this.runSearch(this.lastSubmitted)))
+            Api.Users.remove_relationship(username, () => (this.getContacts()))
     }
 
 
     public render() {
         let globals: Globals = this.props.globals
         const state: UsersState = this.state
-
         if (globals.noAccess()) return globals.noAccessRet()
 
         return (
             <div style={{ width: "100%" }}>
-                <SearchBar
-                    suggestions={state.suggestions}
-                    value={state.value}
-                    placeholderText="Search for Users"
-                    onChange={this.onChange}
-                    onSubmit={this.onSubmit}
-                ></SearchBar>
-                <h1>Search For Users</h1>
                 {!state.users.length ? <div></div> :
                     <Block>
-                        <Center><h1>Results</h1></Center>
+                        <Center><h1>Contacts</h1></Center>
                         <Content>
                             {state.users.map((user: UserInfo) => (
                                 <UserResult key={user.username} user={user} contactUpdate={this.contact} />
@@ -129,13 +95,13 @@ class UsersSearch extends Component<GlobalProps> {
 
 }
 
-export default class Users extends Component<GlobalProps>{
 
+export default class Contacts extends Component<GlobalProps>{
     render() {
         let globals: Globals = this.props.globals
         if (globals.noAccess()) return globals.noAccessRet()
         return (
-            <UsersSearch globals={globals} />
+            <ContactDisplay globals={globals} />
         )
     }
 }

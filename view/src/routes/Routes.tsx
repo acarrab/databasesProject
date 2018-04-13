@@ -5,11 +5,11 @@ import { Globals, GlobalProps } from '../Control'
 import Home from './Home'
 
 import History from './explore/History'
-import Users from './explore/Users'
+// import Users from './explore/Users'
 import Videos from './explore/Videos'
 import Following from './explore/Following'
 
-import Contacts from './library/Contacts'
+import Contacts from './library/Users'
 
 
 import Manage from './channel/Manage'
@@ -34,7 +34,7 @@ class MyLinks {
     Home: MyLink = { title: 'Home', path: '/', to: '/', icon: 'fas fa-home' }
     Videos: MyLink = linkOf('Videos', 'desktop')
     Following: MyLink = linkOf('Following', 'eye')
-    Users: MyLink = linkOf('Users', 'users')
+    //    Users: MyLink = linkOf('Users', 'users')
     History: MyLink = linkOf('History', 'history')
     Manage: MyLink = linkOf('Manage', 'bullhorn')
     Upload: MyLink = linkOf('Upload', 'upload')
@@ -48,7 +48,7 @@ const ml = new MyLinks()
 
 export const loggedInLinks: Array<Category> = [
     { title: '', data: [ml.Home] },
-    { title: "Explore", data: [ml.Videos, ml.Following, ml.Users, ml.History] },
+    { title: "Explore", data: [ml.Videos, ml.Following, ml.History] },
     { title: "Library", data: [ml.Contacts] },
     { title: "My Channel", data: [ml.Manage, ml.Upload] },
     { title: 'Account', data: [ml.Settings] }
@@ -58,6 +58,7 @@ export const loggedOutLinks: Array<Category> = [
     { title: '', data: [ml.Login, ml.Create] }
 ]
 
+//                        <Route path={ml.Users.path} render={(props) => (<Users {...props} {...this.props} />)} />
 
 export default class Routes extends Component<GlobalProps> {
     public render() {
@@ -68,7 +69,6 @@ export default class Routes extends Component<GlobalProps> {
                         <Route exact path={ml.Home.path} render={(props) => (<Home {...props} {...this.props} />)} />
                         <Route path={ml.Videos.path} render={(props) => (<Videos {...props} {...this.props} />)} />
                         <Route path={ml.Following.path} render={(props) => (<Following {...props} {...this.props} />)} />
-                        <Route path={ml.Users.path} render={(props) => (<Users {...props} {...this.props} />)} />
                         <Route path={ml.History.path} render={(props) => (<History {...props} {...this.props} />)} />
                         <Route path={ml.Manage.path} render={(props) => (<Manage {...props} {...this.props} />)} />
                         <Route path={ml.Upload.path} render={(props) => (<Upload {...props} {...this.props} />)} />

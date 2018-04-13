@@ -17,8 +17,11 @@ export class UserInfo {
         this.email = email
     }
 }
+interface WorkFail { itWorked: (data: any) => void, itFailed: (err: any) => void }
 interface GetUserInfo { itWorked: (data: UserInfo) => void, itFailed: (err: any) => void }
 
+function Debug(res) { console.log(res); }
+function DebugErr(err) { console.error(err); }
 
 export interface LoginInput extends GetUserInfo {
     username: string, password: string
@@ -40,22 +43,32 @@ abstract class ApiBranch {
     location: string
     post(route: string, data: any, success?: (res: any) => any, failure?: (err: any) => any) {
         if (success === undefined)
-            success = (res) => { console.log("success: " + this.location + "/" + route); console.log(res); }
+            success = (res) => { console.log("POST success: " + this.location + "/" + route); console.log(res); }
         if (failure === undefined)
-            failure = (err) => { console.error("failure: " + this.location + "/" + route); console.log(err); }
+            failure = (err) => { console.error("POST failure: " + this.location + "/" + route); console.log(err); }
+
 
         return axios.post(this.location + '/' + route, data).then(res => success(res.data)).catch(failure)
     }
+    get(route: string, success?: (res: any) => any, failure?: (err: any) => any) {
+        if (success === undefined)
+            success = (res) => { console.log("GET success: " + this.location + "/" + route); console.log(res); }
+        if (failure === undefined)
+            failure = (err) => { console.error("GET failure: " + this.location + "/" + route); console.log(err); }
+
+        return axios.get(this.location + '/' + route).then(res => success(res.data)).catch(failure)
+    }
+
     constructor(prefix: string, suffix: string) { this.location = prefix + '/' + suffix }
 }
 
 
 class Auth extends ApiBranch {
-    constructor(p: string) { super(p, 'auth') }
+    constructor(p: string) { super(p, 'auth') } //'api/auth'
 
     public login(vars: LoginInput) {
         return this.post(
-            'login.php',
+            'login.php', //api/auth/login.php
             {
                 username: vars.username,
                 password: vars.password
@@ -165,6 +178,9 @@ class Users extends ApiBranch {
     }
     remove_relationship(username: string, success: (any) => void) {
         return this.post('update_rel.php', { username: username, status: "0" }, success)
+    }
+    get_contacts(itWorked: (contacts: Array<UserInfo>) => void, itFailed?: (any) => void) {
+        return this.get('contacts_list.php', itWorked, itFailed)
     }
 }
 class Api extends ApiBranch {

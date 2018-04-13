@@ -38,6 +38,15 @@ class Database {
     }
     return $res;
   }
+  public function exec_query_get_rows($sql) {
+    $result = &$this->exec_query($sql);
+    $rows=array();
+    while ($row = $result->fetch_object()) {
+      $rows[] = $row;
+    }
+    $result->close();
+    return $rows;
+  }
 }
 
 ?>

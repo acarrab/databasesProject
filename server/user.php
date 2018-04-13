@@ -38,6 +38,8 @@ class PublicUser {
   }
 }
 
+function make_public($user) { return new PublicUser($user); }
+
 
 class UserInterface {
 
@@ -46,7 +48,6 @@ class UserInterface {
     $db = &Database::get_instance();
 
     $results = &$db->exec_query("SELECT uid FROM user WHERE username='$username'");
-    if (!$results) { Errors::bad_request(); }
     $row = $results->fetch_object();
     if (!$row) { Errors::bad_request(); }
     $results->close();
@@ -56,7 +57,6 @@ class UserInterface {
 
 
     $results = &$db->exec_query("SELECT * FROM contact WHERE user_a='$uid_a' AND user_b='$uid_b'");
-    if (!$results) { Errors::server_error(); }
     $row = $results->fetch_object();
     $results->close();
 
@@ -129,15 +129,31 @@ class UserInterface {
     }
     $sql .=" ORDER BY user.username LIMIT 50";
 
-    $possibleUsers = array();
-    if ($results = &$db->exec_query($sql)) {
-      while ($user = $results->fetch_object()) {
-	$possibleUsers[] = new PublicUser($user);
-      }
-      $results->close();
-    }
+    $possibleUsers = &$db->exec_query_get_rows($sql);
+
+    $objects = array_map("make_public", $possibleUsers);
     return $possibleUsers;
   }
+
+  public static function get_contacts() {
+    $s = &State::get_instance();
+    $db = &Database::get_instance();
+    $uid = $s->user->uid;
+    $sql="SELECT".
+      " user.uid,".
+      " user.f_name,".
+      " user.l_name,".
+      " user.username,".
+      " user.email".
+      " FROM user JOIN".
+      " (SELECT * FROM user JOIN contact on user.uid = contact.user_a WHERE uid='$uid' ) as edges ".
+      "ON user.uid = edges.user_b ";
+
+    $users = $db->exec_query_get_rows($sql);
+    $objects = array_map("make_public", $users);
+    Request::put_data($objects);
+  }
+
 }
 
 ?>

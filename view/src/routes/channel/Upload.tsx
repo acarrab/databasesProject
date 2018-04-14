@@ -12,7 +12,6 @@ import Api, { UploadVideoFields } from '../../tools/Api'
 
 import { Row, Col2, Col2a, Block, Content, ContentBlock, Label, Center, VideoCard } from '../../Design'
 
-
 const categories = [
     "Select a category",
     "funny",
@@ -54,7 +53,7 @@ class CardForm extends Form<UploadFields> {
                         validations={[valid.required, valid.under255]} />
                 </Label>
 
-                <Center><Button>Update MetaData</Button></Center>
+                <Center><Button>Upload Video</Button></Center>
             </Row>
         )
     }
@@ -62,12 +61,13 @@ class CardForm extends Form<UploadFields> {
 
 
 interface UploadState extends UploadFields {
-    videoUrl: string
+    videoBlob: string
     error: boolean
     value: number
     category: string
     categoryError: boolean
     extension: string
+    file: any
 }
 export default class Upload extends Component<GlobalProps> {
     state: UploadState
@@ -76,7 +76,7 @@ export default class Upload extends Component<GlobalProps> {
         const extRegex = /\.([0-9a-z]+)(?:[\?#]|$)/i;
         const ext = file.name.match(extRegex)[1];
         console.log(ext)
-        this.setState({ videoUrl: fileUrl, extension: ext })
+        this.setState({ videoBlob: fileUrl, extension: ext, file: file })
     }
 
     handleCategoryChange(event, index, value) {
@@ -89,25 +89,24 @@ export default class Upload extends Component<GlobalProps> {
         this.submit = this.submit.bind(this)
         this.state = {
             error: false,
-            videoUrl: "",
+            videoBlob: "",
             extension: "",
             title: "",
             description: "",
             keywords: "",
             value: 0,
             category: "",
-            categoryError: false
-
+            categoryError: false,
+            file: null
         }
     }
 
-    submit(e) {
-        e.preventDefault()
+    submit(values: UploadFields) {
 
-        if (!this.state.videoUrl.length && !this.state.value) {
+        if (!this.state.videoBlob.length && !this.state.value) {
             this.setState({ error: true, categoryError: true })
 
-        } else if (!this.state.videoUrl.length) {
+        } else if (!this.state.videoBlob.length) {
             this.setState({ error: true, categoryError: false })
 
         } else if (!this.state.value) {
@@ -115,23 +114,21 @@ export default class Upload extends Component<GlobalProps> {
 
         } else {
             const s = this.state
-            let data: UploadVideoFields = {
-                title: s.title,
-                description: s.description,
-                keywords: s.keywords,
-                category: s.category,
-                video_data: s.videoUrl,
-                extension: s.extension
-            }
+
+            let data = new FormData()
+            data.append('title', values.title)
+            data.append('description', values.description)
+            data.append('keywords', values.keywords)
+            data.append('category', s.category)
+            data.append('extension', s.extension)
+            data.append('file', s.file);
+
 
             Api.Videos.upload(data, (res) => {
-                console.log(res);
+                console.log(res)
                 this.props.globals.previousMessage = "Upload Successful!"
                 this.props.globals.changeRoute('/manage')
             })
-
-
-
         }
     }
     render() {
@@ -143,7 +140,7 @@ export default class Upload extends Component<GlobalProps> {
                 <Block className="upload">
                     <Center><h4 style={{ margin: "1em" }}>Upload your video</h4></Center>
                     <Content>
-                        {!this.state.error || this.state.videoUrl.length ? (<div></div>) :
+                        {!this.state.error || this.state.videoBlob.length ? (<div></div>) :
                             <Center><h4 className="error">Please upload the video</h4></Center>}
                         <ContentBlock style={{ minHeight: "8em" }}>
                             <VideoUpload onChange={this.onVideoChange} />
@@ -152,44 +149,23 @@ export default class Upload extends Component<GlobalProps> {
                     <Center><h4 style={{ margin: "1em" }}>Create your video card</h4></Center>
                     <Content>
                         <ContentBlock style={{ minHeight: "8em" }}>
+                            {this.state.categoryError ? <Row className="error">Category is a required field</Row> : <div></div>}
+                            <Center><SelectField
+                                floatingLabelText="Category"
+                                value={this.state.value}
+                                onChange={this.handleCategoryChange}
+                            >
+                                {categories.map((text, id) => (
+                                    <MenuItem key={id} value={id} primaryText={text} />
+                                ))}
+                            </SelectField></Center>
                             <Row>
                                 <div className="col-12 col-lg-8">
-                                    <CardForm globals={this.props.globals} onSubmit={(values: UploadFields) => {
-                                        this.setState({
-                                            title: values.title,
-                                            description: values.description,
-                                            keywords: values.keywords
-                                        })
-                                    }} />
+                                    <CardForm globals={this.props.globals} onSubmit={this.submit} />
                                 </div>
-                                {this.state.categoryError ? <Row className="error">Category is a required field</Row> : <div></div>}
-                                <SelectField
-                                    floatingLabelText="Category"
-                                    value={this.state.value}
-                                    onChange={this.handleCategoryChange}
-                                >
-
-                                    {categories.map((text, id) => (
-                                        <MenuItem key={id} value={id} primaryText={text} />
-                                    ))}
-
-                                </SelectField>
-
                             </Row>
                         </ContentBlock>
-
-                        <ContentBlock>
-                            <VideoCard
-                                imgSrc={""}
-                                title={this.state.title}
-                                author={globals.auth.userInfo.f_name + " " + globals.auth.userInfo.l_name}
-                                username={globals.auth.userInfo.username}
-                                description={this.state.description}
-                            >
-                            </VideoCard>
-                        </ContentBlock>
                     </Content>
-                    <Center><button onClick={this.submit}>Upload Video</button></Center>
                 </Block>
             </Row>
         );

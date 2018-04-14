@@ -34,7 +34,7 @@ class Database {
     $res = $this->conn->query($sql);
     if ( !$res ) {
       header("HTTP/1.1 500 Internal Server Error");
-      exit($this->conn->error . "\n");
+      exit($this->conn->error . "\n\n" . "SQL: $sql");
     }
     return $res;
   }

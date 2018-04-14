@@ -5,6 +5,7 @@ ini_set('display_errors', '0');
 /*****************************************************************************/
 
 $server = dirname(__FILE__)."/../server";
+$vendor = dirname(__FILE__)."/../vendor";
 $api = dirname(__FILE__);
 
 require_once($server."/connect.php");

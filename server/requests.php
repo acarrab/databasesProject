@@ -38,6 +38,18 @@ class Request {
     return (object)$data;
   }
 
+  public static function validate_and_get_post($needed_fields) {
+    $data = $_POST;
+    foreach ($needed_fields as $field_name) {
+      if (!isset($data[$field_name])) {
+	Errors::bad_request("$field_name does not exist");
+      }
+      if (strlen(trim($data[$field_name])) === 0) {
+	Errors::bad_request("$field_name is of length 0 when trimmed");
+      }
+    }
+    return (object)$data;
+  }
 
 
   public static function get_json() { return file_get_contents("php://input"); }

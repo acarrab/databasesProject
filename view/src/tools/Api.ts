@@ -186,7 +186,7 @@ export interface UploadVideoFields {
 
 class Videos extends ApiBranch {
     constructor(p: string) { super(p, 'videos') }
-    upload(vars: UploadVideoFields, success: (any) => void) {
+    upload(vars: FormData, success: (any) => void) {
         return this.post("upload.php", vars, success)
     }
 }

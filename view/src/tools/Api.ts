@@ -189,6 +189,9 @@ class Videos extends ApiBranch {
     upload(vars: FormData, success: (any) => void) {
         return this.post("upload.php", vars, success)
     }
+    get_my_videos(success) {
+        return this.get("get_my_videos.php", success)
+    }
 }
 
 

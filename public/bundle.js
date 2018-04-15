@@ -2887,6 +2887,9 @@ var Videos = /** @class */ (function (_super) {
     Videos.prototype.upload = function (vars, success) {
         return this.post("upload.php", vars, success);
     };
+    Videos.prototype.get_my_videos = function (success) {
+        return this.get("get_my_videos.php", success);
+    };
     return Videos;
 }(ApiBranch));
 var Users = /** @class */ (function (_super) {
@@ -41080,7 +41083,8 @@ var Contacts = /** @class */ (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tools_Auth__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Design__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tools_Api__ = __webpack_require__(32);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -41093,21 +41097,72 @@ var __extends = (this && this.__extends) || (function () {
 })();
 
 
-var Manage = /** @class */ (function (_super) {
-    __extends(Manage, _super);
-    function Manage() {
+
+var VideoDisplay = /** @class */ (function (_super) {
+    __extends(VideoDisplay, _super);
+    function VideoDisplay() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    VideoDisplay.prototype.render = function () {
+        var p = this.props;
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["h" /* Row */], { style: { minHeight: "10em" } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-3 offset-md-0 col-8 offset-2 ", style: { padding: "1rem" } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", { src: p.info.image_path, width: "192", height: "108", style: { width: "100%" } })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-9 col-12" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["h" /* Row */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-8 col-12", style: { fontSize: "1.2rem", textAlign: "left" } }, p.info.title),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-md-4 col-12", style: { textAlign: "right" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", null, p.info.category))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("hr", null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["h" /* Row */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12", style: { textAlign: "left" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h5", null,
+                            p.name,
+                            " ",
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { className: "username" },
+                                "@",
+                                p.username))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "col-12", style: { textAlign: "left" } },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, p.info.description))))));
+    };
+    return VideoDisplay;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+var Manage = /** @class */ (function (_super) {
+    __extends(Manage, _super);
+    function Manage(props) {
+        var _this = _super.call(this, props) || this;
+        _this.get_my_videos = _this.get_my_videos.bind(_this);
+        _this.state = {
+            videos: []
+        };
+        _this.get_my_videos();
+        return _this;
+    }
+    Manage.prototype.get_my_videos = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_2__tools_Api__["a" /* default */].Videos.get_my_videos(function (videos) {
+            _this.setState({ videos: videos });
+        });
+    };
     Manage.prototype.render = function () {
         var globals = this.props.globals;
         if (globals.previousMessage) {
             this.previousMessage = globals.previousMessage;
             globals.previousMessage = "";
         }
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__tools_Auth__["b" /* default */], { globals: this.props.globals },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "container" },
-                this.previousMessage ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "success" }, this.previousMessage) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Channel Management!"))));
+        if (globals.noAccess()) {
+            return globals.noAccessRet();
+        }
+        var user = globals.auth.userInfo;
+        var s = this.state;
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["h" /* Row */], null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["b" /* Center */], null, this.previousMessage ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h4", { className: "success" }, this.previousMessage) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null)),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["b" /* Center */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Channel Management!")),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["a" /* Block */], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, "Videos"),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["e" /* Content */], null, s.videos.map(function (video) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Design__["f" /* ContentBlock */], null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(VideoDisplay, { info: video, username: user.username, name: user.f_name + " " + user.l_name }))); })))));
     };
     return Manage;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));

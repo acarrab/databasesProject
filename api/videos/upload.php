@@ -32,6 +32,11 @@ if ( Request::is_post() ) {
   if (!file_exists($image_exact)) { mkdir($image_exact, 0755); }
 
 
+
+  Request::put_data($_FILES["file"]);
+
+
+
   $s = &State::get_instance();
   $db = &Database::get_instance();
 
@@ -45,6 +50,7 @@ if ( Request::is_post() ) {
     "(NULL, '$uid', '$video->title', '$video->description', NOW(), ".
     "'$video_serve', '$image_serve', NOW(), '$video->category')";
 
+  $response = new stdClass();
 
   $res = &$db->conn->query($sql); // this validates result already
   $vid = "".$db->conn->insert_id; // for some reason "". makes vid exist...
@@ -58,23 +64,14 @@ if ( Request::is_post() ) {
   $video_file_exact = $video_exact . '/' . $video_name;
   $image_file_exact = $image_exact . '/' . $image_name;
 
+
+
+
   /* update the video paths **************************************************/
   $db->exec_query("UPDATE video SET ".
 		  "video_path='$video_file_serve', ".
 		  "image_path='$image_file_serve' ".
 		  "WHERE vid='$vid'");
-
-
-  /* write the video file ****************************************************/
-  move_uploaded_file($_FILES["file"]["tmp_name"], $video_file_exact);
-
-  /* add in the thumbnail ****************************************************/
-  $ffmpeg = FFMpeg\FFMpeg::create();
-  $video_xformer = $ffmpeg->open($video_file_exact);
-  $video_xformer
-    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(.5))
-    ->save($image_file_exact);
-
 
 
   /* add the keywords ********************************************************/
@@ -87,7 +84,41 @@ if ( Request::is_post() ) {
     $db->exec_query($sql);
   }
 
-  exit("successful");
+
+  /* write the video file ****************************************************/
+
+  try {
+    move_uploaded_file($_FILES["file"]["tmp_name"], $video_file_exact);
+    chmod($video_file_exact, 0755);
+
+  }
+  catch (Exception $e){
+    $response->error = $e;
+    $response->message = "Failed to upload file.";
+    $db->exec_query("DELETE FROM video WHERE video.vid = '$vid'");
+    Request::put_data($response);
+  }
+
+
+  /* add in the thumbnail ****************************************************/
+  try {
+    $ffmpeg = FFMpeg\FFMpeg::create();
+    $video_xformer = $ffmpeg->open($video_file_exact);
+    $video_xformer
+      ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(.5))
+      ->save($image_file_exact);
+    chmod($image_file_exact, 0755);
+  }
+  catch (Exception $e) {
+    $response->error = $e;
+    $response->message = "Failed to create thumbnail.";
+    $response->vid = $vid;
+    Request::put_data($response);
+  }
+
+  $response->message = "Success.";
+
+  Request::put_data($response);
 }
 else {
   Errors::not_found();

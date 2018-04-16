@@ -52671,7 +52671,7 @@ var Upload = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_5__tools_Api__["a" /* default */].Videos.upload(data, function (res) {
                 console.log(res);
                 _this.props.globals.previousMessage = "Upload Successful!";
-                _this.props.globals.changeRoute('/manage');
+                //this.props.globals.changeRoute('/manage')
             });
         }
     };

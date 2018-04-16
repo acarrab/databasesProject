@@ -127,7 +127,7 @@ export default class Upload extends Component<GlobalProps> {
             Api.Videos.upload(data, (res) => {
                 console.log(res)
                 this.props.globals.previousMessage = "Upload Successful!"
-                this.props.globals.changeRoute('/manage')
+                //this.props.globals.changeRoute('/manage')
             })
         }
     }

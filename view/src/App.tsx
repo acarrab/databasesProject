@@ -12,7 +12,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 const App = () => (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div style={{ width: '100%' }} >
-            <Router basename='/'>
+            <Router basename='/~acarrab/'>
                 <Control />
             </Router>
         </div>

@@ -33,7 +33,6 @@ if ( Request::is_post() ) {
 
 
 
-  Request::put_data($_FILES["file"]);
 
 
 

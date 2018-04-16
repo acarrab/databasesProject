@@ -16,14 +16,14 @@ if ( Request::is_post() ) {
   $exact = realpath($server . "/..");
 
   // paths that the user must reference
-  $upload_serve = '/public/uploads';
+  $upload_serve = 'public/uploads';
   $video_serve = $upload_serve . '/videos';
   $image_serve = $upload_serve . '/images';
 
   // exact paths
-  $upload_exact = $exact . $upload_serve;
-  $video_exact = $exact . $video_serve;
-  $image_exact = $exact . $image_serve;
+  $upload_exact = $exact .'/'. $upload_serve;
+  $video_exact = $exact .'/'. $video_serve;
+  $image_exact = $exact .'/'. $image_serve;
 
 
   // create all needed directories
@@ -72,7 +72,7 @@ if ( Request::is_post() ) {
   $ffmpeg = FFMpeg\FFMpeg::create();
   $video_xformer = $ffmpeg->open($video_file_exact);
   $video_xformer
-    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(0))
+    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(.5))
     ->save($image_file_exact);
 
 

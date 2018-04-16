@@ -10,7 +10,7 @@ if ( Request::is_post() ) {
   $category_data = &Request::validate_and_get_data(array("category"));
   $category = $category_data->category;
   $uid = $s->user->uid;
-  $sql = video_select("WHERE category='$category'");
+  $sql = video_select("WHERE category='$category' ORDER BY video.upload_date DESC");
   $results = $db->exec_query_get_rows($sql);
   Request::put_data($results);
 }

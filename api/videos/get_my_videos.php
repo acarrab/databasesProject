@@ -8,7 +8,7 @@ if ( Request::is_get() ) {
   $s = &State::get_instance();
   $db = &Database::get_instance();
   $uid = $s->user->uid;
-  $sql = video_select("WHERE user.uid='$uid'");
+  $sql = video_select("WHERE user.uid='$uid' ORDER BY video.upload_date DESC");
   $results = $db->exec_query_get_rows($sql);
   Request::put_data($results);
 }

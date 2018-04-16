@@ -47,17 +47,15 @@ export default class Upload extends Component<UploadProps> {
         const props: UploadProps = this.props
 
         return (
-            <div className="upload-file" >
-                <div style={{ paddingBottom: ".5em" }}>{props.message}</div>
-
-                <input style={{ color: "white" }} type="file" onChange={(e) => this.handleImageChange(e)} />
+            <Row className="upload-file" >
+                <Center><input style={{ color: "white" }} type="file" onChange={(e) => this.handleImageChange(e)} /></Center>
                 <hr />
-                <div style={{ minWidth: "15em", color: "white !important" }}>
+                <Center><div style={{ minWidth: "15em", color: "white !important" }}>
                     {state.invalidType ? (<div className="error">{props.error}</div>) :
                         state.imagePreviewUrl.length === 0 ? <div></div> :
                             props.displayFile(state.imagePreviewUrl)}
-                </div>
-            </div >
+                </div></Center>
+            </Row>
         )
     }
 }

@@ -143,7 +143,7 @@ export default class Upload extends Component<GlobalProps> {
                         {!this.state.error || this.state.videoBlob.length ? (<div></div>) :
                             <Center><h4 className="error">Please upload the video</h4></Center>}
                         <ContentBlock style={{ minHeight: "8em" }}>
-                            <VideoUpload onChange={this.onVideoChange} />
+                            <Center><VideoUpload onChange={this.onVideoChange} /></Center>
                         </ContentBlock>
                     </Content>
                     <Center><h4 style={{ margin: "1em" }}>Create your video card</h4></Center>
@@ -160,7 +160,7 @@ export default class Upload extends Component<GlobalProps> {
                                 ))}
                             </SelectField></Center>
                             <Row>
-                                <div className="col-12 col-lg-8">
+                                <div className="col-12 col-lg-8 offset-lg-2">
                                     <CardForm globals={this.props.globals} onSubmit={this.submit} />
                                 </div>
                             </Row>

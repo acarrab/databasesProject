@@ -4,13 +4,14 @@ require_once(dirname(__FILE__)."/video_selector.php");
 require_once($server."/video.php");
 
 
-if ( Request::is_get() ) {
+if ( Request::is_post() ) {
   $s = &State::get_instance();
   $db = &Database::get_instance();
-  $uid = $s->user->uid;
-  $sql = video_select("WHERE user.uid='$uid'");
+  $vidContainer = Request::validate_and_get_data(array("vid"));
+  $vid = $vidContainer->vid;
+  $sql = video_select("WHERE video.vid='$vid'");
   $results = $db->exec_query_get_rows($sql);
-  Request::put_data($results);
+  Request::put_data($results[0]);
 }
 else {
   Errors::not_found();

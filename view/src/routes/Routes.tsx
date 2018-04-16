@@ -7,6 +7,7 @@ import Home from './Home'
 import History from './explore/History'
 // import Users from './explore/Users'
 import Videos from './explore/Videos'
+import VideoDisplayer from './explore/VideoDisplayer'
 import Following from './explore/Following'
 
 import Contacts from './library/Users'
@@ -28,11 +29,12 @@ export interface Category { title: string, data: Array<MyLink> }
 const homeTitle = "Home"
 
 function linkOf(title: string, icon: string): MyLink {
-    return { title: title, path: '/' + title.toLowerCase(), to: title.toLowerCase(), icon: 'fas fa-' + icon }
+    return { title: title, path: '/' + title.toLowerCase(), to: '/' + title.toLowerCase(), icon: 'fas fa-' + icon }
 }
 class MyLinks {
     Home: MyLink = { title: 'Home', path: '/', to: '/', icon: 'fas fa-home' }
     Videos: MyLink = linkOf('Videos', 'desktop')
+    VideosDisplay: MyLink = { title: '', path: '/video/:vid', to: '/video/:video', icon: '' }
     Following: MyLink = linkOf('Following', 'eye')
     //    Users: MyLink = linkOf('Users', 'users')
     History: MyLink = linkOf('History', 'history')
@@ -75,7 +77,8 @@ export default class Routes extends Component<GlobalProps> {
                         <Route path={ml.Settings.path} render={(props) => (<Settings {...props} {...this.props} />)} />
                         <Route path={ml.Login.path} render={(props) => (<Login {...props} {...this.props} />)} />
                         <Route path={ml.Create.path} render={(props) => (<Create {...props} {...this.props} />)} />
-                        <Route path={ml.Contacts.path} render={(props) => (<Contacts {...props} {...this.props} />)} />
+                        <Route exact path={ml.Contacts.path} render={(props) => (<Contacts {...props} {...this.props} />)} />
+                        <Route path={ml.VideosDisplay.path} render={(props) => (<VideoDisplayer {...props} {...this.props} />)} />
                     </Switch>
                 </div>
             </div>

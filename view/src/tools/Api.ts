@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosPromise } from 'axios'
-
+import { VideoInfo } from './Video'
 /*
   All api calls in the same place
 */
@@ -192,8 +192,16 @@ class Videos extends ApiBranch {
     get_my_videos(success) {
         return this.get("get_my_videos.php", success)
     }
+    get_category_videos(category: string, success: (vars: VideoInfo) => void) {
+        return this.post('get_category_videos.php', { category: category }, success);
+    }
+    get_all_videos(success: (vars: VideoInfo) => void) {
+        return this.get('get_all_videos.php', success);
+    }
+    get_video(vid: string, success: (vars: VideoInfo) => void) {
+        return this.post('get_video.php', { vid: vid }, success);
+    }
 }
-
 
 class Users extends ApiBranch {
     constructor(p: string) { super(p, 'users') }

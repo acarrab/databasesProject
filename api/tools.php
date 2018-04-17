@@ -4,12 +4,15 @@ ini_set('display_errors', '0');
 /*                        General use methods for api                        */
 /*****************************************************************************/
 
-$server = dirname(__FILE__)."/../server";
-$vendor = dirname(__FILE__)."/../vendor";
 $api = dirname(__FILE__);
+$tools = $api . '/tools';
 
-require_once($server."/connect.php");
-require_once($server."/requests.php");
-require_once($server."/state.php");
+require_once($tools . '/users.php');
+require_once($tools . '/video.php');
+require_once($tools . '/connect.php');
+require_once($tools . '/auth.php');
+require_once($tools . '/state.php');
+require_once($tools . '/requests.php');
+
 
 ?>

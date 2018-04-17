@@ -140,7 +140,7 @@ class Auth {
   }
   // checks if the user is logged in
   public static function islogged() { $s = &State::get_instance(); return $s->user !== null; }
-  public static function assert_access() { if (!$islogged) { Errors::unauthorized(); } }
+  public static function assert_access() { if (!self::islogged()) { Errors::unauthorized(); } }
 }
 
 ?>

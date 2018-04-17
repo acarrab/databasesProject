@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+<head>
     <title>MeTube</title>
-
     <meta charset="utf-8">
-
-    <meta name="author" content="Lucas Durham, Daniel Pebbles, Angelo Carrabba">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Angelo Carrabba, Lucas Durham, Daniel Pebbles">
     <meta name="description" content="MeTube"/>
     <meta name="keywords" content="Video, Multi-media, upload, share"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1" >
 
     <link rel="icon" href="public/favicon.png">
-    <!--link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet"-->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="public/main.css" >
 
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/video-react.css" />
-    <link rel="stylesheet" href="public/main.css" />
-  </head>
+    <link href="public/react-html5video.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
     <div id="app"></div>
+
+
+    <script>
+     var WebFontConfig = {
+	 google: { families: [ 'Roboto:400,300,500:latin' ] }
+     };
+     (function() {
+	 var wf = document.createElement('script');
+	 wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	 wf.type = 'text/javascript';
+	 wf.async = 'true';
+	 var s = document.getElementsByTagName('script')[0];
+	 s.parentNode.insertBefore(wf, s);
+     })();
+    </script>
     <script src="public/bundle.js"></script>
-  </body>
+</body>
 
 </html>

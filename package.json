@@ -1,56 +1,30 @@
 {
   "name": "metube",
   "version": "1.0.0",
-  "description": "Databases 4620 Group Project",
-  "main": "index.js",
+  "description": "youtube emulator",
+  "main": "index.html",
   "scripts": {
-    "build-scss": "node-sass view/scss -o public",
-    "watch-scss": "npm run build-scss; while true; do node-sass --watch view/scss -o public; sleep 1; done",
-    "build-web": "webpack --config='view/webpack.config.js'",
-    "watch-web": "webpack --watch --config='view/webpack.config.js'",
-    "test-server": "php -S 'localhost:8000'",
-    "build": "npm run build-scss; npm run build-web",
-    "watch": "concurrently -k -p '[{name}]' -n 'Sass, Webpack' -c 'yellow.bold, cyan.bold' 'npm run watch-scss' 'npm run watch-web'"
+    "build": "webpack",
+    "watch": "npm run build; webpack --watch",
+    "serve": "php -S 'localhost:8000'"
   },
-  "repository": {
-    "type": "git",
-    "url": "buffet@buffet.cs.clemson.edu:acarrab/MeTube"
-  },
-  "author": "Lucas Durham, Daniel Pebbles, Angelo Carrabba",
+  "author": "Angelo Carrabba",
   "license": "MIT",
   "dependencies": {
-    "@types/react-router-dom": "^4.2.4",
-    "@types/validator": "^9.4.0",
     "axios": "^0.18.0",
-    "bootstrap": "^4.0.0",
-    "concurrently": "^3.5.1",
-    "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
-    "material-ui-search-bar": "^0.4.1",
-    "node-sass": "^4.7.2",
-    "popper.js": "^1.12.9",
     "react": "^15.6.2",
-    "react-autosuggest": "^9.3.4",
     "react-dom": "^15.6.2",
-    "react-form": "^3.4.4",
-    "react-player": "^1.3.2",
+    "react-html5video": "^2.5.1",
     "react-router-dom": "^4.2.2",
-    "react-scrollbar": "^0.5.4",
-    "react-validation": "^3.0.7",
-    "sass": "^1.0.0-beta.5.2",
+    "react-tap-event-plugin": "^3.0.2",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.7.1",
-    "validator": "^9.4.1",
-    "video-react": "^0.10.4",
+    "typescript": "^2.8.1",
     "webpack": "^3.11.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
-    "@types/material-ui": "^0.20.7",
-    "@types/react": "^16.0.37",
-    "@types/react-autosuggest": "^9.3.3",
-    "@types/react-dom": "^16.0.4",
-    "@types/react-form": "^2.16.0",
-    "bootstrap-sass": "^3.0.0"
+    "@types/react": "^16.3.11",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-router-dom": "^4.2.6"
   }
 }

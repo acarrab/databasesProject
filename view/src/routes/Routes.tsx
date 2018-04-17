@@ -20,10 +20,10 @@ import Login from './account/Login'
 import Create from './account/Create'
 import Settings from './account/Settings'
 
+
 // The links that are needed
 export interface MyLink { title: string, path: string, to: string, icon: string }
 export interface Category { title: string, data: Array<MyLink> }
-
 
 
 const homeTitle = "Home"

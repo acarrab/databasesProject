@@ -1,21 +1,19 @@
 <?php
-require_once(dirname(__FILE__)."/../tools.php");
-
-require_once($server."/video.php");
-require_once($vendor."/autoload.php");
+require_once(dirname(__FILE__).'/../tools.php');
 
 if ( Request::is_post() ) {
-  $valid_fields = array("title",
-			"description",
-			"keywords",
-			"category",
-			"extension");
 
-  $video = &Request::validate_and_get_post($valid_fields);
+  $input = array("title", "description", "keywords", "category", "extension");
+  $in = &Request::validate_and_get_post($input);
+  $db = &Database::get_instance();
+  $s = &State::get_instance();
 
-  $exact = realpath($server . "/..");
 
-  // paths that the user must reference
+
+  // base of metube
+  $exact = realpath($api . '/..');
+
+  //relative paths
   $upload_serve = 'public/uploads';
   $video_serve = $upload_serve . '/videos';
   $image_serve = $upload_serve . '/images';
@@ -25,19 +23,10 @@ if ( Request::is_post() ) {
   $video_exact = $exact .'/'. $video_serve;
   $image_exact = $exact .'/'. $image_serve;
 
-
   // create all needed directories
   if (!file_exists($upload_exact)) { mkdir($upload_exact, 0755); }
   if (!file_exists($video_exact)) { mkdir($video_exact, 0755); }
   if (!file_exists($image_exact)) { mkdir($image_exact, 0755); }
-
-
-
-
-
-
-  $s = &State::get_instance();
-  $db = &Database::get_instance();
 
   $username = $s->user->username;
   $uid = $s->user->uid;
@@ -49,24 +38,23 @@ if ( Request::is_post() ) {
     "(NULL, '$uid', '$video->title', '$video->description', NOW(), ".
     "'$video_serve', '$image_serve', NOW(), '$video->category')";
 
-  $response = new stdClass();
 
   $res = &$db->conn->query($sql); // this validates result already
   $vid = "".$db->conn->insert_id; // for some reason "". makes vid exist...
 
+
   $video_name = $vid . '.' . $video->extension;
   $image_name = $vid . '.jpg';
 
+
+  // relative name
   $video_file_serve = $video_serve . '/' . $video_name;
   $image_file_serve = $image_serve . '/' . $image_name;
 
+  // exact path
   $video_file_exact = $video_exact . '/' . $video_name;
   $image_file_exact = $image_exact . '/' . $image_name;
 
-
-
-
-  /* update the video paths **************************************************/
   $db->exec_query("UPDATE video SET ".
 		  "video_path='$video_file_serve', ".
 		  "image_path='$image_file_serve' ".
@@ -82,14 +70,12 @@ if ( Request::is_post() ) {
     $sql = "INSERT INTO keyword (vid, word) VALUES ('$vid', '$word')";
     $db->exec_query($sql);
   }
-
-
-  /* write the video file ****************************************************/
+  $response = new stdClass();
+  $response->vid = $vid;
 
   try {
     move_uploaded_file($_FILES["file"]["tmp_name"], $video_file_exact);
-    chmod($video_file_exact, 0755);
-
+    chmod($video_file_exact, 0754);
   }
   catch (Exception $e){
     $response->error = $e;
@@ -98,29 +84,12 @@ if ( Request::is_post() ) {
     Request::put_data($response);
   }
 
-
-  /* add in the thumbnail ****************************************************/
-  try {
-    $ffmpeg = FFMpeg\FFMpeg::create();
-    $video_xformer = $ffmpeg->open($video_file_exact);
-    $video_xformer
-      ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(.5))
-      ->save($image_file_exact);
-    chmod($image_file_exact, 0755);
-  }
-  catch (Exception $e) {
-    $response->error = $e;
-    $response->message = "Failed to create thumbnail.";
-    $response->vid = $vid;
-    Request::put_data($response);
-  }
-
   $response->message = "Success.";
 
-  Request::put_data($response);
-}
-else {
-  Errors::not_found();
-}
+  $output = array("message", "vid");
+  Request::validate_and_put_data($response, $output);
+
+} else { Errors::not_found(); }
+
 
 ?>

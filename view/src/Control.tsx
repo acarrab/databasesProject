@@ -57,7 +57,7 @@ export class Globals {
         else
             this.goHome()
 
-        return <div className="error">No Access</div>
+        return <div className=this.st"error" > No Access</div >
     }
 }
 

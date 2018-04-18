@@ -53818,6 +53818,9 @@ var Videos = /** @class */ (function (_super) {
                 _this.setState({ videos: videos, displayingResults: true });
             });
         };
+        _this.search_clear = function (e) {
+            _this.get_videos();
+        };
         _this.state = {
             videos: [],
             suggestions: [],
@@ -53843,7 +53846,7 @@ var Videos = /** @class */ (function (_super) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__tools_Category__["a" /* default */], { onUpdate: function (category) { _this.setState({ category: category }); _this.get_videos(category); } }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Divider___default.a, { style: { margin: "3em" } }))
                     :
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { fullWidth: true, primary: true, onClick: this.get_videos }, "Clear Results"),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { fullWidth: true, primary: true, onClick: this.search_clear }, "Clear Results"),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_VideoInfo__["a" /* Grid */], null, s.videos.map(function (info) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_VideoInfo__["b" /* VideoInfo */], { key: info.vid, reload: _this.get_videos, globals: globals, info: info })); })))));
     };
     return Videos;

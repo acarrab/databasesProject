@@ -63,6 +63,10 @@ export default class Videos extends Component<GlobalProps, ManageState> {
         })
     }
 
+    search_clear = (e) => {
+        this.get_videos();
+    }
+
     constructor(props) {
         super(props)
 
@@ -96,12 +100,11 @@ export default class Videos extends Component<GlobalProps, ManageState> {
                             />
                             <Divider style={{ margin: "3em" }} />
                         </div>
-
-
                         :
-                        <RaisedButton fullWidth={true} primary={true} onClick={this.get_videos}>
+                        <RaisedButton fullWidth={true} primary={true} onClick={this.search_clear}>
                             Clear Results
-		     </RaisedButton>}
+			</RaisedButton>
+                    }
                     <Grid>
                         {s.videos.map((info: VideoData) => (
                             <VideoInfo key={info.vid} reload={this.get_videos} globals={globals} info={info} />

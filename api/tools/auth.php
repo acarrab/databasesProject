@@ -17,10 +17,11 @@ class Auth {
 
   public static function logout() {
     $s = &State::get_instance();
-    $s->user = null;
+    session_destroy();
   }
 
   public static function login($username, $password) {
+    session_destroy();
     $user = &self::validate_password($username, $password);
     $s = &State::get_instance();
     $s->user = $user;
@@ -40,7 +41,7 @@ class Auth {
 
   public static function update_password($password, $old_password) {
     $s = &State::get_instance();
-    $u = self::validate_pass($s->user->username, $old_password);
+    $u = self::validate_password($s->user->username, $old_password);
     $hashpass = &self::hash($password);
 
     $db = &Database::get_instance();

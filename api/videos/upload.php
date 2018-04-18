@@ -1,9 +1,10 @@
 <?php
 require_once(dirname(__FILE__).'/../tools.php');
+Auth::assert_access();
 
 if ( Request::is_post() ) {
 
-  $input = array("title", "description", "keywords", "category", "extension");
+  $input = array("title", "description", "keywords", "category", "extension", "thumbnail_png");
   $in = &Request::validate_and_get_post($input);
   $db = &Database::get_instance();
   $s = &State::get_instance();
@@ -35,8 +36,8 @@ if ( Request::is_post() ) {
   // Insert data into the video table
   $sql = "INSERT INTO video ".
     "(vid, uid, title, description, upload_date, video_path, image_path, last_access, category) VALUES ".
-    "(NULL, '$uid', '$video->title', '$video->description', NOW(), ".
-    "'$video_serve', '$image_serve', NOW(), '$video->category')";
+    "(NULL, '$uid', '$in->title', '$in->description', NOW(), ".
+    "'$video_serve', '$image_serve', NOW(), '$in->category')";
 
 
   $res = &$db->conn->query($sql); // this validates result already
@@ -44,7 +45,7 @@ if ( Request::is_post() ) {
 
 
   $video_name = $vid . '.' . $video->extension;
-  $image_name = $vid . '.jpg';
+  $image_name = $vid . '.png';
 
 
   // relative name
@@ -80,6 +81,19 @@ if ( Request::is_post() ) {
   catch (Exception $e){
     $response->error = $e;
     $response->message = "Failed to upload file.";
+    $db->exec_query("DELETE FROM video WHERE video.vid = '$vid'");
+    Request::put_data($response);
+  }
+  try {
+    $fout = fopen($image_file_exact, 'wb');
+    $img = base64_decode($in->thumbnail_png);
+    fwrite($fout, $img);
+    fclose($fout);
+
+  }
+  catch (Exception $e) {
+    $response->error = $e;
+    $response->message = "Failed to upload thumbnail.";
     $db->exec_query("DELETE FROM video WHERE video.vid = '$vid'");
     Request::put_data($response);
   }

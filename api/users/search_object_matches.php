@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../tools.php');
+Auth::assert_access();
 
 if ( Request::is_post() ) {
 
@@ -18,6 +19,7 @@ if ( Request::is_post() ) {
     " user.l_name,".
     " user.username,".
     " user.email,".
+    " user.channel,".
     " if(edges.user_b is null, 0, 1) as is_contact ".
     "FROM user LEFT JOIN".
     " (SELECT * FROM user JOIN contact on user.uid = contact.user_a WHERE uid = '$uid' ) as edges ".

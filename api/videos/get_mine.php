@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../tools.php');
+Auth::assert_access();
+
 
 if ( Request::is_get() ) {
 

@@ -16,7 +16,7 @@ SELECT video.*, IF(fav_id IS NULL, '0', '1') as is_favorite FROM (
   SELECT * FROM video_info
   ORDER BY video_info.upload_date DESC
 ) as video LEFT JOIN favorite
-ON favorite.vid=video.vid AND favorite.uid = '16'
+ON favorite.vid=video.vid AND favorite.uid = '$uid'
 WHERE fav_id IS NOT NULL
 ");
 

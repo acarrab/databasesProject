@@ -91,7 +91,6 @@ class MyGlobals implements Globals {
         }
 
         api.auth.login(data, (user: Api.output$api$auth$login) => {
-            console.log(user)
             this.user = user
             this.update()
             this.changeRoute('/videos')

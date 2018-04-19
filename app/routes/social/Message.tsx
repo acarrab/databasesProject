@@ -155,6 +155,8 @@ class Messaging extends Component<MessagingProps> {
 interface State {
     contact: ContactInfo
     messages: Array<MessageData>
+    loading: boolean
+    failed: boolean
 }
 
 interface Props extends GlobalProps {
@@ -172,21 +174,21 @@ export default class Messages extends Component<Props, State>{
         super(props)
         const uid = getUid(props)
 
-        this.state = {
-            contact: Messages.previous_contact[uid],
-            messages: Messages.previous_messages[uid]
-        }
         if (Messages.previous_contact[uid] === undefined) {
             this.state = {
                 contact: null,
-                messages: null
+                messages: [],
+                loading: true,
+                failed: false
             }
             this.update_contact(props)
             this.update_messages(props)
         } else {
             this.state = {
                 contact: Messages.previous_contact[uid],
-                messages: Messages.previous_messages[uid]
+                messages: Messages.previous_messages[uid],
+                loading: false,
+                failed: false
             }
         }
 
@@ -221,7 +223,7 @@ export default class Messages extends Component<Props, State>{
         const uid = getUid(props)
         api.messaging.get({ uid: uid }, (messages: Array<MessageData>) => {
             Messages.previous_messages[uid] = messages
-            this.setState({ messages })
+            this.setState({ messages: messages })
             api.messaging.mark_as_read({ uid: uid }, () => { })
         })
     }
@@ -230,9 +232,9 @@ export default class Messages extends Component<Props, State>{
         const uid = getUid(props)
         api.users.get({ uid: uid }, (contact: ContactInfo) => {
             Messages.previous_contact[uid] = contact
-            this.setState({ contact })
+            this.setState({ contact, loading: false })
         }, () => {
-            this.setState({ contact: null })
+            this.setState({ failed: true })
         })
     }
 
@@ -240,8 +242,19 @@ export default class Messages extends Component<Props, State>{
         let globals: Globals = this.props.globals
         if (globals.noAccess()) { return globals.noAccessRet() }
 
-        const { contact, messages } = this.state
-        if (contact === null && messages === null) {
+        const { contact, messages, loading, failed } = this.state
+
+
+        if (failed) {
+            return (
+                <Paper zDepth={4} style={styles.paper} >
+                    <h1>User was not found...</h1>
+                </Paper>
+            )
+        }
+
+
+        if (loading) {
             return (
                 <Paper zDepth={4} style={styles.paper} >
                     <h1>Loading User...</h1>
@@ -250,13 +263,6 @@ export default class Messages extends Component<Props, State>{
         }
 
 
-        if (contact === null && messages.length === 0) {
-            return (
-                <Paper zDepth={4} style={styles.paper} >
-                    <h1>User was not found...</h1>
-                </Paper>
-            )
-        }
 
 
         return (

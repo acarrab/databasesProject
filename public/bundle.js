@@ -35154,7 +35154,6 @@ var MyGlobals = /** @class */ (function () {
                 password: password
             };
             __WEBPACK_IMPORTED_MODULE_7__Api__["a" /* api */].auth.login(data, function (user) {
-                console.log(user);
                 _this.user = user;
                 _this.update();
                 _this.changeRoute('/videos');
@@ -56473,20 +56472,18 @@ var Messages = /** @class */ (function (_super) {
             var uid = getUid(props);
             __WEBPACK_IMPORTED_MODULE_6__Api__["a" /* api */].users.get({ uid: uid }, function (contact) {
                 Messages.previous_contact[uid] = contact;
-                _this.setState({ contact: contact });
+                _this.setState({ contact: contact, loading: false });
             }, function () {
-                _this.setState({ contact: null });
+                _this.setState({ failed: true });
             });
         };
         var uid = getUid(props);
-        _this.state = {
-            contact: Messages.previous_contact[uid],
-            messages: Messages.previous_messages[uid]
-        };
         if (Messages.previous_contact[uid] === undefined) {
             _this.state = {
                 contact: null,
-                messages: null
+                messages: [],
+                loading: true,
+                failed: false
             };
             _this.update_contact(props);
             _this.update_messages(props);
@@ -56494,7 +56491,9 @@ var Messages = /** @class */ (function (_super) {
         else {
             _this.state = {
                 contact: Messages.previous_contact[uid],
-                messages: Messages.previous_messages[uid]
+                messages: Messages.previous_messages[uid],
+                loading: false,
+                failed: false
             };
         }
         return _this;
@@ -56515,14 +56514,14 @@ var Messages = /** @class */ (function (_super) {
         if (globals.noAccess()) {
             return globals.noAccessRet();
         }
-        var _a = this.state, contact = _a.contact, messages = _a.messages;
-        if (contact === null && messages === null) {
-            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Loading User...")));
-        }
-        if (contact === null && messages.length === 0) {
+        var _a = this.state, contact = _a.contact, messages = _a.messages, loading = _a.loading, failed = _a.failed;
+        if (failed) {
             return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "User was not found...")));
+        }
+        if (loading) {
+            return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Loading User...")));
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 0, style: styles.paper },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Messaging, __assign({ globals: globals }, this.state, { reload: this.get_messages }))));

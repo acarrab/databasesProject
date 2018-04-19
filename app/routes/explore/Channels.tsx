@@ -24,9 +24,10 @@ const ChannelRenderer = ({ info: { channel, uid, username, video_count } }: { in
                 {channel + " "}
                 <span style={{ color: "rgba(255,255,255,.5)" }}>@{username}</span>
             </span>
-        }
-            rightIcon={<span>Total videos: {video_count}</span>}
-        >
+        }>
+            <div style={{ textAlign: "right" }}>
+                <span>Total videos: {video_count}</span>
+            </div>
         </ListItem>
     </Link>
 )

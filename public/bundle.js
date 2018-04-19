@@ -56174,9 +56174,11 @@ var ChannelRenderer = function (_a) {
                 channel + " ",
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { style: { color: "rgba(255,255,255,.5)" } },
                     "@",
-                    username)), rightIcon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", null,
-                "Total videos: ",
-                video_count) })));
+                    username)) },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { textAlign: "right" } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", null,
+                    "Total videos: ",
+                    video_count)))));
 };
 var styles = {
     paper: {

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { GlobalProps, Globals } from '../../Control'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton';
-
-
+import { Link } from 'react-router-dom'
+import { List, ListItem } from 'material-ui/List'
+import Subheader from 'material-ui/Subheader'
 import {
     api,
-    output$api$videos$get_channels,
-    output$api$videos$search_keywords as KeywordData,
+    output$api$videos$get_channels as ChannelInfo,
+    output$api$videos$search_channel_only as ChannelNames
 } from '../../Api'
 
 
@@ -15,87 +16,114 @@ import SearchBar from '../../components/SearchBar'
 
 
 
+
+const ChannelRenderer = ({ info: { channel, uid, username, video_count } }: { info: ChannelInfo }) => (
+    <Link to={'/channel/' + uid}>
+        <ListItem primaryText={
+            <span>
+                {channel + " "}
+                <span style={{ color: "rgba(255,255,255,.5)" }}>@{username}</span>
+            </span>
+        }
+            rightIcon={<span>Total videos: {video_count}</span>}
+        >
+        </ListItem>
+    </Link>
+)
+
 const styles = {
     paper: {
-        maxWidth: "70rem",
-        padding: "4em 2em",
-        margin: "0 auto"
+        height: "100vh",
+        overflowY: 'auto',
+        margin: "0em auto",
+        padding: "2em",
+        maxWidth: "40rem",
+        textAlign: "left"
     },
-}
+};
 
-interface ManageState {
-    videos: Array<VideoData>
+
+interface State {
+    channels: Array<ChannelInfo>
     suggestions: Array<string>
+    results: Array<ChannelInfo>
     displayingResults: boolean
-    channel: string
 }
 
-function getWords(words: Array<{ word: string }>): Array<string> {
-    let result = words.map((obj) => (obj.word))
-    return result
-}
 
-export default class Channels extends Component<GlobalProps, ManageState> {
 
-    get_list = () => {
+export default class Contacts extends Component<GlobalProps, State>{
+    loadChannels = () => {
+        api.videos.get_channels((info: Array<ChannelInfo>) => {
 
-    }
-
-    suggest = (searchText: string) => {
-        api.videos.search_channel_only({ searchText: searchText }, (videos: Array<{ word: string }>) => {
             this.setState({
-                suggestions: getWords(videos)
+                channels: info,
+                displayingResults: false
             })
-        })
-    }
-
-    submit = (channel: string) => {
-        console.log("submitting")
-        api.videos.get_channel({ channel: channel }, (videos: Array<VideoData>) => {
-            console.log(videos);
-            this.setState({ videos: videos })
         })
     }
 
     constructor(props) {
         super(props)
+        this.state = { channels: [], suggestions: [], results: [], displayingResults: false }
+        this.loadChannels()
+    }
 
-        this.state = {
-            videos: [],
-            suggestions: [],
-            channel: "",
-            displayingResults: false
-        }
+    suggest = (searchText: string) => {
+        api.videos.search_channel_only({ searchText: searchText }, (res: Array<ChannelNames>) => {
+            let r = res.map(({ channel }: ChannelNames) => (channel))
+            this.setState({ suggestions: r })
+        })
     }
 
 
-    search_clear = () => {
-
+    submit = (searchText: string) => {
+        if (searchText.length > 0)
+            api.videos.search_channel({ searchText: searchText }, (res: Array<ChannelInfo>) => {
+                this.setState({
+                    results: res,
+                    displayingResults: true
+                })
+            })
     }
 
     render() {
         let globals: Globals = this.props.globals
         if (globals.noAccess()) { return globals.noAccessRet() }
-        const { displayingResults } = this.state
-        const s: ManageState = this.state
+        const { displayingResults, channels, results, suggestions } = this.state
         return (
             <div>
                 <SearchBar
                     submit={this.submit}
-                    hintText="Search for videos by keyword"
-                    suggestions={this.state.suggestions}
+                    hintText="Search for channels"
+                    suggestions={suggestions}
                     updateSuggestions={this.suggest} />
-
                 <Paper zDepth={4} style={styles.paper}>
                     {!displayingResults ? "" :
-                        <RaisedButton fullWidth={true} primary={true} onClick={this.search_clear}>
+                        <RaisedButton fullWidth={true} primary={true} onClick={this.loadChannels}>
                             Clear Results
-			</RaisedButton>
+		     </RaisedButton>
                     }
+                    <List>
+                        {displayingResults ?
+                            <div>
+                                <Subheader>Channel Search Results</Subheader>
+                                {results.map((info: ChannelInfo, index) => (
+                                    <ChannelRenderer key={index} info={info} />
+                                ))}
+                            </div>
+                            :
+                            <div>
+                                <Subheader>Channels</Subheader>
+                                {channels.map((info: ChannelInfo, index) => (
+                                    <ChannelRenderer key={index} info={info} />
+                                ))}
+                            </div>
+                        }
 
-                </Paper>
-            </div>
+                    </List>
+                </Paper >
+            </div >
         );
     }
-
 }

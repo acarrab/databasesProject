@@ -83,12 +83,10 @@ export interface input$api$videos$get_category {
 }
 
 export interface input$api$videos$get_channel {
-    channel: string
+    uid: string
 }
 
-export interface input$api$videos$get_channels {
-    channel: string
-}
+export interface input$api$videos$get_channels { }
 
 export interface input$api$videos$get_comments {
     vid: string
@@ -98,6 +96,10 @@ export interface input$api$videos$get_mine { }
 
 export interface input$api$videos$get_video {
     vid: string
+}
+
+export interface input$api$videos$search_channel {
+    searchText: string
 }
 
 export interface input$api$videos$search_channel_only {
@@ -223,8 +225,12 @@ export interface output$api$videos$get_video {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
+export interface output$api$videos$search_channel {
+    uid: string, channel: string, username: string, video_count: string
+}
+
 export interface output$api$videos$search_channel_only {
-    word: string
+    channel: string
 }
 
 export interface output$api$videos$search_keywords {
@@ -356,8 +362,8 @@ export const api = {
         get_channel: function (data: input$api$videos$get_channel, success?: (res: Array<output$api$videos$get_channel>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_channel.php', data, success, failure)
         },
-        get_channels: function (data: input$api$videos$get_channels, success?: (res: Array<output$api$videos$get_channels>) => void, failure?: (err: any) => void) {
-            return post('api/videos/get_channels.php', data, success, failure)
+        get_channels: function (success?: (res: Array<output$api$videos$get_channels>) => void, failure?: (err: any) => void) {
+            return get('api/videos/get_channels.php', success, failure)
         },
         get_comments: function (data: input$api$videos$get_comments, success?: (res: Array<output$api$videos$get_comments>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_comments.php', data, success, failure)
@@ -367,6 +373,9 @@ export const api = {
         },
         get_video: function (data: input$api$videos$get_video, success?: (res: output$api$videos$get_video) => void, failure?: (err: any) => void) {
             return post('api/videos/get_video.php', data, success, failure)
+        },
+        search_channel: function (data: input$api$videos$search_channel, success?: (res: Array<output$api$videos$search_channel>) => void, failure?: (err: any) => void) {
+            return post('api/videos/search_channel.php', data, success, failure)
         },
         search_channel_only: function (data: input$api$videos$search_channel_only, success?: (res: Array<output$api$videos$search_channel_only>) => void, failure?: (err: any) => void) {
             return post('api/videos/search_channel_only.php', data, success, failure)

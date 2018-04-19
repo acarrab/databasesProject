@@ -15,6 +15,7 @@ import Settings from './routes/account/Settings'
 
 import Manage from './routes/channel/Manage'
 import Upload from './routes/channel/Upload'
+import Channel from './routes/channel/Channel'
 
 import VideoPlay from './routes/explore/Video'
 import Videos from './routes/explore/Videos'
@@ -137,6 +138,7 @@ export default class Routes extends Component<GlobalProps> {
                 <Route path="/channels" render={(props) => (<Channels {...props} {...this.props} />)} />
                 <Route path="/contacts" render={(props) => (<Contacts {...props} {...this.props} />)} />
                 <Route path="/message/:uid" render={(props) => (<Message {...props} {...this.props} />)} />
+                <Route path="/channel/:uid" render={(props) => (<Channel {...props} {...this.props} />)} />
                 <Route path="*" component={(props) => (<GoHomeDude {...props} {...this.props} />)} />
             </Switch >
         )

@@ -30,6 +30,9 @@ export interface Globals {
     goHome(): void
     goToVideos(): void
 
+    mark(): void
+    goBack(e: any): void
+
     login(username: string, password: string, failure: (err: any) => void): void
     logout(): void
     logged(): boolean
@@ -77,6 +80,14 @@ class MyGlobals implements Globals {
     public changeRoute: (route: string) => void
     public toggle_navigation: () => void
     public toggle_messaging: () => void
+    public getRoute: () => string
+
+    returnRoute: string = '/videos'
+    public mark = () => { this.returnRoute = this.getRoute() }
+    public goBack = (e) => {
+        e.preventDefault()
+        this.changeRoute(this.returnRoute)
+    }
 
     public goHome = () => { this.changeRoute('/') }
     public goToVideos = () => { this.changeRoute('/videos') }
@@ -124,12 +135,13 @@ class MyGlobals implements Globals {
 
 
 
-    public constructor(changeRoute: (route: string) => void, toggle_navigation: () => void, toggle_messaging: () => void, setState: Function) {
+    public constructor(changeRoute: (route: string) => void, toggle_navigation: () => void, toggle_messaging: () => void, setState: Function, getRoute: () => string) {
         this.user = null
         this.changeRoute = changeRoute
         this.toggle_navigation = toggle_navigation
         this.toggle_messaging = toggle_messaging
         this.setState = setState
+        this.getRoute = getRoute
     }
 }
 
@@ -145,7 +157,7 @@ class Control extends Component<RouteComponentProps<any>, ControlState> {
     constructor(props) {
         super(props)
         this.state = {
-            globals: new MyGlobals(this.changeRoute, this.toggle_navigation, this.toggle_messaging, this.setState.bind(this)),
+            globals: new MyGlobals(this.changeRoute, this.toggle_navigation, this.toggle_messaging, this.setState.bind(this), this.getRoute),
             navigation: false,
             messaging: false,
             message: "",
@@ -158,6 +170,7 @@ class Control extends Component<RouteComponentProps<any>, ControlState> {
             props.history.push(route)
         }
     }
+    getRoute = () => (this.props.location.pathname)
     toggle_navigation = () => {
         this.setState((prev, props) => ({ navigation: !prev.navigation }))
     }

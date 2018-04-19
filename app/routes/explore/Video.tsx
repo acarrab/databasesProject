@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Globals, GlobalProps } from '../../Control'
 
 import { DefaultPlayer as Video } from 'react-html5video'
-
+import { Link } from 'react-router-dom'
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper'
 
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -61,6 +63,11 @@ export default class VideoPlay extends Component<VideoDisplayProps, { info: Api.
             console.log(i.upload_date)
             return (
                 <div>
+                    <Paper zDepth={4} style={{ textAlign: "left", maxWidth: "60rem", margin: "0em auto", marginBottom: "4em", padding: "1em" }}>
+                        <div style={{ textAlign: "left" }}>
+                            <RaisedButton secondary={true} onClick={globals.goBack}>Back</RaisedButton>
+                        </div>
+                    </Paper>
                     <Card style={{ textAlign: "left", maxWidth: "60rem", margin: "0em auto", marginBottom: "4em" }} zDepth={4}>
                         <CardHeader
                             title={i.channel}
@@ -78,7 +85,7 @@ export default class VideoPlay extends Component<VideoDisplayProps, { info: Api.
                         </CardActions>
                     </Card >
                     <Comments globals={globals} vid={i.vid} />
-                </div>
+                </div >
             )
         }
 

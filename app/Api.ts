@@ -45,6 +45,21 @@ export interface input$api$messaging$send {
 }
 
 
+export interface input$api$playlists$add_to_favorites {
+    vid: string
+}
+
+export interface input$api$playlists$get_favorites { }
+
+export interface input$api$playlists$playlist {
+    vid: string, name: string
+}
+
+export interface input$api$playlists$remove_from_favorites {
+    vid: string
+}
+
+
 export interface input$api$users$contact_list { }
 
 export interface input$api$users$get {
@@ -118,8 +133,6 @@ export interface input$api$videos$upload {
     title: string, description: string, keywords: string, category: string, extension: string, thumbnail_png: string
 }
 
-export interface input$api$videos$video_selector { }
-
 
 
 export interface output$api$auth$create {
@@ -168,6 +181,17 @@ export interface output$api$messaging$mark_as_read { }
 export interface output$api$messaging$send { }
 
 
+export interface output$api$playlists$add_to_favorites { }
+
+export interface output$api$playlists$get_favorites {
+    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, is_favorite: string
+}
+
+export interface output$api$playlists$playlist { }
+
+export interface output$api$playlists$remove_from_favorites { }
+
+
 export interface output$api$users$contact_list {
     uid: string, f_name: string, l_name: string, username: string, email: string, channel: string, is_contact: string
 }
@@ -198,15 +222,15 @@ export interface output$api$videos$delete_video {
 }
 
 export interface output$api$videos$get_all {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, is_favorite: string
 }
 
 export interface output$api$videos$get_category {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, is_favorite: string
 }
 
 export interface output$api$videos$get_channel {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
 export interface output$api$videos$get_channels {
@@ -218,11 +242,11 @@ export interface output$api$videos$get_comments {
 }
 
 export interface output$api$videos$get_mine {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
 export interface output$api$videos$get_video {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
 export interface output$api$videos$search_channel {
@@ -234,7 +258,7 @@ export interface output$api$videos$search_channel_only {
 }
 
 export interface output$api$videos$search_keywords {
-    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, word: string
+    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, word: string
 }
 
 export interface output$api$videos$search_keywords_only {
@@ -244,8 +268,6 @@ export interface output$api$videos$search_keywords_only {
 export interface output$api$videos$upload {
     message: string, vid: string
 }
-
-export interface output$api$videos$video_selector { }
 
 
 
@@ -326,6 +348,20 @@ export const api = {
             return post('api/messaging/send.php', data, success, failure)
         }
     },
+    playlists: {
+        add_to_favorites: function (data: input$api$playlists$add_to_favorites, success?: (res: Array<output$api$playlists$add_to_favorites>) => void, failure?: (err: any) => void) {
+            return post('api/playlists/add_to_favorites.php', data, success, failure)
+        },
+        get_favorites: function (success?: (res: Array<output$api$playlists$get_favorites>) => void, failure?: (err: any) => void) {
+            return get('api/playlists/get_favorites.php', success, failure)
+        },
+        playlist: function (data: input$api$playlists$playlist, success?: (res: Array<output$api$playlists$playlist>) => void, failure?: (err: any) => void) {
+            return post('api/playlists/playlist.php', data, success, failure)
+        },
+        remove_from_favorites: function (data: input$api$playlists$remove_from_favorites, success?: (res: Array<output$api$playlists$remove_from_favorites>) => void, failure?: (err: any) => void) {
+            return post('api/playlists/remove_from_favorites.php', data, success, failure)
+        }
+    },
     users: {
         contact_list: function (success?: (res: Array<output$api$users$contact_list>) => void, failure?: (err: any) => void) {
             return get('api/users/contact_list.php', success, failure)
@@ -388,9 +424,6 @@ export const api = {
         },
         upload: function (data: FormData, success?: (res: output$api$videos$upload) => void, failure?: (err: any) => void) {
             return post('api/videos/upload.php', data, success, failure)
-        },
-        video_selector: function (success?: (res: output$api$videos$video_selector) => void, failure?: (err: any) => void) {
-            return get('api/videos/video_selector.php', success, failure)
         }
     }
 }

@@ -21,11 +21,14 @@ import VideoPlay from './routes/explore/Video'
 import Videos from './routes/explore/Videos'
 import Channels from './routes/explore/Channels'
 
+
+
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 
-import Contacts from './routes/social/Contacts'
+import Favorites from './routes/library/Favorites'
 
+import Contacts from './routes/social/Contacts'
 import Message from './routes/social/Message'
 
 
@@ -51,6 +54,7 @@ class MyLinks {
     Channels: MyLink = linkOf('Channels', 'eye')
     Videos: MyLink = linkOf('Videos', 'desktop')
     Contacts: MyLink = linkOf('Contacts', 'users')
+    Favorites: MyLink = linkOf('Favorites', 'star')
 }
 const ml = new MyLinks();
 
@@ -60,7 +64,7 @@ export const loggedOutLinks: Array<Category> = [
 
 export const loggedInLinks: Array<Category> = [
     { title: 'Welcome', data: [ml.Videos, ml.Channels] },
-    { title: 'Library', data: [ml.Contacts] },
+    { title: 'Library', data: [ml.Contacts, ml.Favorites] },
     { title: 'Account', data: [ml.Settings, ml.Manage, ml.Upload] }
 ]
 
@@ -137,6 +141,7 @@ export default class Routes extends Component<GlobalProps> {
                 <Route path="/upload" render={(props) => (<Upload {...props} {...this.props} />)} />
                 <Route path="/channels" render={(props) => (<Channels {...props} {...this.props} />)} />
                 <Route path="/contacts" render={(props) => (<Contacts {...props} {...this.props} />)} />
+                <Route path="/favorites" render={(props) => (<Favorites {...props} {...this.props} />)} />
                 <Route path="/message/:uid" render={(props) => (<Message {...props} {...this.props} />)} />
                 <Route path="/channel/:uid" render={(props) => (<Channel {...props} {...this.props} />)} />
                 <Route path="*" component={(props) => (<GoHomeDude {...props} {...this.props} />)} />

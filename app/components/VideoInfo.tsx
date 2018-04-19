@@ -97,9 +97,21 @@ export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, 
         this.setState({ maybeDelete: true, open: false })
     }
 
+    addToFavorites = (e) => {
+        api.playlists.add_to_favorites({ vid: this.props.info.vid }, () => {
+            this.props.reload()
+        })
+    }
+
+    removeFromFavorites = (e) => {
+        api.playlists.remove_from_favorites({ vid: this.props.info.vid }, () => {
+            this.props.reload()
+        })
+    }
+
     render() {
         const { reload, info, globals } = this.props
-
+        const { is_favorite } = info
         const my_video = globals.user.username === info.username
         return (
             <IconButton>
@@ -110,7 +122,11 @@ export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, 
                     anchorOrigin={{ "horizontal": "left", "vertical": "top" }}
                     targetOrigin={{ "horizontal": "right", "vertical": "bottom" }}
                     onRequestClose={this.onMenuClick}>
-                    <MenuItem>Add to favorites</MenuItem>
+                    {is_favorite === "1" ?
+                        <MenuItem onClick={this.removeFromFavorites}>Remove from favorites</MenuItem>
+                        :
+                        <MenuItem onClick={this.addToFavorites}>Add to favorites</MenuItem>
+                    }
                     <MenuItem>Add to playlist</MenuItem>
                     {(reload !== undefined && info.username === globals.user.username) ?
                         <MenuItem onClick={this.askToDelete}
@@ -125,21 +141,25 @@ export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, 
 
 export class VideoInfo extends Component<VideoProps> {
     public render() {
-        const p = this.props
-        const i = p.info
-        const globals = p.globals
-
+        const { info, globals, reload } = this.props
+        const i = info
         return (
             <GridTile
                 key={i.vid}
                 title={i.title}
                 subtitle={(<span>{i.channel}<br /><span style={{ fontStyle: "italic" }}>{getTimeSince(i.upload_date)}</span></span>)}
-                actionIcon={<VideoOptionsPopover reload={p.reload} globals={globals} info={i} />}
+                actionIcon={<VideoOptionsPopover reload={reload} globals={globals} info={i} />}
             >
-                <div style={{ width: "100%", textAlign: "center" }}>
-                    <Link style={styles.img} to={"video/" + i.vid}>
+                <div style={{ width: "100%", textAlign: "center", margin: "0 auto" }}>
+                    <div style={styles.img}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            globals.mark()
+                            globals.changeRoute("/video/" + i.vid)
+                        }}
+                    >
                         <img src={i.image_path} width="192" height="108" />
-                    </Link>
+                    </div>
                 </div>
             </GridTile>
         )

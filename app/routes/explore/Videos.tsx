@@ -98,13 +98,14 @@ export default class Videos extends Component<GlobalProps, ManageState> {
                             <CategorySelector
                                 onUpdate={(category: string) => { this.setState({ category }); this.get_videos(category); }}
                             />
-                            <Divider style={{ margin: "3em" }} />
                         </div>
                         :
                         <RaisedButton fullWidth={true} primary={true} onClick={this.search_clear}>
                             Clear Results
-			</RaisedButton>
+		     </RaisedButton>
                     }
+                    <div style={{ margin: "8em" }} />
+
                     <Grid>
                         {s.videos.map((info: VideoData) => (
                             <VideoInfo key={info.vid} reload={this.get_videos} globals={globals} info={info} />

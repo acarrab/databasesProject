@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { GlobalProps, Globals } from '../../Control'
 import { Link } from 'react-router-dom'
+import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper'
 
 import * as Api from '../../Api'
 import { api } from '../../Api'
 
 import { Grid, VideoInfo } from '../../components/VideoInfo'
-
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper'
 
 interface State {
     videos: Array<Api.output$api$videos$get_mine>
@@ -62,7 +61,7 @@ export default class Channel extends Component<Props, State> {
         return (
             <Paper zDepth={4} style={styles.paper}>
                 <div style={{ textAlign: "left" }}>
-                    <Link to='/channels'><RaisedButton secondary={true}>Go Back</RaisedButton></Link>
+                    <Link to='/channels'><RaisedButton secondary={true}>Back</RaisedButton></Link>
                 </div>
                 <h1 style={{ paddingBottom: "2em" }}>{videos[0].channel}</h1>
                 <Grid>

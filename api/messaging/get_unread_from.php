@@ -31,6 +31,7 @@ SELECT possible_contacts.*, COUNT(*) - SUM(message.receiver_saw) as unread_messa
 ON (message.sender = possible_contacts.uid  AND message.receiver = '$uid') AND is_contact = '$in->contacts'
 
 GROUP BY possible_contacts.uid
+ORDER BY MAX(message.send_time) DESC
 ";
 
   $data = $db->get_objects($sql);

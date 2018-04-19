@@ -147,9 +147,7 @@ class Messaging extends Component<MessagingProps> {
 
 
 
-// keeps previously loaded information to make experience smoother
-var previous_messages: { [uid: number]: Array<MessageData> } = {}
-var previous_contact: { [uid: number]: ContactInfo } = {}
+
 
 
 
@@ -166,18 +164,30 @@ interface Props extends GlobalProps {
 const getUid = (props: Props) => (props.match.params.uid)
 
 export default class Messages extends Component<Props, State>{
+    // keeps previously loaded information to make experience smoother
+    static previous_messages: { [uid: number]: Array<MessageData> } = {}
+    static previous_contact: { [uid: number]: ContactInfo } = {}
     selected_user: string
     constructor(props) {
         super(props)
         const uid = getUid(props)
 
         this.state = {
-            contact: previous_contact[uid],
-            messages: previous_messages[uid]
+            contact: Messages.previous_contact[uid],
+            messages: Messages.previous_messages[uid]
         }
-        if (previous_contact[uid] === undefined) {
-            this.get_contact()
-            this.get_messages()
+        if (Messages.previous_contact[uid] === undefined) {
+            this.state = {
+                contact: null,
+                messages: null
+            }
+            this.update_contact(props)
+            this.update_messages(props)
+        } else {
+            this.state = {
+                contact: Messages.previous_contact[uid],
+                messages: Messages.previous_messages[uid]
+            }
         }
 
     }
@@ -210,7 +220,7 @@ export default class Messages extends Component<Props, State>{
     update_messages = (props: Props) => {
         const uid = getUid(props)
         api.messaging.get({ uid: uid }, (messages: Array<MessageData>) => {
-            previous_messages[uid] = messages
+            Messages.previous_messages[uid] = messages
             this.setState({ messages })
             api.messaging.mark_as_read({ uid: uid }, () => { })
         })
@@ -219,7 +229,7 @@ export default class Messages extends Component<Props, State>{
     update_contact = (props: Props) => {
         const uid = getUid(props)
         api.users.get({ uid: uid }, (contact: ContactInfo) => {
-            previous_contact[uid] = contact
+            Messages.previous_contact[uid] = contact
             this.setState({ contact })
         }, () => {
             this.setState({ contact: null })
@@ -231,7 +241,7 @@ export default class Messages extends Component<Props, State>{
         if (globals.noAccess()) { return globals.noAccessRet() }
 
         const { contact, messages } = this.state
-        if (contact === undefined) {
+        if (contact === null && messages === null) {
             return (
                 <Paper zDepth={4} style={styles.paper} >
                     <h1>Loading User...</h1>
@@ -240,7 +250,7 @@ export default class Messages extends Component<Props, State>{
         }
 
 
-        if (contact === null) {
+        if (contact === null && messages.length === 0) {
             return (
                 <Paper zDepth={4} style={styles.paper} >
                     <h1>User was not found...</h1>

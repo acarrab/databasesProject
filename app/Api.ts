@@ -28,6 +28,8 @@ export interface input$api$messaging$get {
     uid: string
 }
 
+export interface input$api$messaging$get_only_sent { }
+
 export interface input$api$messaging$get_unread_count { }
 
 export interface input$api$messaging$get_unread_from {
@@ -80,6 +82,14 @@ export interface input$api$videos$get_category {
     category: string
 }
 
+export interface input$api$videos$get_channel {
+    channel: string
+}
+
+export interface input$api$videos$get_channels {
+    channel: string
+}
+
 export interface input$api$videos$get_comments {
     vid: string
 }
@@ -88,6 +98,10 @@ export interface input$api$videos$get_mine { }
 
 export interface input$api$videos$get_video {
     vid: string
+}
+
+export interface input$api$videos$search_channel_only {
+    searchText: string
 }
 
 export interface input$api$videos$search_keywords {
@@ -133,6 +147,10 @@ export interface output$api$auth$update_password {
 
 export interface output$api$messaging$get {
     sender: string, receiver: string, message: string, send_time: string
+}
+
+export interface output$api$messaging$get_only_sent {
+    unread_messages: string, f_name: string, l_name: string, username: string, channel: string, uid: string, is_contact: string
 }
 
 export interface output$api$messaging$get_unread_count {
@@ -185,6 +203,14 @@ export interface output$api$videos$get_category {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
+export interface output$api$videos$get_channel {
+    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+}
+
+export interface output$api$videos$get_channels {
+    uid: string, channel: string, username: string, video_count: string
+}
+
 export interface output$api$videos$get_comments {
     uid: string, vid: string, com_id: string, f_name: string, l_name: string, username: string, channel: string, text: string, submit_time: string
 }
@@ -195,6 +221,10 @@ export interface output$api$videos$get_mine {
 
 export interface output$api$videos$get_video {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
+}
+
+export interface output$api$videos$search_channel_only {
+    word: string
 }
 
 export interface output$api$videos$search_keywords {
@@ -274,6 +304,9 @@ export const api = {
         get: function (data: input$api$messaging$get, success?: (res: Array<output$api$messaging$get>) => void, failure?: (err: any) => void) {
             return post('api/messaging/get.php', data, success, failure)
         },
+        get_only_sent: function (success?: (res: Array<output$api$messaging$get_only_sent>) => void, failure?: (err: any) => void) {
+            return get('api/messaging/get_only_sent.php', success, failure)
+        },
         get_unread_count: function (success?: (res: output$api$messaging$get_unread_count) => void, failure?: (err: any) => void) {
             return get('api/messaging/get_unread_count.php', success, failure)
         },
@@ -320,6 +353,12 @@ export const api = {
         get_category: function (data: input$api$videos$get_category, success?: (res: Array<output$api$videos$get_category>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_category.php', data, success, failure)
         },
+        get_channel: function (data: input$api$videos$get_channel, success?: (res: Array<output$api$videos$get_channel>) => void, failure?: (err: any) => void) {
+            return post('api/videos/get_channel.php', data, success, failure)
+        },
+        get_channels: function (data: input$api$videos$get_channels, success?: (res: Array<output$api$videos$get_channels>) => void, failure?: (err: any) => void) {
+            return post('api/videos/get_channels.php', data, success, failure)
+        },
         get_comments: function (data: input$api$videos$get_comments, success?: (res: Array<output$api$videos$get_comments>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_comments.php', data, success, failure)
         },
@@ -328,6 +367,9 @@ export const api = {
         },
         get_video: function (data: input$api$videos$get_video, success?: (res: output$api$videos$get_video) => void, failure?: (err: any) => void) {
             return post('api/videos/get_video.php', data, success, failure)
+        },
+        search_channel_only: function (data: input$api$videos$search_channel_only, success?: (res: Array<output$api$videos$search_channel_only>) => void, failure?: (err: any) => void) {
+            return post('api/videos/search_channel_only.php', data, success, failure)
         },
         search_keywords: function (data: input$api$videos$search_keywords, success?: (res: Array<output$api$videos$search_keywords>) => void, failure?: (err: any) => void) {
             return post('api/videos/search_keywords.php', data, success, failure)

@@ -18,11 +18,13 @@ import Upload from './routes/channel/Upload'
 
 import VideoPlay from './routes/explore/Video'
 import Videos from './routes/explore/Videos'
+import Channels from './routes/explore/Channels'
 
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 
 import Contacts from './routes/social/Contacts'
+
 import Message from './routes/social/Message'
 
 
@@ -45,7 +47,7 @@ class MyLinks {
     Manage: MyLink = linkOf('Manage', 'bullhorn')
     Upload: MyLink = linkOf('Upload', 'upload')
     VideoPlay: MyLink = { title: '', to: '/video/:vid', icon: '' }
-    Following: MyLink = linkOf('Following', 'eye')
+    Channels: MyLink = linkOf('Channels', 'eye')
     Videos: MyLink = linkOf('Videos', 'desktop')
     Contacts: MyLink = linkOf('Contacts', 'users')
 }
@@ -56,8 +58,8 @@ export const loggedOutLinks: Array<Category> = [
 ]
 
 export const loggedInLinks: Array<Category> = [
-    { title: 'Welcome', data: [ml.Videos] },
-    { title: 'Library', data: [ml.Following, ml.Contacts] },
+    { title: 'Welcome', data: [ml.Videos, ml.Channels] },
+    { title: 'Library', data: [ml.Contacts] },
     { title: 'Account', data: [ml.Settings, ml.Manage, ml.Upload] }
 ]
 
@@ -132,6 +134,7 @@ export default class Routes extends Component<GlobalProps> {
                 <Route path="/video/:vid" render={(props) => (<VideoPlay {...props} {...this.props} />)} />
                 <Route path="/videos" render={(props) => (<Videos {...props} {...this.props} />)} />
                 <Route path="/upload" render={(props) => (<Upload {...props} {...this.props} />)} />
+                <Route path="/channels" render={(props) => (<Channels {...props} {...this.props} />)} />
                 <Route path="/contacts" render={(props) => (<Contacts {...props} {...this.props} />)} />
                 <Route path="/message/:uid" render={(props) => (<Message {...props} {...this.props} />)} />
                 <Route path="*" component={(props) => (<GoHomeDude {...props} {...this.props} />)} />

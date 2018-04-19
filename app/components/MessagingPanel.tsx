@@ -30,6 +30,7 @@ interface Props extends GlobalProps {
 interface State {
     contacts: Array<ContactData>
     randoms: Array<ContactData>
+    only_sent: Array<ContactData>
     selected_user: number
 }
 export default class ContactsSideBar extends Component<Props, State> {
@@ -38,6 +39,7 @@ export default class ContactsSideBar extends Component<Props, State> {
         this.state = {
             contacts: [],
             randoms: [],
+            only_sent: [],
             selected_user: null
         }
         this.load()
@@ -47,6 +49,7 @@ export default class ContactsSideBar extends Component<Props, State> {
     load = () => {
         api.messaging.get_unread_from({ contacts: "1" }, (contacts) => { this.setState({ contacts }) })
         api.messaging.get_unread_from({ contacts: "0" }, (randoms) => { this.setState({ randoms }) })
+        api.messaging.get_only_sent((only_sent) => { this.setState({ only_sent }) })
     }
 
     tick: number
@@ -70,7 +73,7 @@ export default class ContactsSideBar extends Component<Props, State> {
 
     render() {
         const { expanded, globals } = this.props
-        const { contacts, randoms } = this.state
+        const { contacts, randoms, only_sent } = this.state
         return (
             <Drawer
                 docked={false}
@@ -79,16 +82,22 @@ export default class ContactsSideBar extends Component<Props, State> {
                 onRequestChange={(keep_open) => { if (!keep_open) globals.toggle_messaging() }}
                 openSecondary={true}
             >
-                <List>
-                    <Subheader>Messages With Contacts</Subheader>
+                <List style={{ textAlign: "left" }}>
+                    {!contacts.length ? "" : <Subheader>Messages With Contacts</Subheader>}
                     <div>
                         {contacts.map((user: ContactData, index) => (
                             <ContactRenderer key={index} info={user} loadUsers={this.conditional_load} unread_messages={user.unread_messages} />
                         ))}
                     </div>
-                    <Subheader>Messages With Randoms</Subheader>
+                    {!randoms.length ? "" : <Subheader>Messages With Randoms</Subheader>}
                     <div>
                         {randoms.map((user: ContactData, index) => (
+                            <ContactRenderer key={index} info={user} loadUsers={this.conditional_load} unread_messages={user.unread_messages} />
+                        ))}
+                    </div>
+                    {!only_sent.length ? "" : <Subheader>Only Sent To</Subheader>}
+                    <div>
+                        {only_sent.map((user: ContactData, index) => (
                             <ContactRenderer key={index} info={user} loadUsers={this.conditional_load} unread_messages={user.unread_messages} />
                         ))}
                     </div>

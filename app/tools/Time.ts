@@ -20,12 +20,26 @@ export function getTimeSince(datetime: string) {
     let value = years
     let type = "year"
 
-    if (years) { }
-    else if (days) { value = days; type = "day" }
-    else if (hours) { value = hours; type = "hour" }
-    else if (minutes) { value = minutes; type = "minute" }
-    else return "a few seconds ago"
+    if (years) {
+        if (plural(years))
+            return "" + years + " years ago"
+        return "A year ago"
+    }
+    if (days) {
+        if (plural(days))
+            return "" + days + " days ago"
+        return "A day ago"
+    }
+    if (hours) {
+        if (plural(hours))
+            return "" + hours + " hours ago"
+        return "An hour ago"
+    }
+    if (minutes) {
+        if (plural(minutes))
+            return "" + minutes + " minutes ago"
+        return "A minute ago"
+    }
 
-    return (plural(value) ? "" + value : "a") + " " + type + (plural(value) ? 's ago' : ' ago')
-
+    return "A few seconds ago"
 }

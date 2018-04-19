@@ -44,7 +44,7 @@ if ( Request::is_post() ) {
   $vid = "".$db->conn->insert_id; // for some reason "". makes vid exist...
 
 
-  $video_name = $vid . '.' . $video->extension;
+  $video_name = $vid . '.' . $in->extension;
   $image_name = $vid . '.png';
 
 
@@ -63,7 +63,7 @@ if ( Request::is_post() ) {
 
 
   /* add the keywords ********************************************************/
-  $keywords = trim($video->keywords);
+  $keywords = trim($in->keywords);
   $keywordsArr = preg_split('/\s+/', $keywords);
 
   foreach ($keywordsArr as $keyword) {

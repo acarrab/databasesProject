@@ -11,7 +11,7 @@ import { api } from '../../Api'
 const styles = {
     paper: {
         maxWidth: "70rem",
-        padding: "4em",
+        padding: "4rem",
         margin: "0em auto"
     },
 }
@@ -31,8 +31,6 @@ interface InfoState extends Api.input$api$auth$create {
     password_error: string
     confirm: string
     confirm_error: string
-
-    error: string
 }
 
 interface MyE extends ChangeEvent<{ value: string }> { }
@@ -56,8 +54,7 @@ export default class InfoSettings extends Component<GlobalProps, InfoState> {
             password: "",
             password_error: "",
             confirm: "",
-            confirm_error: "",
-            error: ""
+            confirm_error: ""
         }
 
     }

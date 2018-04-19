@@ -23,7 +23,7 @@ import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 
 import Contacts from './routes/social/Contacts'
-
+import Message from './routes/social/Message'
 
 
 interface SideBarProps extends GlobalProps {
@@ -56,9 +56,9 @@ export const loggedOutLinks: Array<Category> = [
 ]
 
 export const loggedInLinks: Array<Category> = [
-    { title: '', data: [ml.Videos] },
-    { title: 'Account', data: [ml.Settings, ml.Manage, ml.Upload] },
-    { title: 'Library', data: [ml.Following, ml.Contacts] }
+    { title: 'Welcome', data: [ml.Videos] },
+    { title: 'Library', data: [ml.Following, ml.Contacts] },
+    { title: 'Account', data: [ml.Settings, ml.Manage, ml.Upload] }
 ]
 
 
@@ -69,25 +69,30 @@ export const loggedInLinks: Array<Category> = [
 export class SideBar extends Component<SideBarProps> {
     render() {
         let globals: Globals = this.props.globals
-        let toggle = this.props.globals.toggleExpand
+        let toggle = this.props.globals.toggle_navigation
 
         const links = globals.logged() ? loggedInLinks : loggedOutLinks
 
         return (
-            <Drawer open={this.props.expanded} docked={false} onRequestChange={this.props.globals.toggleExpand}>
+            <Drawer open={this.props.expanded} docked={false} onRequestChange={this.props.globals.toggle_navigation}>
                 <List style={{ textAlign: "left" }}>
-                    {links.map((value: Category) => (
-                        <div key={value.title}>
-                            {value.title.length ? <Subheader>{value.title}</Subheader> : <div></div>}
-                            {value.data.map((l: MyLink) => (
-                                <Link key={l.to} to={l.to}>
-                                    <ListItem style={{ paddingLeft: "2em" }} onClick={toggle}>
-                                        <i className={l.icon}></i> {l.title}
-                                    </ListItem>
-                                </Link>
-                            ))}
-                        </div>
-                    ))}
+                    <div>
+                        {links.map((value: Category) => (
+                            <div key={value.title}>
+                                {value.title.length ? <Subheader>{value.title}</Subheader> : <div></div>}
+                                {value.data.map((l: MyLink) => (
+                                    <Link key={l.to} to={l.to}>
+                                        <ListItem style={{ paddingLeft: "2em" }} onClick={toggle}>
+                                            <i className={l.icon}></i> {l.title}
+                                        </ListItem>
+                                    </Link>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <ListItem style={{ paddingLeft: "2em" }} onClick={() => { this.props.globals.logout() }}>
+                        <i className="fas fa-sign-out-alt"></i> Sign out
+		    </ListItem>
                 </List>
             </Drawer>
         )
@@ -101,7 +106,7 @@ class GoHomeDude extends Component<GlobalProps> {
         if (g.noAccess()) { return g.noAccessRet() }
         return (
             <Paper zDepth={4} style={{ padding: "4em" }}>
-                <h1>You seem to be lost, the page you are looking for does not exist.</h1>
+                <h1 style={{ lineHeight: "2em" }}>You seem to be lost, the page you are looking for does not exist.</h1>
                 <RaisedButton
                     onClick={() => { g.logged() ? g.goToVideos() : g.goHome() }}
                     label="Go Home"
@@ -128,6 +133,7 @@ export default class Routes extends Component<GlobalProps> {
                 <Route path="/videos" render={(props) => (<Videos {...props} {...this.props} />)} />
                 <Route path="/upload" render={(props) => (<Upload {...props} {...this.props} />)} />
                 <Route path="/contacts" render={(props) => (<Contacts {...props} {...this.props} />)} />
+                <Route path="/message/:uid" render={(props) => (<Message {...props} {...this.props} />)} />
                 <Route path="*" component={(props) => (<GoHomeDude {...props} {...this.props} />)} />
             </Switch >
         )

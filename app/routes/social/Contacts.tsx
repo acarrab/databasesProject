@@ -6,29 +6,19 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 
 import IconButton from 'material-ui/IconButton';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 import Paper from 'material-ui/Paper'
 import {
     api,
-    input$api$users$contact_list,
-    output$api$users$contact_list,
-    input$api$users$search_object_matches,
-    output$api$users$search_object_matches as contact,
-    input$api$users$update_relationship,
-    output$api$users$update_relationship
+    output$api$users$search_object_matches as ContactData,
 } from '../../Api'
 
 
 import Avatar from 'material-ui/Avatar'
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
-import Divider from 'material-ui/Divider'
-import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-import Popover from 'material-ui/Popover/Popover'
-import { Menu, MenuItem } from 'material-ui/Menu'
+import ContactRenderer from '../../components/ContactRenderer'
 
 import { Globals, GlobalProps } from '../../Control'
 
@@ -43,113 +33,20 @@ const styles = {
     },
 };
 
-/**
- * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
- */
-interface HashSet {
-    [index: number]: boolean
-}
 
-function getSetOf(arr: Array<number>): HashSet {
-    var hs: HashSet = {}
-    for (let i = 0; i < arr.length; i++) {
-        hs[arr[i]] = true
-    }
-    return hs
-}
-
-
-interface ContactRenderProps {
-    info: contact
-    loadUsers: () => void
-}
-interface ContactRenderState {
-    open: boolean,
-    anchorEl: JSX.Element
-}
-class ContactRender extends Component<ContactRenderProps, ContactRenderState> {
-    state = {
-        open: false,
-        anchorEl: null
-    }
-    changeRelationship = (state: "0" | "1") => {
-        const p = this.props
-        api.users.update_relationship({
-            username: p.info.username,
-            status: state
-        }, () => {
-            p.loadUsers()
-        })
-    }
-    removeContact = () => { this.changeRelationship("0") }
-    addContact = () => { this.changeRelationship("1") }
-
-    handleClick = (e) => {
-        e.preventDefault()
-        this.setState({ anchorEl: e.currentTarget, open: true })
-    }
-
-    render() {
-        const { f_name, l_name, username, is_contact } = this.props.info
-        const { open, anchorEl } = this.state
-        return (
-            <div>
-                <ListItem
-                    primaryText={
-                        <span>
-                            {f_name + " " + l_name + " "}
-                            <span style={{ color: "rgba(255,255,255,.5)" }}>@{username}</span>
-                        </span>
-                    }
-                    leftAvatar={<CommunicationChatBubble />}
-                    rightIcon={is_contact === "1" ?
-                        <ActionGrade onClick={this.handleClick} />
-                        :
-                        <MoreVertIcon onClick={this.handleClick} />
-                    }
-                />
-                <Popover
-                    open={open}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{ "horizontal": "left", "vertical": "bottom" }}
-                    targetOrigin={{ "horizontal": "right", "vertical": "top" }}
-                    onRequestClose={() => { this.setState({ open: false }) }}>
-                    {is_contact === "1" ?
-                        <MenuItem onClick={this.removeContact}>Remove Contact</MenuItem>
-                        :
-                        <MenuItem onClick={this.addContact}>Add as contact</MenuItem>
-                    }
-                </Popover>
-            </div>
-        )
-    }
-
-}
 interface State {
-    users: Array<contact>
+    users: Array<ContactData>
     suggestions: Array<string>
     displayingContacts: boolean
 }
 
-function mapContactList(user: Array<output$api$users$contact_list>): Array<contact> {
-    let res: Array<contact> = user.map((u) => (
-        {
-            f_name: u.f_name,
-            l_name: u.l_name,
-            username: u.username,
-            email: u.email,
-            channel: u.channel,
-            is_contact: "1"
-        }
-    ))
-    return res
-}
+
 
 export default class Contacts extends Component<GlobalProps, State>{
     loadUsers = () => {
-        api.users.contact_list((users: Array<output$api$users$contact_list>) => {
+        api.users.contact_list((users: Array<ContactData>) => {
             this.setState({
-                users: mapContactList(users),
+                users: users,
                 displayingContacts: true
             })
         })
@@ -169,7 +66,7 @@ export default class Contacts extends Component<GlobalProps, State>{
 
     submit = (searchText: string) => {
         console.log("searchText: " + searchText)
-        api.users.search_object_matches({ searchText: searchText }, (users: Array<contact>) => {
+        api.users.search_object_matches({ searchText: searchText }, (users: Array<ContactData>) => {
             this.setState({
                 users: users,
                 displayingContacts: false
@@ -200,8 +97,8 @@ export default class Contacts extends Component<GlobalProps, State>{
                             :
                             <Subheader>Search Results</Subheader>
                         }
-                        {this.state.users.map((user: contact, index) => (
-                            <ContactRender key={index} info={user} loadUsers={this.loadUsers} />
+                        {this.state.users.map((user: ContactData, index) => (
+                            <ContactRenderer key={index} info={user} loadUsers={this.loadUsers} />
                         ))}
                     </List>
                 </Paper >

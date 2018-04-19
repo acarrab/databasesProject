@@ -4,7 +4,10 @@ import Snackbar from 'material-ui/Snackbar'
 
 import Paper from 'material-ui/Paper';
 
-import AppBar from './components/AppBar'
+import NavigationPanel from './components/NavigationPanel'
+import MessagingPanel from './components/MessagingPanel'
+
+
 import Routes, { SideBar } from './Routes'
 
 import * as Api from './Api'
@@ -15,7 +18,8 @@ import { api } from './Api'
 export interface Globals {
     user: Api.output$api$auth$login
     changeRoute: (route: string) => void
-    toggleExpand: () => void
+    toggle_navigation: () => void
+    toggle_messaging: () => void
 
     noAccess(): void
     noAccessRet(): JSX.Element
@@ -59,7 +63,7 @@ class NoAccessWarning extends Component<GlobalProps> {
             <Snackbar
                 open={this.state.open}
                 message={this.state.message}
-                autoHideDuration={4000}
+                autoHideDuration={2000}
                 onRequestClose={() => { this.setState({ open: false }) }}
             />
         )
@@ -71,7 +75,8 @@ class NoAccessWarning extends Component<GlobalProps> {
 class MyGlobals implements Globals {
     public user: Api.output$api$auth$login
     public changeRoute: (route: string) => void
-    public toggleExpand: () => void
+    public toggle_navigation: () => void
+    public toggle_messaging: () => void
 
     public goHome = () => { this.changeRoute('/') }
     public goToVideos = () => { this.changeRoute('/videos') }
@@ -120,17 +125,19 @@ class MyGlobals implements Globals {
 
 
 
-    public constructor(changeRoute: (route: string) => void, toggleExpand: () => void, setState: Function) {
+    public constructor(changeRoute: (route: string) => void, toggle_navigation: () => void, toggle_messaging: () => void, setState: Function) {
         this.user = null
         this.changeRoute = changeRoute
-        this.toggleExpand = toggleExpand
+        this.toggle_navigation = toggle_navigation
+        this.toggle_messaging = toggle_messaging
         this.setState = setState
     }
 }
 
 interface ControlState {
     globals: MyGlobals
-    expanded: boolean
+    navigation: boolean
+    messaging: boolean
     message: string
     error: string
 }
@@ -139,8 +146,9 @@ class Control extends Component<RouteComponentProps<any>, ControlState> {
     constructor(props) {
         super(props)
         this.state = {
-            globals: new MyGlobals(this.changeRoute, this.toggleExpand, this.setState.bind(this)),
-            expanded: false,
+            globals: new MyGlobals(this.changeRoute, this.toggle_navigation, this.toggle_messaging, this.setState.bind(this)),
+            navigation: false,
+            messaging: false,
             message: "",
             error: ""
         }
@@ -151,9 +159,12 @@ class Control extends Component<RouteComponentProps<any>, ControlState> {
             props.history.push(route)
         }
     }
+    toggle_navigation = () => {
+        this.setState((prev, props) => ({ navigation: !prev.navigation }))
+    }
 
-    toggleExpand = () => {
-        this.setState((prev, props) => ({ expanded: !prev.expanded }))
+    toggle_messaging = () => {
+        this.setState((prev, props) => ({ messaging: !prev.messaging }))
     }
 
     render() {
@@ -164,17 +175,19 @@ class Control extends Component<RouteComponentProps<any>, ControlState> {
                 <Snackbar
                     open={(s.message.length > 0)}
                     message={this.state.message}
-                    autoHideDuration={4000}
+                    autoHideDuration={2000}
                     onRequestClose={() => { this.setState({ message: "" }) }}
                 />
                 <Snackbar
                     open={(s.error.length > 0)}
                     message={<span style={{ color: "red" }}>{s.error}</span>}
-                    autoHideDuration={4000}
+                    autoHideDuration={2000}
                     onRequestClose={() => { this.setState({ error: "" }) }}
                 />
-                <AppBar globals={globals} expanded={s.expanded} />
-                <SideBar globals={globals} expanded={s.expanded} />
+                <NavigationPanel globals={globals} expanded={s.navigation} />
+                <MessagingPanel globals={globals} expanded={s.messaging} />
+                <SideBar globals={globals} expanded={s.navigation} />
+
 
                 <Paper zDepth={1} style={{ minHeight: "100vh" }}>
                     <Routes globals={globals} />

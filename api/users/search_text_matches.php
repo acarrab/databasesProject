@@ -10,7 +10,7 @@ if ( Request::is_post() ) {
   $db = &Database::get_instance();
   $s = &State::get_instance();
 
-  $searchText = strtolower(trim($in->searchText));
+  $searchText = $db->conn->real_escape_string(strtolower(trim($in->searchText)));
 
   $sql="SELECT username, f_name, l_name FROM user WHERE ".
     "lower(username) LIKE '$searchText%' ".

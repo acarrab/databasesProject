@@ -21,6 +21,11 @@ const styles = {
         width: '100%',
         opacity: 0,
     },
+    paper: {
+        maxWidth: "70rem",
+        padding: "4rem",
+        margin: "0 auto"
+    },
 }
 
 
@@ -110,7 +115,7 @@ export default class VideoRetriever extends Component<VideoRetrieverProps, Video
         const s = this.state
         const { videoError, thumbnailError } = this.props
         return (
-            <Paper zDepth={4}>
+            <Paper zDepth={4} style={styles.paper}>
                 <RaisedButton
                     label="Choose your video"
                     labelPosition="before"

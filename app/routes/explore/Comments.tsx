@@ -60,8 +60,9 @@ class Comment extends Component<CommentProps, { open: boolean, anchorEl: JSX.Ele
 
         return (
             <Card style={{ textAlign: "left", marginBottom: "1em", marginTop: "1em" }} zDepth={2} >
+
                 <CardHeader
-                    title={f_name + " " + l_name}
+                    title={<h1>{f_name + " " + l_name}</h1>}
                     closeIcon={<SettingsIcon onClick={this.handleClick} />}
                     openIcon={<SettingsIcon onClick={this.handleClick} />}
                     showExpandableButton={username === globals.user.username}
@@ -93,7 +94,7 @@ class CommentIn extends Component<{ vid: string, update: () => void }, { text: s
     state = { text: "", text_error: "" }
 
     submit = (e) => {
-        e.preventDefault
+        e.preventDefault()
         const { text } = this.state
         let noError = true
         let updates = { text_error: "" }
@@ -154,7 +155,6 @@ interface State {
 export default class CommentControl extends Component<Props, State> {
     getComments = () => {
         api.videos.get_comments({ vid: this.props.vid }, (comments: Array<CommentData>) => {
-            console.log("updating comments")
             this.setState({ comments })
         })
     }

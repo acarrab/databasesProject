@@ -1,4 +1,7 @@
 
+
+const plural = (value) => (value !== 1)
+
 export function getTimeSince(datetime: string) {
 
     let ms = Date.now() - Date.parse(datetime);
@@ -14,9 +17,15 @@ export function getTimeSince(datetime: string) {
     trimSize *= 365
     var years = Math.floor(ms / trimSize);
 
-    if (years) return "" + years + " years ago"
-    if (days) return "" + days + " days ago"
-    if (hours) return "" + hours + " hours ago"
-    if (minutes) return "" + minutes + " minutes ago"
-    if (seconds) return "" + seconds + " seconds ago"
+    let value = years
+    let type = "year"
+
+    if (years) { }
+    else if (days) { value = days; type = "day" }
+    else if (hours) { value = hours; type = "hour" }
+    else if (minutes) { value = minutes; type = "minute" }
+    else return "a few seconds ago"
+
+    return (plural(value) ? "" + value : "a") + " " + type + (plural(value) ? 's ago' : ' ago')
+
 }

@@ -19,6 +19,7 @@ class User {
 }
 
 class PublicUser {
+  public $uid = null;
   public $f_name = null;
   public $l_name = null;
   public $username = null;
@@ -27,6 +28,7 @@ class PublicUser {
   public $is_contact = null;
 
   public function __construct($user) {
+    $this->uid = $user->uid;
     $this->f_name = $user->f_name;
     $this->l_name = $user->l_name;
     $this->username = $user->username;

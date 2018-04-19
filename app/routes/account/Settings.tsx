@@ -16,9 +16,9 @@ import Paper from 'material-ui/Paper';
 const styles = {
     paper: {
         maxWidth: "70rem",
-        margin: "0em auto",
-        paddingBottom: "2em"
-    }
+        padding: "4rem",
+        margin: "0 auto"
+    },
 }
 
 

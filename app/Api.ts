@@ -24,7 +24,30 @@ export interface input$api$auth$update_password {
 }
 
 
+export interface input$api$messaging$get {
+    uid: string
+}
+
+export interface input$api$messaging$get_unread_count { }
+
+export interface input$api$messaging$get_unread_from {
+    contacts: string
+}
+
+export interface input$api$messaging$mark_as_read {
+    uid: string
+}
+
+export interface input$api$messaging$send {
+    text: string, uid: string
+}
+
+
 export interface input$api$users$contact_list { }
+
+export interface input$api$users$get {
+    uid: string
+}
 
 export interface input$api$users$search_object_matches {
     searchText: string
@@ -53,21 +76,15 @@ export interface input$api$videos$delete_video {
 
 export interface input$api$videos$get_all { }
 
-export interface input$api$videos$get_all_videos { }
-
 export interface input$api$videos$get_category {
     category: string
 }
-
-export interface input$api$videos$get_category_videos { }
 
 export interface input$api$videos$get_comments {
     vid: string
 }
 
 export interface input$api$videos$get_mine { }
-
-export interface input$api$videos$get_my_videos { }
 
 export interface input$api$videos$get_video {
     vid: string
@@ -114,12 +131,33 @@ export interface output$api$auth$update_password {
 }
 
 
+export interface output$api$messaging$get {
+    sender: string, receiver: string, message: string, send_time: string
+}
+
+export interface output$api$messaging$get_unread_count {
+    unread_messages: string
+}
+
+export interface output$api$messaging$get_unread_from {
+    unread_messages: string, f_name: string, l_name: string, username: string, channel: string, uid: string, is_contact: string
+}
+
+export interface output$api$messaging$mark_as_read { }
+
+export interface output$api$messaging$send { }
+
+
 export interface output$api$users$contact_list {
-    uid: string, f_name: string, l_name: string, username: string, email: string, channel: string
+    uid: string, f_name: string, l_name: string, username: string, email: string, channel: string, is_contact: string
+}
+
+export interface output$api$users$get {
+    uid: string, f_name: string, l_name: string, username: string, channel: string, is_contact: string
 }
 
 export interface output$api$users$search_object_matches {
-    f_name: string, l_name: string, username: string, email: string, channel: string, is_contact: string
+    uid: string, f_name: string, l_name: string, username: string, channel: string, is_contact: string
 }
 
 export interface output$api$users$search_text_matches {
@@ -143,13 +181,9 @@ export interface output$api$videos$get_all {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
-export interface output$api$videos$get_all_videos { }
-
 export interface output$api$videos$get_category {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
-
-export interface output$api$videos$get_category_videos { }
 
 export interface output$api$videos$get_comments {
     uid: string, vid: string, com_id: string, f_name: string, l_name: string, username: string, channel: string, text: string, submit_time: string
@@ -158,8 +192,6 @@ export interface output$api$videos$get_comments {
 export interface output$api$videos$get_mine {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
-
-export interface output$api$videos$get_my_videos { }
 
 export interface output$api$videos$get_video {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
@@ -238,9 +270,29 @@ export const api = {
             return post('api/auth/update_password.php', data, success, failure)
         }
     },
+    messaging: {
+        get: function (data: input$api$messaging$get, success?: (res: Array<output$api$messaging$get>) => void, failure?: (err: any) => void) {
+            return post('api/messaging/get.php', data, success, failure)
+        },
+        get_unread_count: function (success?: (res: output$api$messaging$get_unread_count) => void, failure?: (err: any) => void) {
+            return get('api/messaging/get_unread_count.php', success, failure)
+        },
+        get_unread_from: function (data: input$api$messaging$get_unread_from, success?: (res: Array<output$api$messaging$get_unread_from>) => void, failure?: (err: any) => void) {
+            return post('api/messaging/get_unread_from.php', data, success, failure)
+        },
+        mark_as_read: function (data: input$api$messaging$mark_as_read, success?: (res: output$api$messaging$mark_as_read) => void, failure?: (err: any) => void) {
+            return post('api/messaging/mark_as_read.php', data, success, failure)
+        },
+        send: function (data: input$api$messaging$send, success?: (res: output$api$messaging$send) => void, failure?: (err: any) => void) {
+            return post('api/messaging/send.php', data, success, failure)
+        }
+    },
     users: {
         contact_list: function (success?: (res: Array<output$api$users$contact_list>) => void, failure?: (err: any) => void) {
             return get('api/users/contact_list.php', success, failure)
+        },
+        get: function (data: input$api$users$get, success?: (res: output$api$users$get) => void, failure?: (err: any) => void) {
+            return post('api/users/get.php', data, success, failure)
         },
         search_object_matches: function (data: input$api$users$search_object_matches, success?: (res: Array<output$api$users$search_object_matches>) => void, failure?: (err: any) => void) {
             return post('api/users/search_object_matches.php', data, success, failure)
@@ -265,23 +317,14 @@ export const api = {
         get_all: function (success?: (res: Array<output$api$videos$get_all>) => void, failure?: (err: any) => void) {
             return get('api/videos/get_all.php', success, failure)
         },
-        get_all_videos: function (success?: (res: output$api$videos$get_all_videos) => void, failure?: (err: any) => void) {
-            return get('api/videos/get_all_videos.php', success, failure)
-        },
         get_category: function (data: input$api$videos$get_category, success?: (res: Array<output$api$videos$get_category>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_category.php', data, success, failure)
-        },
-        get_category_videos: function (data: input$api$videos$get_category_videos, success?: (res: output$api$videos$get_category_videos) => void, failure?: (err: any) => void) {
-            return post('api/videos/get_category_videos.php', data, success, failure)
         },
         get_comments: function (data: input$api$videos$get_comments, success?: (res: Array<output$api$videos$get_comments>) => void, failure?: (err: any) => void) {
             return post('api/videos/get_comments.php', data, success, failure)
         },
         get_mine: function (success?: (res: Array<output$api$videos$get_mine>) => void, failure?: (err: any) => void) {
             return get('api/videos/get_mine.php', success, failure)
-        },
-        get_my_videos: function (success?: (res: output$api$videos$get_my_videos) => void, failure?: (err: any) => void) {
-            return get('api/videos/get_my_videos.php', success, failure)
         },
         get_video: function (data: input$api$videos$get_video, success?: (res: output$api$videos$get_video) => void, failure?: (err: any) => void) {
             return post('api/videos/get_video.php', data, success, failure)

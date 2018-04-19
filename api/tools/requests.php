@@ -23,9 +23,13 @@ class Request {
 
   public static function validate_and_put_data($data, $needed_fields) {
     $data = (array)$data;
+    $db = &Database::get_instance();
+
     foreach ($needed_fields as $field_name) {
       if (!isset($data[$field_name])) {
 	Errors::not_implemented("$field_name does not exist");
+      } else {
+	$data[$field_name] = $db->conn->real_escape_string($data[$field_name]);
       }
     }
     self::put_data($data);
@@ -46,12 +50,15 @@ class Request {
 
   public static function validate_and_get_data($needed_fields) {
     $data = Request::get_data();
+    $db = &Database::get_instance();
     foreach ($needed_fields as $field_name) {
       if (!isset($data[$field_name])) {
 	Errors::bad_request("$field_name does not exist");
       }
       if (strlen(trim($data[$field_name])) === 0) {
 	Errors::bad_request("$field_name is of length 0 when trimmed");
+      } else {
+	$data[$field_name] = $db->conn->real_escape_string($data[$field_name]);
       }
     }
     return (object)$data;
@@ -59,12 +66,15 @@ class Request {
 
   public static function validate_and_get_post($needed_fields) {
     $data = $_POST;
+    $db = &Database::get_instance();
     foreach ($needed_fields as $field_name) {
       if (!isset($data[$field_name])) {
 	Errors::bad_request("$field_name does not exist");
       }
       if (strlen(trim($data[$field_name])) === 0) {
 	Errors::bad_request("$field_name is of length 0 when trimmed");
+      } else {
+	$data[$field_name] = $db->conn->real_escape_string($data[$field_name]);
       }
     }
     return (object)$data;

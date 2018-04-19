@@ -9,7 +9,7 @@ if ( Request::is_post() ) {
 
   $db = &Database::get_instance();
 
-  $searchText = strtolower($in->searchText);
+  $searchText = $db->conn->real_escape_string(strtolower($in->searchText));
 
   $sql = "SELECT result.*, user.username, user.f_name, user.l_name, user.email, user.channel FROM user JOIN ".
     "(SELECT video.*, keyword.word FROM keyword JOIN video on video.vid = keyword.vid WHERE word LIKE '$searchText%') as result ".

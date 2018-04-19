@@ -22,6 +22,7 @@ import { Menu, MenuItem } from 'material-ui/Menu'
 import * as Api from '../Api'
 import { api } from '../Api'
 
+import Media from 'react-media'
 
 import AreYouSure from '../tools/AreYouSure'
 
@@ -47,7 +48,16 @@ const styles = {
 export class Grid extends Component<any> {
     render() {
         return (
-            <GridList cols={3} cellHeight={160} style={styles.gridList} {...this.props} >{this.props.children}</GridList>
+            <Media query="(max-width: 599px)">
+                {matches =>
+                    matches ? (
+                        <GridList cols={2} cellHeight={160} style={styles.gridList} {...this.props} >{this.props.children}</GridList>
+                    ) : (
+                            <GridList cols={3} cellHeight={160} style={styles.gridList} {...this.props} >{this.props.children}</GridList>
+                        )
+                }
+            </Media>
+
         )
     }
 }

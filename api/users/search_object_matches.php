@@ -9,7 +9,7 @@ if ( Request::is_post() ) {
 
   $db = &Database::get_instance();
   $s = &State::get_instance();
-  $searchText = strtolower(trim($in->searchText));
+  $searchText = $db->conn->real_escape_string(strtolower(trim($in->searchText)));
 
   $uid = $s->user->uid;
   $sql="".
@@ -26,6 +26,8 @@ if ( Request::is_post() ) {
     "ON user.uid = edges.user_b ";
 
 
+
+
   if ($searchText !== '') {
     $sql .= " ".
       "WHERE".
@@ -39,7 +41,7 @@ if ( Request::is_post() ) {
 
   $data = array_map("make_public", $users);
 
-  $output = array("f_name", "l_name", "username", "email", "channel", "is_contact");
+  $output = array("uid", "f_name", "l_name", "username", "channel", "is_contact");
   Request::validate_and_put_array($data, $output);
 
 } else { Errors::not_found(); }

@@ -13,6 +13,14 @@ import CategorySelector from '../../tools/Category'
 import * as Api from '../../Api'
 import { api } from '../../Api'
 
+const styles = {
+
+    paper_form: {
+        maxWidth: "70rem",
+        padding: "4rem",
+        margin: "4rem auto 0rem auto"
+    },
+}
 const style = {
     margin: "2em auto",
 }
@@ -140,7 +148,7 @@ export default class InfoSettings extends Component<GlobalProps, InfoState> {
                     videoError={s.video_file_error}
                     globals={p.globals} />
 
-                <Paper zDepth={4} style={{ marginTop: "3em" }} >
+                <Paper zDepth={4} style={styles.paper_form} >
 
                     <TextField
                         hintText="title"

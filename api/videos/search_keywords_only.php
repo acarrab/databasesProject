@@ -9,9 +9,9 @@ if ( Request::is_post() ) {
 
   $db = &Database::get_instance();
   $s = &State::get_instance();
-  $searchText = strtolower($in->searchText);
+  $searchText = $db->conn->real_escape_string(strtolower($in->searchText));
 
-  $data = $db->get_objects("SELECT DISTINCT word FROM keyword WHERE word LIKE '".$searchText."%'");
+  $data = $db->get_objects("SELECT DISTINCT word FROM keyword WHERE word LIKE '$searchText%'");
 
   $output = array("word");
   Request::validate_and_put_array($data, $output);

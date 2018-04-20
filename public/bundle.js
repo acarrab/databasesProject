@@ -1147,8 +1147,29 @@ var api = {
         add_to_favorites: function (data, success, failure) {
             return post('api/playlists/add_to_favorites.php', data, success, failure);
         },
+        add_to_playlist: function (data, success, failure) {
+            return post('api/playlists/add_to_playlist.php', data, success, failure);
+        },
+        create_playlist: function (data, success, failure) {
+            return post('api/playlists/create_playlist.php', data, success, failure);
+        },
+        delete_from_playlist: function (data, success, failure) {
+            return post('api/playlists/delete_from_playlist.php', data, success, failure);
+        },
+        delete_playlist: function (data, success, failure) {
+            return post('api/playlists/delete_playlist.php', data, success, failure);
+        },
         get_favorites: function (success, failure) {
             return get('api/playlists/get_favorites.php', success, failure);
+        },
+        get_playlist: function (data, success, failure) {
+            return post('api/playlists/get_playlist.php', data, success, failure);
+        },
+        get_playlist_info: function (data, success, failure) {
+            return post('api/playlists/get_playlist_info.php', data, success, failure);
+        },
+        get_playlists: function (success, failure) {
+            return get('api/playlists/get_playlists.php', success, failure);
         },
         playlist: function (data, success, failure) {
             return post('api/playlists/playlist.php', data, success, failure);
@@ -1219,6 +1240,9 @@ var api = {
         },
         upload: function (data, success, failure) {
             return post('api/videos/upload.php', data, success, failure);
+        },
+        video_selector: function (success, failure) {
+            return get('api/videos/video_selector.php', success, failure);
         }
     }
 };
@@ -8108,9 +8132,10 @@ exports.default = _Menu3.default;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_Popover_Popover___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_Popover_Popover__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Api__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_react_media__ = __webpack_require__(484);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tools_AreYouSure__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_AddToPlaylist__ = __webpack_require__(556);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Api__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_react_media__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tools_AreYouSure__ = __webpack_require__(485);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -8129,6 +8154,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+
 
 
 
@@ -8162,7 +8188,7 @@ var Grid = /** @class */ (function (_super) {
     }
     Grid.prototype.render = function () {
         var _this = this;
-        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_media__["a" /* default */], { query: "(max-width: 599px)" }, function (matches) {
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10_react_media__["a" /* default */], { query: "(max-width: 599px)" }, function (matches) {
             return matches ? (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_GridList__["GridList"], __assign({ cols: 2, cellHeight: 160, style: styles.gridList }, _this.props), _this.props.children)) : (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_GridList__["GridList"], __assign({ cols: 3, cellHeight: 160, style: styles.gridList }, _this.props), _this.props.children));
         }));
     };
@@ -8173,7 +8199,7 @@ var VideoOptionsPopover = /** @class */ (function (_super) {
     __extends(VideoOptionsPopover, _super);
     function VideoOptionsPopover() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.state = { open: false, anchorEl: null, maybeDelete: false };
+        _this.state = { open: false, anchorEl: null, maybeDelete: false, playlist: false };
         _this.onMenuClick = function () {
             _this.setState(function (prev) { return ({ open: !prev.open }); });
         };
@@ -8186,7 +8212,7 @@ var VideoOptionsPopover = /** @class */ (function (_super) {
         };
         _this.deleteVideo = function () {
             console.log("deleting video");
-            __WEBPACK_IMPORTED_MODULE_8__Api__["a" /* api */].videos.delete_video({
+            __WEBPACK_IMPORTED_MODULE_9__Api__["a" /* api */].videos.delete_video({
                 vid: _this.props.info.vid
             }, function (res) {
                 if (res.deleted === "1") {
@@ -8200,12 +8226,12 @@ var VideoOptionsPopover = /** @class */ (function (_super) {
             _this.setState({ maybeDelete: true, open: false });
         };
         _this.addToFavorites = function (e) {
-            __WEBPACK_IMPORTED_MODULE_8__Api__["a" /* api */].playlists.add_to_favorites({ vid: _this.props.info.vid }, function () {
+            __WEBPACK_IMPORTED_MODULE_9__Api__["a" /* api */].playlists.add_to_favorites({ vid: _this.props.info.vid }, function () {
                 _this.props.reload();
             });
         };
         _this.removeFromFavorites = function (e) {
-            __WEBPACK_IMPORTED_MODULE_8__Api__["a" /* api */].playlists.remove_from_favorites({ vid: _this.props.info.vid }, function () {
+            __WEBPACK_IMPORTED_MODULE_9__Api__["a" /* api */].playlists.remove_from_favorites({ vid: _this.props.info.vid }, function () {
                 _this.props.reload();
             });
         };
@@ -8215,6 +8241,7 @@ var VideoOptionsPopover = /** @class */ (function (_super) {
         var _this = this;
         var _a = this.props, reload = _a.reload, info = _a.info, globals = _a.globals;
         var is_favorite = info.is_favorite;
+        var playlist = this.state.playlist;
         var my_video = globals.user.username === info.username;
         return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_IconButton___default.a, null,
             my_video ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_svg_icons_action_settings___default.a, { onClick: this.handleClick }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_content_add_circle___default.a, { onClick: this.handleClick }),
@@ -8223,10 +8250,14 @@ var VideoOptionsPopover = /** @class */ (function (_super) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__["MenuItem"], { onClick: this.removeFromFavorites }, "Remove from favorites")
                     :
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__["MenuItem"], { onClick: this.addToFavorites }, "Add to favorites"),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__["MenuItem"], null, "Add to playlist"),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__["MenuItem"], { onClick: function (e) {
+                        e.preventDefault();
+                        _this.setState({ playlist: true, open: false });
+                    } }, "Add to playlist"),
                 (reload !== undefined && info.username === globals.user.username) ?
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Menu__["MenuItem"], { onClick: this.askToDelete }, "Delete your video") : ""),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__tools_AreYouSure__["a" /* default */], { open: this.state.maybeDelete, yes: function () { _this.deleteVideo(); }, no: function () { _this.setState({ maybeDelete: false }); } })));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_AddToPlaylist__["a" /* default */], { globals: globals, info: info, cancel: function () { _this.setState({ playlist: false }); }, open: playlist }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__tools_AreYouSure__["a" /* default */], { open: this.state.maybeDelete, yes: function () { _this.deleteVideo(); }, no: function () { _this.setState({ maybeDelete: false }); } })));
     };
     return VideoOptionsPopover;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
@@ -43448,8 +43479,10 @@ exports.default = NavigationCheck;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_material_ui_Subheader__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_material_ui_Subheader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_material_ui_Subheader__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__routes_library_Favorites__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__routes_social_Contacts__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__routes_social_Message__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__routes_library_Playlists__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__routes_library_Playlist__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__routes_social_Contacts__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__routes_social_Message__ = __webpack_require__(519);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -43487,6 +43520,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 
 
 
+
+
 function linkOf(title, icon) {
     return { title: title, to: '/' + title.toLowerCase(), icon: 'fas fa-' + icon };
 }
@@ -43502,6 +43537,7 @@ var MyLinks = /** @class */ (function () {
         this.Videos = linkOf('Videos', 'desktop');
         this.Contacts = linkOf('Contacts', 'users');
         this.Favorites = linkOf('Favorites', 'star');
+        this.Playlists = linkOf('Playlists', 'play-circle');
     }
     return MyLinks;
 }());
@@ -43511,7 +43547,7 @@ var loggedOutLinks = [
 ];
 var loggedInLinks = [
     { title: 'Welcome', data: [ml.Videos, ml.Channels] },
-    { title: 'Library', data: [ml.Contacts, ml.Favorites] },
+    { title: 'Library', data: [ml.Contacts, ml.Favorites, ml.Playlists] },
     { title: 'Account', data: [ml.Settings, ml.Manage, ml.Upload] }
 ];
 var SideBar = /** @class */ (function (_super) {
@@ -43572,9 +43608,11 @@ var Routes = /** @class */ (function (_super) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/videos", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__routes_explore_Videos__["a" /* default */], __assign({}, props, _this.props))); } }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/upload", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__routes_channel_Upload__["a" /* default */], __assign({}, props, _this.props))); } }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/channels", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__routes_explore_Channels__["a" /* default */], __assign({}, props, _this.props))); } }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/contacts", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_17__routes_social_Contacts__["a" /* default */], __assign({}, props, _this.props))); } }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/contacts", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_19__routes_social_Contacts__["a" /* default */], __assign({}, props, _this.props))); } }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/favorites", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__routes_library_Favorites__["a" /* default */], __assign({}, props, _this.props))); } }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/message/:uid", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_18__routes_social_Message__["a" /* default */], __assign({}, props, _this.props))); } }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/playlists", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_17__routes_library_Playlists__["a" /* default */], __assign({}, props, _this.props))); } }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/playlist/:pid", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_18__routes_library_Playlist__["a" /* default */], __assign({}, props, _this.props))); } }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/message/:uid", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_20__routes_social_Message__["a" /* default */], __assign({}, props, _this.props))); } }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "/channel/:uid", render: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__routes_channel_Channel__["a" /* default */], __assign({}, props, _this.props))); } }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: "*", component: function (props) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(GoHomeDude, __assign({}, props, _this.props))); } })));
     };
@@ -61078,6 +61116,264 @@ exports.default = {
     clockCircleColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12)
   }
 };
+
+/***/ }),
+/* 555 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Paper__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_List__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_List___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_List__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Subheader__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_Subheader___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_Subheader__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Api__ = __webpack_require__(19);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+
+var ChannelRenderer = function (_a) {
+    var _b = _a.info, name = _b.name, pid = _b.pid;
+    return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/playlist/' + pid },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_List__["ListItem"], { primaryText: name })));
+};
+var styles = {
+    paper: {
+        height: "100vh",
+        overflowY: 'auto',
+        margin: "0em auto",
+        padding: "2em",
+        maxWidth: "40rem",
+        textAlign: "left"
+    },
+};
+var Contacts = /** @class */ (function (_super) {
+    __extends(Contacts, _super);
+    function Contacts(props) {
+        var _this = _super.call(this, props) || this;
+        _this.loadPlaylists = function () {
+            __WEBPACK_IMPORTED_MODULE_5__Api__["a" /* api */].playlists.get_playlists(function (info) {
+                _this.setState({
+                    playlists: info
+                });
+            });
+        };
+        _this.state = { playlists: [] };
+        _this.loadPlaylists();
+        return _this;
+    }
+    Contacts.prototype.render = function () {
+        var globals = this.props.globals;
+        if (globals.noAccess()) {
+            return globals.noAccessRet();
+        }
+        var playlists = this.state.playlists;
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_List__["List"], null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Subheader___default.a, null, "Playlists"),
+                playlists.map(function (info, index) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ChannelRenderer, { key: index, info: info })); }))));
+    };
+    return Contacts;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+/* harmony default export */ __webpack_exports__["a"] = (Contacts);
+
+
+/***/ }),
+/* 556 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_TextField__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Api__ = __webpack_require__(19);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+
+
+var AddToPlaylist = /** @class */ (function (_super) {
+    __extends(AddToPlaylist, _super);
+    function AddToPlaylist(props) {
+        var _this = _super.call(this, props) || this;
+        _this.add = function () {
+            var selected_name = _this.state.selected_name;
+            if (selected_name !== null) {
+                __WEBPACK_IMPORTED_MODULE_6__Api__["a" /* api */].playlists.add_to_playlist({ name: selected_name, vid: _this.props.info.vid }, function () {
+                    _this.props.globals.message("Video Successfully Added");
+                });
+                _this.props.cancel();
+            }
+        };
+        _this.handleInputChange = function (event) {
+            _this.setState({
+                selected_name: event.target.value,
+            });
+        };
+        _this.handleChange = function (event, index, selected_name) {
+            _this.setState({ selected_name: selected_name });
+        };
+        _this.state = {
+            playlists: [],
+            loading: true,
+            selected_name: ""
+        };
+        __WEBPACK_IMPORTED_MODULE_6__Api__["a" /* api */].playlists.get_playlists(function (playlists) {
+            _this.setState({ playlists: playlists, loading: false });
+        });
+        return _this;
+    }
+    AddToPlaylist.prototype.render = function () {
+        var _a = this.props, open = _a.open, info = _a.info, cancel = _a.cancel;
+        var _b = this.state, playlists = _b.playlists, loading = _b.loading, selected_name = _b.selected_name;
+        var actions = [
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default.a, { label: "Cancel", primary: true, onClick: cancel }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default.a, { label: "Submit", primary: true, keyboardFocused: true, onClick: this.add })
+        ];
+        var listVals = {};
+        for (var i = 0; i < playlists.length; i++)
+            listVals[playlists[i].name] = true;
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog___default.a, { onClick: function (e) { e.preventDefault(); }, title: "Add To A Playlist", actions: actions, modal: false, open: open, onRequestClose: cancel }, loading ?
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "Loading")
+                :
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null,
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField___default.a, { floatingLabelText: "Use made playlist?", value: listVals[selected_name] ? selected_name : "", onChange: this.handleChange },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: "", primaryText: "" }),
+                            playlists.map(function (playlist, index) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { key: index, value: playlist.name, primaryText: playlist.name })); })),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_TextField___default.a, { id: "text-field-controlled", value: selected_name, onChange: this.handleChange })))));
+    };
+    return AddToPlaylist;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+/* harmony default export */ __webpack_exports__["a"] = (AddToPlaylist);
+
+
+/***/ }),
+/* 557 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Api__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_VideoInfo__ = __webpack_require__(92);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+
+
+var styles = {
+    paper: {
+        maxWidth: "70rem",
+        padding: "4em",
+        margin: "0 auto"
+    },
+    button: {
+        marginBottom: "4em"
+    }
+};
+var Channel = /** @class */ (function (_super) {
+    __extends(Channel, _super);
+    function Channel(props) {
+        var _this = _super.call(this, props) || this;
+        _this.get_my_videos = function (props) {
+            var pid = props.match.params.pid;
+            __WEBPACK_IMPORTED_MODULE_4__Api__["a" /* api */].playlists.get_playlist({ pid: pid }, function (videos) {
+                _this.setState({ videos: videos });
+            });
+            __WEBPACK_IMPORTED_MODULE_4__Api__["a" /* api */].playlists.get_playlist_info({ pid: pid }, function (info) {
+                _this.setState({ info: info });
+            });
+        };
+        _this.reload_videos = function () {
+            _this.get_my_videos(_this.props);
+        };
+        _this.get_my_videos = _this.get_my_videos.bind(_this);
+        _this.state = {
+            videos: [],
+            info: null
+        };
+        _this.get_my_videos(props);
+        return _this;
+    }
+    Channel.prototype.render = function () {
+        var _this = this;
+        var globals = this.props.globals;
+        if (globals.noAccess()) {
+            return globals.noAccessRet();
+        }
+        var _a = this.state, videos = _a.videos, info = _a.info;
+        if (info === null) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, "No Playlist Found"));
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Paper___default.a, { zDepth: 4, style: styles.paper },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: { textAlign: "left" } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { to: '/playlists' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_RaisedButton___default.a, { secondary: true }, "Back"))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", { style: { paddingBottom: "2em" } },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", { style: { color: "yellow" } }, info.name),
+                " Playlist"),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_VideoInfo__["a" /* Grid */], null, videos.map(function (info) { return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_VideoInfo__["b" /* VideoInfo */], { reload: _this.reload_videos, key: info.vid, globals: globals, info: info })); }))));
+    };
+    return Channel;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]));
+/* harmony default export */ __webpack_exports__["a"] = (Channel);
+
 
 /***/ })
 /******/ ]);

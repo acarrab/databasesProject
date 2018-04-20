@@ -11,13 +11,14 @@ if ( Request::is_post() ) {
   $s = &State::get_instance();
   $uid = $s->user->uid;
 
+  $playlist_id = null;
   // step 1: get the playlist's id.
-  $playlist = $db->get_object("
-DELETE FROM playlist WHERE owner='$uid' AND name='$in->pid'
+  $playlists = $db->get_object("
+SELECT pid, name FROM playlist WHERE pid='$in->pid'
 ");
 
-  $output = array();
-  Request::validate_and_put_array($data, $output);
+  $output = array("pid","name");
+  Request::validate_and_put_data($playlists, $output);
 
 } else { Errors::not_found(); }
 

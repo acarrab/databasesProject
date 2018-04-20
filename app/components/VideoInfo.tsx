@@ -19,8 +19,13 @@ import { getTimeSince } from '../tools/Time'
 import Popover from 'material-ui/Popover/Popover'
 import { Menu, MenuItem } from 'material-ui/Menu'
 
+import AddToPlaylist from '../components/AddToPlaylist'
+
 import * as Api from '../Api'
-import { api } from '../Api'
+import {
+    api,
+    output$api$videos$get_all as VideoData
+} from '../Api'
 
 import Media from 'react-media'
 
@@ -45,6 +50,10 @@ const styles = {
 
 
 
+
+
+
+
 export class Grid extends Component<any> {
     render() {
         return (
@@ -64,11 +73,11 @@ export class Grid extends Component<any> {
 
 interface VideoProps extends GlobalProps {
     reload?: () => void
-    info: Api.output$api$videos$get_all
+    info: VideoData
 }
 
-export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, anchorEl: JSX.Element, maybeDelete: boolean }> {
-    state = { open: false, anchorEl: null, maybeDelete: false }
+export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, playlist: boolean, anchorEl: JSX.Element, maybeDelete: boolean }> {
+    state = { open: false, anchorEl: null, maybeDelete: false, playlist: false }
 
     onMenuClick = () => {
         this.setState((prev) => ({ open: !prev.open }))
@@ -112,6 +121,7 @@ export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, 
     render() {
         const { reload, info, globals } = this.props
         const { is_favorite } = info
+        const { playlist } = this.state
         const my_video = globals.user.username === info.username
         return (
             <IconButton>
@@ -127,11 +137,21 @@ export class VideoOptionsPopover extends Component<VideoProps, { open: boolean, 
                         :
                         <MenuItem onClick={this.addToFavorites}>Add to favorites</MenuItem>
                     }
-                    <MenuItem>Add to playlist</MenuItem>
+                    <MenuItem onClick={(e) => {
+                        e.preventDefault()
+                        this.setState({ playlist: true, open: false })
+                    }}>Add to playlist</MenuItem>
+
                     {(reload !== undefined && info.username === globals.user.username) ?
                         <MenuItem onClick={this.askToDelete}
                         >Delete your video</MenuItem> : ""}
                 </Popover>
+                <AddToPlaylist
+                    globals={globals}
+                    info={info}
+                    cancel={() => { this.setState({ playlist: false }) }}
+                    open={playlist}
+                />
                 <AreYouSure open={this.state.maybeDelete} yes={() => { this.deleteVideo() }} no={() => { this.setState({ maybeDelete: false }) }} />
             </IconButton>
         )

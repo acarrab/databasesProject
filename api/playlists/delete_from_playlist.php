@@ -4,25 +4,26 @@ Auth::assert_access();
 
 if ( Request::is_post() ) {
 
-  $input = array("name", "vid");
+  $input = array("vid", "pid");
   $in = &Request::validate_and_get_data($input);
 
   $db = &Database::get_instance();
   $s = &State::get_instance();
   $uid = $s->user->uid;
 
-  $playlist_id = null;
-  // step 1: get the playlist's id.
-  $playlist = $db->get_object("
-SELECT * FROM playlist WHERE name='$in->name' AND owner='$uid'
+  $is_mine = $db->get_object("
+SELECT * FROM playlist WHERE pid='$in->pid' AND owner='$uid'
 ");
+  if (! $is_mine ) {
+    Errors::unauthorized();
+  }
 
   $db->exec_query("
-DELETE FROM playlist_entry WHERE vid='$in->vid' AND pid='$playlist->pid'
+DELETE FROM playlist_entry WHERE vid='$in->vid' AND pid='$in->pid'
 ");
 
   $output = array();
-  Request::validate_and_put_array($data, $output);
+  Request::validate_and_put_data($data, $output);
 
 } else { Errors::not_found(); }
 

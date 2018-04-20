@@ -49,7 +49,33 @@ export interface input$api$playlists$add_to_favorites {
     vid: string
 }
 
+export interface input$api$playlists$add_to_playlist {
+    name: string, vid: string
+}
+
+export interface input$api$playlists$create_playlist {
+    name: string
+}
+
+export interface input$api$playlists$delete_from_playlist {
+    vid: string, pid: string
+}
+
+export interface input$api$playlists$delete_playlist {
+    pid: string
+}
+
 export interface input$api$playlists$get_favorites { }
+
+export interface input$api$playlists$get_playlist {
+    pid: string
+}
+
+export interface input$api$playlists$get_playlist_info {
+    pid: string
+}
+
+export interface input$api$playlists$get_playlists { }
 
 export interface input$api$playlists$playlist {
     vid: string, name: string
@@ -133,6 +159,8 @@ export interface input$api$videos$upload {
     title: string, description: string, keywords: string, category: string, extension: string, thumbnail_png: string
 }
 
+export interface input$api$videos$video_selector { }
+
 
 
 export interface output$api$auth$create {
@@ -183,8 +211,28 @@ export interface output$api$messaging$send { }
 
 export interface output$api$playlists$add_to_favorites { }
 
+export interface output$api$playlists$add_to_playlist { }
+
+export interface output$api$playlists$create_playlist { }
+
+export interface output$api$playlists$delete_from_playlist { }
+
+export interface output$api$playlists$delete_playlist { }
+
 export interface output$api$playlists$get_favorites {
     vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, is_favorite: string
+}
+
+export interface output$api$playlists$get_playlist {
+    vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, is_favorite: string
+}
+
+export interface output$api$playlists$get_playlist_info {
+    pid: string, name: string
+}
+
+export interface output$api$playlists$get_playlists {
+    pid: string, name: string
 }
 
 export interface output$api$playlists$playlist { }
@@ -258,7 +306,7 @@ export interface output$api$videos$search_channel_only {
 }
 
 export interface output$api$videos$search_keywords {
-    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string, word: string
+    is_favorite: string, vid: string, username: string, f_name: string, l_name: string, channel: string, title: string, description: string, upload_date: string, video_path: string, image_path: string, last_access: string, category: string
 }
 
 export interface output$api$videos$search_keywords_only {
@@ -268,6 +316,8 @@ export interface output$api$videos$search_keywords_only {
 export interface output$api$videos$upload {
     message: string, vid: string
 }
+
+export interface output$api$videos$video_selector { }
 
 
 
@@ -352,8 +402,29 @@ export const api = {
         add_to_favorites: function (data: input$api$playlists$add_to_favorites, success?: (res: Array<output$api$playlists$add_to_favorites>) => void, failure?: (err: any) => void) {
             return post('api/playlists/add_to_favorites.php', data, success, failure)
         },
+        add_to_playlist: function (data: input$api$playlists$add_to_playlist, success?: (res: output$api$playlists$add_to_playlist) => void, failure?: (err: any) => void) {
+            return post('api/playlists/add_to_playlist.php', data, success, failure)
+        },
+        create_playlist: function (data: input$api$playlists$create_playlist, success?: (res: output$api$playlists$create_playlist) => void, failure?: (err: any) => void) {
+            return post('api/playlists/create_playlist.php', data, success, failure)
+        },
+        delete_from_playlist: function (data: input$api$playlists$delete_from_playlist, success?: (res: output$api$playlists$delete_from_playlist) => void, failure?: (err: any) => void) {
+            return post('api/playlists/delete_from_playlist.php', data, success, failure)
+        },
+        delete_playlist: function (data: input$api$playlists$delete_playlist, success?: (res: Array<output$api$playlists$delete_playlist>) => void, failure?: (err: any) => void) {
+            return post('api/playlists/delete_playlist.php', data, success, failure)
+        },
         get_favorites: function (success?: (res: Array<output$api$playlists$get_favorites>) => void, failure?: (err: any) => void) {
             return get('api/playlists/get_favorites.php', success, failure)
+        },
+        get_playlist: function (data: input$api$playlists$get_playlist, success?: (res: Array<output$api$playlists$get_playlist>) => void, failure?: (err: any) => void) {
+            return post('api/playlists/get_playlist.php', data, success, failure)
+        },
+        get_playlist_info: function (data: input$api$playlists$get_playlist_info, success?: (res: output$api$playlists$get_playlist_info) => void, failure?: (err: any) => void) {
+            return post('api/playlists/get_playlist_info.php', data, success, failure)
+        },
+        get_playlists: function (success?: (res: Array<output$api$playlists$get_playlists>) => void, failure?: (err: any) => void) {
+            return get('api/playlists/get_playlists.php', success, failure)
         },
         playlist: function (data: input$api$playlists$playlist, success?: (res: Array<output$api$playlists$playlist>) => void, failure?: (err: any) => void) {
             return post('api/playlists/playlist.php', data, success, failure)
@@ -424,6 +495,9 @@ export const api = {
         },
         upload: function (data: FormData, success?: (res: output$api$videos$upload) => void, failure?: (err: any) => void) {
             return post('api/videos/upload.php', data, success, failure)
+        },
+        video_selector: function (success?: (res: output$api$videos$video_selector) => void, failure?: (err: any) => void) {
+            return get('api/videos/video_selector.php', success, failure)
         }
     }
 }

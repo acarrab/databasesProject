@@ -28,7 +28,7 @@ INSERT INTO playlist (owner, name) VALUES ('$uid', '$in->name')
 
 
   $output = array();
-  Request::validate_and_put_array($data, $output);
+  Request::validate_and_put_data($data, $output);
 
 } else { Errors::not_found(); }
 

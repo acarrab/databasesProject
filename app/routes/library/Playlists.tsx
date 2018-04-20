@@ -18,7 +18,10 @@ import SearchBar from '../../components/SearchBar'
 
 const ChannelRenderer = ({ info: { name, pid } }: { info: PlaylistInfo }) => (
     <Link to={'/playlist/' + pid}>
-        <ListItem primaryText={name}></ListItem>
+        <Paper zDepth={3} style={{ padding: "0em", margin: "1em 0em" }}>
+            <ListItem primaryText={name} style={{
+            }}></ListItem>
+        </Paper>
     </Link>
 )
 

@@ -61151,7 +61151,8 @@ var __extends = (this && this.__extends) || (function () {
 var ChannelRenderer = function (_a) {
     var _b = _a.info, name = _b.name, pid = _b.pid;
     return (__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/playlist/' + pid },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_List__["ListItem"], { primaryText: name })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_Paper___default.a, { zDepth: 3, style: { padding: "0em", margin: "1em 0em" } },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_List__["ListItem"], { primaryText: name, style: {} }))));
 };
 var styles = {
     paper: {

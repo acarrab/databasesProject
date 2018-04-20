@@ -13,12 +13,19 @@ if ( Request::is_post() ) {
 
   $searchText = $db->conn->real_escape_string(strtolower($in->searchText));
 
-  $sql = "SELECT video.*, keyword.word FROM video_with_favorite as video
-JOIN keyword on video.vid = keyword.vid
-WHERE uid='$uid' AND word LIKE '$searchText%';";
+  $data = $db->get_objects("
+SELECT video.*  FROM
+  (SELECT video.*, IF(fav_id IS NULL, '0', '1') as is_favorite FROM (
+    SELECT * FROM video_info
+    ORDER BY video_info.upload_date DESC
+  ) as video LEFT JOIN favorite
+  ON favorite.vid=video.vid AND favorite.uid = '$uid'
+) as video
+JOIN keyword ON video.vid = keyword.vid
+WHERE word LIKE '$searchText%'
+");
 
-  $data = $db->get_objects($sql);
-  $output = array("is_favorite", "vid", "username", "f_name", "l_name", "channel", "title", "description", "upload_date", "video_path", "image_path", "last_access", "category", "word");
+  $output = array("is_favorite", "vid", "username", "f_name", "l_name", "channel", "title", "description", "upload_date", "video_path", "image_path", "last_access", "category");
   Request::validate_and_put_array($data, $output);
 
 } else { Errors::not_found(); }
